@@ -2,16 +2,36 @@
 
 ## 构建
 
--* npm install
+* npm install
 
--* npm run dll<br/>静态资源预编译，首次使用时务必执行一次这个
+* npm run dll<br/>静态资源预编译，首次使用时务必执行一次这个
 
--* npm run dev<br/>运行开发环境，默认监听8888端口，访问http://localhost:8888即可查看
+* npm run dev<br/>运行开发环境，默认监听8888端口，访问http://localhost:8888即可查看
 
--* npm run build<br/> 正式打包，用于生产环境
+* npm run build<br/> 正式打包，用于生产环境
 
 ## 特性
 
--* 使用了webpack静态资源预编译和HappyPack多线程构建代码
+* 使用了webpack静态资源预编译和HappyPack多线程构建代码
 
--* 最终打包后，会在/build文件夹下生存 index.html 和 /dist文件夹，这两个东西是最终需要的<br/>/build/dev这个文件夹是静态预编译文件，不用管。
+* 最终打包后，会在/build文件夹下生存 index.html 和 /dist文件夹，这两个东西是最终需要的<br/>/build/dev这个文件夹是静态预编译文件，不用管。
+
+## 目录结构
+
+* src/a_action      所有的action
+
+* src/a_component   所有的UI类组件
+
+* src/a_container   所有的控制类组件
+
+* src/a_reducer     所有的reducer
+
+* src/assets        所有的图片、文件等资源
+
+* src/css           所有的样式文件
+
+* src/route         所有的路由配置
+
+* src/store         store数据中心
+
+* src/util          自定义工具
