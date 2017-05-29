@@ -35,3 +35,19 @@
 * src/store         store数据中心
 
 * src/util          自定义工具
+```
+.
+├── src                                 # 项目代码目录
+│   ├── a_action                        # 所有的action
+│   ├── a_component                     # 所有的UI类组件
+│   ├── a_container                     # 所有的控制类组件
+│   ├── a_reducer                       # 所有的reducer
+│   ├── assets                          # 所有的图片、文件等资源
+│   ├── css                             # 所有的样式文件
+│   ├── route                           # 路由
+│   ├── store                           # store数据中心
+│   ├── util                            # 自定义工具
+│   ├── app.js                          # 项目入口文件
+│   ├── index.html                      # 开发环境所用的主页html文件
+│   └── index_template.html             # 生产环境打包时所用的主页html文件
+```
