@@ -18,23 +18,6 @@
 
 ## 目录结构
 
-* src/a_action      所有的action
-
-* src/a_component   所有的UI类组件
-
-* src/a_container   所有的控制类组件
-
-* src/a_reducer     所有的reducer
-
-* src/assets        所有的图片、文件等资源
-
-* src/css           所有的样式文件
-
-* src/route         所有的路由配置
-
-* src/store         store数据中心
-
-* src/util          自定义工具
 ```
 .
 ├── src                                 # 项目代码目录
