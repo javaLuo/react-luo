@@ -1,0 +1,66 @@
+/* 全局配置 */
+*{
+    -webkit-overflow-scrolling: touch;			/* 允许独立滚动区域，解决IOS上的非body元素滚动条滚动时卡顿 */
+    -webkit-tap-highlight-color: transparent;	/* 覆盖IOS上用户点击连接时的默认高亮颜色 */
+    outline: none;
+}
+
+body{
+    margin:0;
+    padding:0;
+    background-color:#fff;
+    -webkit-font-smoothing:antialiased;			/* 平滑字体 */
+    -moz-osx-font-smoothing: grayscale;			/* 平滑字体 */
+    -ms-touch-action: manipulation;				/* 允许触摸驱动的平移和拖拽缩放 */
+    touch-action: manipulation;					/* 允许触摸驱动的平移和拖拽缩放 */
+    -webkit-text-size-adjust:100%;				/* 关闭IOS横屏时，自动调整字体大小的功能 */
+    font-family: "Segoe UI","Lucida Grande",'Microsoft YaHei', sans-serif;
+    font-size:14px;
+}
+div,ul,li{position:relative;display:block;}			/* 全部默认相对定位 */
+ul{margin:0;padding:0;}								/* ul相当于div */
+li{list-style:none;margin:0;padding:0;}				/* li相当于div */
+img{border:0;}
+input{line-height:normal;}
+img,a:focus,a:hover,a:active{outline:none;}
+label{cursor:pointer;}
+sub,sup{font-size:75%;line-height: 0;position: relative;vertical-align: baseline;} /* 重新定义上标和下标的表现 */
+sup{top: -.5em;}
+sub{bottom: -.25em;}
+
+/* 常用功能 */
+.all_nowarp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}/* 禁止换行,末尾省略 */
+.all_nowarp2{display: -webkit-box;-webkit-box-orient: vertical;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;}/* 禁止换行，2行，末尾省略，div的高度需要正好是2行的高度 */
+.all_nowarp3{display: -webkit-box;-webkit-box-orient: vertical;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:3;}/* 禁止换行，3行，末尾省略，div的高度需要正好是2行的高度 */
+.all_warp{word-break:break-all;word-wrap:break-word;} /* 强制换行 */
+.all_hover:hover{text-decoration:underline;}/* hover下划线效果 */
+.all_b{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}	/* 内框模式 */
+.all_clear:after{content:".";height:0;overflow:hidden;visibility:hidden;display:block;clear:both;} /* 清楚浮动 */
+.all_trans{transition:all 200ms;-webkit-transition:all 200ms;}/* 过渡效果 */
+.all_active{-webkit-transition:background-color 200ms;transition:background-color 200ms;}/* 鼠标选中效果 */
+.all_active:active{background-color:#f2f2f2 !important;}
+
+/* 自定义CSS */
+.menu{margin-top:10px;color:#888;}
+.menu a{padding:0 5px;color:#0066cc;text-decoration: none}
+.menu a:hover{text-decoration: underline;}
+
+.page-home{padding:100px 0 20px 0;}
+.page-home .box{margin:0 auto;text-align:center;}
+.page-home .box .title{font-size:24px;}
+.page-home .box .info{margin-top:10px;color:#888;}
+.page-home .box .link{margin-top:40px;font-size:12px;color:#888;}
+.page-home .box .link a{color:#888;text-decoration: none;}
+.page-home .box .link a:hover{text-decoration: underline;}
+
+.page-features{width:100%;max-width:1200px;margin:0 auto;padding:40px;letter-spacing: 1px;}
+.page-features .box{margin-top:40px;}
+.page-features .box .list{margin-bottom: 20px;}
+.page-features .box .list p{font-size:14px; padding: 5px 10px;margin:10px 0;background-color:#eeeeff}
+.page-features .box .list div{ color:#888;font-size:12px; }
+
+.page-test{width:100%;max-width:1200px;margin:0 auto;padding:40px;letter-spacing: 1px;}
+.page-test .box{margin-top:40px;}
+.page-test .box .list{margin-bottom: 20px;}
+.page-test .box .list p{font-size:14px; padding: 5px 10px;margin:10px 0;background-color:#eeeeff}
+.page-test .box .list div{ color:#888;font-size:12px; }
