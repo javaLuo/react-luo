@@ -2,14 +2,21 @@
 
 ## 构建
 
-* npm install       # 安装依赖模块
+```
+npm install       # 安装依赖模块
+```
 
-* npm run dll       # 静态资源预编译，首次使用时务必执行一次这个
+```
+npm run dll       # 静态资源预编译，首次使用时务必执行一次这个
+```
 
-* npm run dev       # 运行开发环境，默认监听8888端口
+```
+npm run dev       # 运行开发环境，默认监听8888端口
+```
 
-* npm run build     # 正式打包，用于生产环境
-
+```
+npm run build     # 正式打包，用于生产环境
+```
 ## 特性
 
 * 使用了webpack静态资源预编译和HappyPack多线程构建代码
