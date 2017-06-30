@@ -15,7 +15,8 @@ module.exports = {
             'redux',
             'redux-thunk',
             'reqwest',
-            'prop-types'
+            'prop-types',
+            'echarts'
         ]
     },
     output: {

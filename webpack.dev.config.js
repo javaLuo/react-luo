@@ -68,6 +68,7 @@ module.exports = {
             verbose: true
         }),
         new webpack.HotModuleReplacementPlugin(),   // 热更新插件
+        new webpack.optimize.ModuleConcatenationPlugin(), // 作用域提升，优化打包
         new webpack.NoEmitOnErrorsPlugin()
     ],
     resolve: {

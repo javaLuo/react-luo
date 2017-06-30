@@ -1,3 +1,4 @@
+// import Fundebug from 'fundebug-javascript';
 import React from 'react'; // react核心，用到jsx的地方，都需要这个
 import ReactDOM from 'react-dom';	// react控制dom所需，用到了其reder方法
 import {Provider} from 'react-redux'; // react和redux连接的桥梁
@@ -17,6 +18,8 @@ import './css/scss.scss';
 // ====================
 
 import AppRoutes from './route';	// 所有定义好的路由
+
+// Fundebug.apikey = '2845eb5f5743bc042554e472fff8e1d711a3650e07edc6fd4d4400548d5c90fc';
 
 ReactDOM.render(
   <Provider store={store}>

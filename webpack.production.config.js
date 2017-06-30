@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'build/dist'),    // 将文件打包到此目录下
-        publicPath: '/dist/',                                // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
+        publicPath: '/work/react-luo/dist/',                                // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
         filename: '[name].js',
         chunkFilename: '[name].chunk.js',
     },
@@ -94,6 +94,9 @@ module.exports = {
                 drop_console: true, // 是否删除所有的console
             },
         }),
+
+        // 作用域提升，优化打包
+        new webpack.optimize.ModuleConcatenationPlugin(),
 
         // 此插件详细教程 http://www.cnblogs.com/haogj/p/5160821.html
         new HtmlWebpackPlugin({                 //根据模板插入css/js等生成最终HTML
