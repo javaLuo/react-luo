@@ -41,3 +41,7 @@ npm run build     # 正式打包，用于生产环境
 │   ├── index.html                      # 开发环境所用的主页html文件
 │   └── index_template.html             # 生产环境打包时所用的主页html文件
 ```
+
+## 预览地址
+
+http://isluo.com/work/react-luo/index.html
