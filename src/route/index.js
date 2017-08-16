@@ -45,7 +45,7 @@ export default (
     <IndexRedirect to="/home" />
     <Route onEnter={requireAuth} path="/home" component={HomeContainer} />
     <Route onEnter={requireAuth} path="/features" component={FeaturesContainer} />
-      <Route onEnter={requireAuth} path="/tests" component={TestContainer} />
+    <Route onEnter={requireAuth} path="/tests" component={TestContainer} />
     <Redirect from='*' to='/'  />
   </Route>
 );

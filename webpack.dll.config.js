@@ -6,17 +6,17 @@ module.exports = {
         vendor: [
             'react',
             'react-dom',
-            'antd',
-            'babel-polyfill',
-            'lodash',
             'react-redux',
             'react-router',
             'react-router-redux',
             'redux',
             'redux-thunk',
+            'babel-polyfill',
             'reqwest',
             'prop-types',
-            'echarts'
+            'lodash',
+            'echarts',
+            'antd'
         ]
     },
     output: {
