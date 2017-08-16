@@ -20,12 +20,12 @@ module.exports = {
     devtool: 'eval-source-map',                          // 正确的输出代码行数
     module: {
         rules: [
-            {   // 编译前通过eslint检查代码
-                test: /\.js?$/,
-                enforce: 'pre',
-                loader: 'eslint-loader',
-                include: path.resolve(__dirname, "src")
-            },
+            // {   // 编译前通过eslint检查代码 (暂时取消，eslint有bug不支持ES7修饰器decorator)
+            //     test: /\.js?$/,
+            //     enforce: 'pre',
+            //     loader: 'eslint-loader',
+            //     include: path.resolve(__dirname, "src")
+            // },
             {   // .js .jsx用babel解析
                 test: /\.js?$/,
                 include: path.resolve(__dirname, "src"),

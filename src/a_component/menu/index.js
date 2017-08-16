@@ -20,7 +20,7 @@ class Menu extends React.Component {
                 <Link to="/home">首页</Link>|
                 <Link to="/features">构建与特性</Link>|
                 <Link to={{ pathname: '/tests', query: { t1: 123, t2: 'abc' } }}>测试页面</Link>|
-                <a href="https://github.com/javaLuo/react-luo" target="_blank">GitHub</a>
+                <a href="https://github.com/javaLuo/react-luo" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
         );
     }

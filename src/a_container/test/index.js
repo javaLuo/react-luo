@@ -9,7 +9,7 @@ import P from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Button, Modal } from 'antd';
-
+import { bindActionCreators } from 'redux';
 // ==================
 // 所需的所有组件
 // ==================
@@ -23,7 +23,6 @@ import Mp3 from '../../assets/starSky.mp3';
 // ==================
 
 import appAction from '../../a_action/app-action';
-
 // ==================
 // 最终要交给redux管理的所有变量
 // ==================
@@ -49,6 +48,7 @@ const mapDispatches = (dispatch) => ({
 // ==================
 // Definition
 // ==================
+@testable
 class TestPageContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -139,6 +139,9 @@ class TestPageContainer extends React.Component {
     }
 }
 
+function testable(target) {
+    target.haha = 'haha';
+}
 // ==================
 // PropTypes
 // ==================
@@ -154,4 +157,6 @@ TestPageContainer.propTypes = {
 // Export
 // ==================
 
+
 export default connect(mapStoreStateToProps, mapDispatches)(TestPageContainer);
+
