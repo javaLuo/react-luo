@@ -22,33 +22,13 @@ import Mp3 from '../../assets/starSky.mp3';
 // 本页面所需action
 // ==================
 
-import appAction from '../../a_action/app-action';
-// ==================
-// 最终要交给redux管理的所有变量
-// ==================
+import { onTestAdd, fetchApi, testPromise } from '../../a_action/app-action';
 
-const mapStoreStateToProps = (state) => ({
-    dispatch: state.dispatch,
-    num: state.app.num,
-});
-
-// ==================
-// 最终要交给redux管理的所有action
-// 既定义哪些方法将成为action
-// ==================
-
-const mapDispatches = (dispatch) => ({
-    fn: {
-        onTestAdd: (num) => {
-            dispatch(appAction.onTestAdd(num));
-        },
-    },
-});
 
 // ==================
 // Definition
 // ==================
-@testable
+
 class TestPageContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -75,6 +55,21 @@ class TestPageContainer extends React.Component {
         });
     }
 
+    test() {
+        this.props.actions.onTestAdd(this.props.num).then((res) => {
+            console.log('还能返回吗：' , res);
+        });
+    }
+
+    componentDidMount() {
+        // testPromise 测试。可以在此直接拿到结果。同时也会自动走reducer更新state
+        // 传1将返回成功，其他数返回失败
+        this.props.actions.testPromise(1).then((res) => {
+            console.log('返回什么：', res);
+        }).catch(() => {
+            console.log('错误：');
+        });
+    }
     render() {
         console.log(this.props.location);
         return (
@@ -112,15 +107,12 @@ class TestPageContainer extends React.Component {
                     </div>
                     <div className="list">
                         <h2>location对象测试</h2>
-                        <p>
-                            当前路由：{ this.props.location.pathname }<br/>
-                            当前路由参数：{ Object.keys(this.props.location.query).map((v, i) => `${v}: ${this.props.location.query[v]}`).join('，') }
-                        </p>
+                        
                     </div>
                     <div className="list">
                         <h2>action测试</h2>
                         <p>
-                            <Button type="primary" onClick={() => this.props.fn.onTestAdd(this.props.num)}>通过action改变数据num</Button>&nbsp;<br/>
+                            <Button type="primary" onClick={() => this.props.actions.onTestAdd(this.props.num)}>通过action改变数据num</Button>&nbsp;<br/>
                             store中数据num：{this.props.num}
                         </p>
                     </div>
@@ -139,18 +131,14 @@ class TestPageContainer extends React.Component {
     }
 }
 
-function testable(target) {
-    target.haha = 'haha';
-}
 // ==================
 // PropTypes
 // ==================
 
 TestPageContainer.propTypes = {
-    dispatch: P.func,
-    fn: P.object,
     num: P.number,
     location: P.any,
+    actions: P.any,
 };
 
 // ==================
@@ -158,5 +146,12 @@ TestPageContainer.propTypes = {
 // ==================
 
 
-export default connect(mapStoreStateToProps, mapDispatches)(TestPageContainer);
+export default connect(
+    (state) => ({
+        num: state.app.num,
+    }), 
+    (dispatch) => ({
+        actions: bindActionCreators({ onTestAdd, fetchApi, testPromise }, dispatch),
+    }),
+)(TestPageContainer);
 
