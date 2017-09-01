@@ -8,7 +8,7 @@ import React from 'react';
 import P from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
+import { bindActionCreators } from 'redux';
 // ==================
 // 所需的所有组件
 // ==================
@@ -20,28 +20,6 @@ import Menu from '../../a_component/menu';
 // ==================
 
 import appAction from '../../a_action/app-action';
-
-// ==================
-// 最终要交给redux管理的所有变量
-// ==================
-
-const mapStoreStateToProps = (state) => ({
-  dispatch: state.dispatch,
-  testvalue: state.app.inputvalue2,
-});
-
-// ==================
-// 最终要交给redux管理的所有action
-// 既定义哪些方法将成为action
-// ==================
-
-const mapDispatches = (dispatch) => ({
-  fn: {
-    onTestAdd: (v) => {
-      dispatch(appAction.onTestAdd2(v));
-    },
-  },
-});
 
 // ==================
 // Definition
@@ -89,9 +67,6 @@ class FeaturesPageContainer extends React.Component {
 // ==================
 
 FeaturesPageContainer.propTypes = {
-  dispatch: P.func,
-  fn: P.object,
-  testvalue: P.number,
   location: P.any,
   history: P.any,
 };
@@ -100,4 +75,10 @@ FeaturesPageContainer.propTypes = {
 // Export
 // ==================
 
-export default connect(mapStoreStateToProps, mapDispatches)(FeaturesPageContainer);
+export default connect(
+  (state) => ({
+  }), 
+  (dispatch) => ({
+    actions: bindActionCreators({}, dispatch),
+  })
+)(FeaturesPageContainer);

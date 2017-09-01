@@ -55,12 +55,6 @@ class TestPageContainer extends React.Component {
         });
     }
 
-    test() {
-        this.props.actions.onTestAdd(this.props.num).then((res) => {
-            console.log('还能返回吗：' , res);
-        });
-    }
-
     componentDidMount() {
         // testPromise 测试。可以在此直接拿到结果。同时也会自动走reducer更新state
         // 传1将返回成功，其他数返回失败
@@ -107,7 +101,10 @@ class TestPageContainer extends React.Component {
                     </div>
                     <div className="list">
                         <h2>location对象测试</h2>
-                        
+                        <p>
+                            当前路由：{ this.props.location.pathname }<br/>
+                            当前路由参数：{ Object.keys(this.props.location.query).map((v, i) => `${v}: ${this.props.location.query[v]}`).join('，') }
+                        </p>
                     </div>
                     <div className="list">
                         <h2>action测试</h2>

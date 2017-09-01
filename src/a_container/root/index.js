@@ -2,19 +2,7 @@
 import React from 'react';
 import P from 'prop-types';
 import { connect } from 'react-redux';
-
-// ==================
-// Import Components
-// ==================
-
-// ==================
-// Map store states to props
-// ==================
-
-const mapStoreStateToProps = (state) => ({
-  dispatch: state.dispatch,
-});
-
+import { bindActionCreators } from 'redux';
 // ==================
 // Definition
 // ==================
@@ -46,4 +34,10 @@ RootContainer.propTypes = {
 // Export
 // ==================
 
-export default connect(mapStoreStateToProps)(RootContainer);
+export default connect(
+  (state) => ({
+  }), 
+  (dispatch) => ({
+      actions: bindActionCreators({}, dispatch),
+  })
+)(RootContainer);

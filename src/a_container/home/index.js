@@ -7,6 +7,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, hashHistory } from 'react-router';
+import { bindActionCreators } from 'redux';
 import P from 'prop-types';
 
 // ==================
@@ -21,26 +22,6 @@ import ImgLogo from '../../assets/react-logo.jpg';
 // ==================
 
 import appAction from '../../a_action/app-action';
-
-// ==================
-// 最终要交给redux管理的所有变量
-// ==================
-
-const mapStoreStateToProps = (state) => ({
-  dispatch: state.dispatch,
-  testvalue: state.app.inputvalue,
-  fetchValue: state.app.fetchvalue,
-});
-
-// ==================
-// 最终要交给redux管理的所有action
-// 既定义哪些方法将成为action
-// ==================
-
-const mapDispatches = (dispatch) => ({
-  fn: {
-  },
-});
 
 // ==================
 // Definition
@@ -84,4 +65,12 @@ HomePageContainer.propTypes = {
 // Export
 // ==================
 
-export default connect(mapStoreStateToProps, mapDispatches)(HomePageContainer);
+export default connect(
+  (state) => ({
+    testvalue: state.app.inputvalue,
+    fetchValue: state.app.fetchvalue,
+  }), 
+  (dispatch) => ({
+    actions: bindActionCreators({}, dispatch),
+  })
+)(HomePageContainer);
