@@ -39,7 +39,7 @@ class HomePageContainer extends React.Component {
           <div className="box">
               <img src={ImgLogo} />
               <div className="title">React-Luo</div>
-              <div className="info">react、redux、webpack2、eslint、babel6、antd</div>
+              <div className="info">react、redux、webpack3、eslint、babel6、antd</div>
               <Meun />
               <div className="link">
                   © 2017 <a href="http://isluo.com" target="_blank" rel="noopener noreferrer">isluo.com</a>, Inc.

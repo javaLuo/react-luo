@@ -46,12 +46,12 @@ module.exports = {
             {   // 文件解析
                 test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|pdf)(\?|$)/,
                 include: path.resolve(__dirname, "src"),
-                loader: 'file-loader?name=[name].[ext]'
+                loader: 'file-loader?name=assets/[name].[ext]'
             },
             {   // 图片解析
                 test: /\.(png|jpg|gif)$/,
                 include: path.resolve(__dirname, "src"),
-                loader: 'url-loader?limit=8192&name=images/[name].[ext]'
+                loader: 'url-loader?limit=8192&name=assets/[name].[ext]'
             }
         ]
     },
