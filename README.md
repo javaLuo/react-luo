@@ -25,7 +25,7 @@ npm run build     # 正式打包，用于生产环境
 
 * HappyPack多线程编译
 
-* 最终打包后，会在/build文件夹下生成 index.html 和 /dist文件夹，这两个东西是最终需要的<br/>/build/dev这个文件夹是静态预编译文件，不用管。
+* 最终打包后，会在/build文件夹下生成 index.html 和 /dist文件夹，这两个东西是最终需要的。
 
 ## 目录结构
 
