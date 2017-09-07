@@ -58,14 +58,13 @@ class TestPageContainer extends React.Component {
     componentDidMount() {
         // testPromise 测试。可以在此直接拿到结果。同时也会自动走reducer更新state
         // 传1将返回成功，其他数返回失败
-        this.props.actions.testPromise(1).then((res) => {
-            console.log('返回什么：', res);
-        }).catch(() => {
-            console.log('错误：');
-        });
+        // this.props.actions.testPromise(1).then((res) => {
+        //     console.log('返回什么：', res);
+        // }).catch(() => {
+        //     console.log('错误：');
+        // });
     }
     render() {
-        console.log(this.props.location);
         return (
             <div className="page-test">
                 <h1 className="title">功能测试</h1>
