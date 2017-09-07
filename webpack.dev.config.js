@@ -1,9 +1,29 @@
 /* 这是用于开发环境的webpack配置文件 */
 var os = require("os");
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
 var HappyPack = require('happypack');
 var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+
+/** 用于自定义antd主题 **/
+var pkgPath = path.join(__dirname, 'package.json');
+var pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
+
+var theme = {};
+if (pkg.theme && typeof(pkg.theme) === 'string') {
+    var cfgPath = pkg.theme;
+    // relative path
+    if (cfgPath.charAt(0) === '.') {
+      cfgPath = path.resolve(args.cwd, cfgPath);
+    }
+    var getThemeConfig = require(cfgPath);
+    theme = getThemeConfig();
+} else if (pkg.theme && typeof(pkg.theme) === 'object') {
+    theme = pkg.theme;
+}
+/** /用于自定义antd主题 **/
+
 module.exports = {
     entry: {
         app: [
@@ -37,7 +57,13 @@ module.exports = {
             },
             {   // .less 解析
                 test: /\.less$/,
-                loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+                loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+                include: path.resolve(__dirname, "src")
+            },
+            {   // .less 解析 用于antd自定义主题
+                test: /\.less$/,
+                loaders: ['style-loader', 'css-loader', 'postcss-loader', `less-loader?{"sourceMap":false, "modifyVars": ${JSON.stringify(theme)}}`],
+                include: path.resolve(__dirname, "node_modules")
             },
             {   // .scss 解析
                 test: /\.scss$/,

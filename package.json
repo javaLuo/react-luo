@@ -11,6 +11,9 @@
   "author": "luo",
   "license": "ISC",
   "private": true,
+  "theme": {
+    "primary-color": "#108ee9"
+  },
   "dependencies": {
     "antd": "^2.12.6",
     "babel-polyfill": "^6.23.0",
