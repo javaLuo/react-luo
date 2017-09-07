@@ -27,9 +27,10 @@ if (pkg.theme && typeof(pkg.theme) === 'string') {
 module.exports = {
     entry: {
         app: [
+            'react-hot-loader/patch',
             'webpack-dev-server/client?http://localhost:8888',  // 热更新监听此地址
             'webpack/hot/dev-server',                           // 启用热更新
-            path.resolve(__dirname, 'src', 'app')               // 项目的入口文件
+            path.resolve(__dirname, 'src', 'index')             // 项目的入口文件
         ]
     },
     output: {
@@ -37,7 +38,7 @@ module.exports = {
         path: path.resolve(__dirname, '/dev'),      // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径，只有在真正执行打包命令时，才会生成到此路径中
         filename: 'bundle.js'                       //编译后的文件名字
     },
-    devtool: 'eval-source-map',                          // 正确的输出代码行数
+    devtool: 'eval',                          // 正确的输出代码行数
     module: {
         rules: [
             {   // 编译前通过eslint检查代码 (暂时取消，eslint有bug不支持ES7修饰器decorator)
@@ -82,10 +83,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('./build/dev/vendor-manifest.json')
-        }),
         new HappyPack({
             id: 'happybabel',
             loaders: ['babel-loader'],

@@ -37,11 +37,8 @@ class FeaturesPageContainer extends React.Component {
         <h1 className="title">构建与特性</h1>
         <div className="box">
           <div className="list">
-            <h2>打包静态资源</h2>
-            <p>npm run dll</p>
-            <div>代码中用到的npm包将被预编译到/build/dev 文件夹下</div>
-            <div>您应该首先执行这一步。然后在接下来的开发过程中就不需要执行这一步了</div>
-            <div>静态资源预编译将有效的缩短开发过程中反复修改保存时代码重编译的时间</div>
+            <h2>安装依赖文件</h2>
+            <p>npm install</p>
           </div>
           <div className="list">
             <h2>启动开发环境</h2>
@@ -54,6 +51,14 @@ class FeaturesPageContainer extends React.Component {
             <p>npm run build</p>
             <div>会将最终代码打包至/build文件夹中</div>
             <div>/build文件夹中的index.html 和 /build/dist文件夹 仅这两样东西是最终需要的</div>
+          </div>
+          <div className="list">
+            <h2>HMR局部热更新</h2>
+            <div>使用了react-hot-loader 3.0 实现局部刷新</div>
+          </div>
+          <div className="list">
+            <h2>HappyPack多线程编译</h2>
+            <div>使用了HappyPack插件，使编译速度更快</div>
           </div>
         </div>
         <Menu />

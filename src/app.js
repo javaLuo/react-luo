@@ -21,9 +21,14 @@ import AppRoutes from './route';	// 所有定义好的路由
 
 // Fundebug.apikey = '2845eb5f5743bc042554e472fff8e1d711a3650e07edc6fd4d4400548d5c90fc';
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router routes={AppRoutes} history={hashHistory} queryKey={false} />
-  </Provider>,
-  document.getElementById('app-root')
-);
+class App extends React.Component {
+	render() {
+        return (
+          <Provider store={store}>
+		    <Router routes={AppRoutes} history={hashHistory} queryKey={false} />
+		  </Provider>
+        );
+    }
+}
+
+export default App;

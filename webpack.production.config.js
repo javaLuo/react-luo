@@ -24,11 +24,11 @@ if (pkg.theme && typeof(pkg.theme) === 'string') {
 
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, 'src', 'app')
+        app: path.resolve(__dirname, 'src', 'index')
     },
     output: {
         path: path.resolve(__dirname, 'build/dist'),    // 将文件打包到此目录下
-        publicPath: '/work/react-luo/dist/',            // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
+        publicPath: '/work/react-luo/dist/',                                // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
         filename: '[name].js',
         chunkFilename: '[name].chunk.js',
     },
