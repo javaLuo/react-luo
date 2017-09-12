@@ -41,7 +41,7 @@ module.exports = {
     devtool: 'eval',                          // 正确的输出代码行数
     module: {
         rules: [
-            {   // 编译前通过eslint检查代码 (暂时取消，eslint有bug不支持ES7修饰器decorator)
+            {   // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
                 test: /\.js?$/,
                 enforce: 'pre',
                 loader: 'eslint-loader',
@@ -71,7 +71,7 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
             },
             {   // 文件解析
-                test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|pdf)(\?|$)/,
+                test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
                 include: path.resolve(__dirname, "src"),
                 loader: 'file-loader?name=assets/[name].[ext]'
             },

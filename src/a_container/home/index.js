@@ -55,8 +55,6 @@ class HomePageContainer extends React.Component {
 // ==================
 
 HomePageContainer.propTypes = {
-  dispatch: P.func,
-  fn: P.object,
   location: P.any,
   history: P.any,
 };

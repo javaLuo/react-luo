@@ -74,7 +74,7 @@ module.exports = {
                 })
             },
             {   // 文件解析
-                test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|pdf)(\?|$)/,
+                test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
                 include: path.resolve(__dirname, "src"),
                 loader: 'file-loader?name=assets/[name].[ext]'
             },
@@ -127,7 +127,7 @@ module.exports = {
         new webpack.optimize.ModuleConcatenationPlugin(),
 
         // 此插件详细教程 http://www.cnblogs.com/haogj/p/5160821.html
-        new HtmlWebpackPlugin({                 //根据模板插入css/js等生成最终HTML
+        new HtmlWebpackPlugin({                     //根据模板插入css/js等生成最终HTML
             filename: '../index.html',              //生成的html存放路径，相对于 output.path
             template: './src/index_template.html',  //html模板路径
             favicon: 'favicon.ico',                 // 自动把根目录下的favicon.ico图片加入html
