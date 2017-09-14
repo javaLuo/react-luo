@@ -13,9 +13,16 @@ npm run dev       # 运行开发环境，默认监听8888端口
 ```
 npm run build     # 正式打包，用于生产环境
 ```
-
+## 分支
+* react-luo-react-routerV4
+	<br/> 配置了react-router4.0版本的分支
+* react-luo-noEslint-ES7
+	<br/> 取消了Eslint,配置了支持ES7装饰器的分支
+	
 ## 更新日志
-
+* 2017-09-13
+	<br/>1.创建了新的分支 配置了react-router 4.0
+	
 * 2017-09-07
 	<br/>1.使用react-hot-loader 3.0.0 配置了HMR热替换，不再需要以前的静态资源预编译了
 	<br/>2.配置了Antd自定义主题所需的代码，现在可以直接在package.json中的theme字段定义自己的Antd主题
