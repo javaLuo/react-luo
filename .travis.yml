@@ -4,4 +4,4 @@ node_js:
   - "7"
   - "6"
 script: 
-  - npm run start
+  - npm run dev
