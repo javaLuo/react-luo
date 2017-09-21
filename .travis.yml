@@ -3,10 +3,5 @@ node_js:
   - "8"
   - "7"
   - "6"
-install:
-  - npm install -g sails bower cnpm
-  - npm i
 script: 
-  - npm run cover
-after_success:
-  - npm run coveralls
+  - npm run start
