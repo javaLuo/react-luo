@@ -20,6 +20,10 @@ npm run build     # 正式打包，用于生产环境
 	<br/> 取消了Eslint,配置了支持ES7装饰器的分支
 	
 ## 更新日志
+* 2-17-09-21
+	<br/>1.主分支master也已升级为react-router 4.2
+	<br/>2.其他包更新
+	
 * 2017-09-13
 	<br/>1.创建了新的分支 配置了react-router 4.0
 	
