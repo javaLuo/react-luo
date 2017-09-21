@@ -29,9 +29,9 @@ class RootContainer extends React.Component {
           <div>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/home" component={Home} />
-              <Route exact path="/features" component={Features} />
-              <Route exact path="/test" component={Test} />
+              <Route path="/home" component={Home} />
+              <Route path="/features" component={Features} />
+              <Route path="/test" component={Test} />
               <Route path="*" component={NotFound} />
             </Switch>
             <Menu />
