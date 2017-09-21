@@ -2,7 +2,6 @@
 [![Build Status](https://travis-ci.org/javaLuo/react-luo.svg?branch=master)](https://travis-ci.org/javaLuo/react-luo)
 [![codebeat badge](https://codebeat.co/badges/eb91ca34-7c1b-424f-be1c-a5d79fd3d269)](https://codebeat.co/projects/github-com-javaluo-react-luo-master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
-[![Coverage Status](https://coveralls.io/repos/github/javaLuo/react-luo/badge.svg?branch=master)](https://coveralls.io/github/javaLuo/react-luo?branch=master)
 
 ## 构建 Start
 
@@ -24,7 +23,7 @@ npm run build     # 正式打包，用于生产环境
 	<br/> 取消了Eslint,配置了支持ES7装饰器的分支
 	
 ## 更新日志 Update log
-* 2-17-09-21
+* 2017-09-21
 	<br/>1.主分支master也已升级为react-router 4.2
 	<br/>2.其他包更新
 	
