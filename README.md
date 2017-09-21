@@ -1,4 +1,5 @@
 # react-luo
+[![codebeat badge](https://codebeat.co/badges/eb91ca34-7c1b-424f-be1c-a5d79fd3d269)](https://codebeat.co/projects/github-com-javaLuo-react-luo)
 
 ## 构建
 
