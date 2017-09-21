@@ -4,3 +4,131 @@
   background-color: $color;
   color: #fff;
 }
+
+/* 导航样式 */
+.menu{
+	margin-top:10px;
+	color:#888;
+	text-align: center;
+	.active{
+		color: #67DAF9;
+	}
+	a{
+		padding:0 5px;
+		color:#0066cc;
+		text-decoration: none
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
+
+/* Footer样式 */
+.footer{
+	text-align: center;
+	padding:5px 0;
+	a:hover{
+		text-decoration: underline;
+	}
+}
+
+/* home页样式 */
+.page-home{
+	padding:100px 0 0 0;
+	.box{
+		margin:0 auto;
+		text-align:center;
+		.title{
+			font-size:24px;
+		}
+		.info{
+			margin-top:10px;
+			color:#888;
+		}
+		.link{
+			margin-top:40px;
+			font-size:12px;
+			color:#888;
+			a{
+				color:#888;
+				text-decoration: none;
+				&:hover{
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+/* 构建与特性页样式 */
+.page-features{
+	width:100%;
+	max-width:1200px;
+	margin:0 auto;
+	padding:40px;
+	letter-spacing: 1px;
+	.box{
+		margin-top:40px;
+		.list{
+			margin-bottom: 20px;
+			p{
+				font-size:14px;
+				padding: 5px 10px;
+				margin:10px 0;
+				background-color:#eeeeff;
+			}
+			div{
+				color:#888;
+				font-size:12px;
+			}
+		}
+	}
+}
+
+/* Test页样式 */
+.page-test{
+	width:100%;
+	max-width:1200px;
+	margin:0 auto;
+	padding:40px;
+	letter-spacing: 1px;
+	.box{
+		margin-top:40px;
+		.list{
+			margin-bottom: 20px;
+			p{
+				font-size:14px;
+				padding: 5px 10px;
+				margin:10px 0;
+				background-color:#eeeeff;
+			}
+			div{
+				color:#888;
+				font-size:12px;
+			}
+		}
+		.son-test{
+			a{
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
+/* 404页样式 */
+.page-notfound{
+	height: calc(100vh - 62px);
+	.box{
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: 16px;
+		color: #888;
+	}
+}
+
+/* son页测试 */
+.son{
+	padding: 20px;
+}

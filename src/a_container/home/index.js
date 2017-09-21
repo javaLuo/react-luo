@@ -14,7 +14,6 @@ import P from 'prop-types';
 // 所需的所有组件
 // ==================
 
-import Meun from '../../a_component/menu';
 import ImgLogo from '../../assets/react-logo.jpg';
 
 // ==================
@@ -40,10 +39,6 @@ class HomePageContainer extends React.Component {
               <img src={ImgLogo} />
               <div className="title">React-Luo</div>
               <div className="info">react、redux、webpack3、eslint、babel6、antd</div>
-              <Meun />
-              <div className="link">
-                  © 2017 <a href="http://isluo.com" target="_blank" rel="noopener noreferrer">isluo.com</a>, Inc.
-              </div>
           </div>
       </div>
     );

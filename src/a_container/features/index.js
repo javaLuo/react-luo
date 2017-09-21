@@ -13,7 +13,6 @@ import { bindActionCreators } from 'redux';
 // 所需的所有组件
 // ==================
 
-import Menu from '../../a_component/menu';
 
 // ==================
 // 本页面所需action
@@ -61,7 +60,6 @@ class FeaturesPageContainer extends React.Component {
             <div>使用了HappyPack插件，使编译速度更快</div>
           </div>
         </div>
-        <Menu />
       </div>
     );
   }

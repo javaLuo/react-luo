@@ -5,18 +5,22 @@
 // ==================
 
 import React from 'react';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { Button, Modal } from 'antd';
 import { bindActionCreators } from 'redux';
+
 // ==================
 // 所需的所有组件
 // ==================
 
-import Menu from '../../a_component/menu';
 import ImgTest from '../../assets/test.jpg';
 import Mp3 from '../../assets/starSky.mp3';
+
+import Page1 from './container/page1';
+import Page2 from './container/page2';
+import Page3 from './container/page3';
 
 // ==================
 // 本页面所需action
@@ -63,6 +67,7 @@ class TestPageContainer extends React.Component {
         // }).catch(() => {
         //     console.log('错误：');
         // });
+        console.log('this.props.location', this.props.location, this.props.match, this.props.history);
     }
     render() {
         return (
@@ -102,8 +107,10 @@ class TestPageContainer extends React.Component {
                         <h2>location对象测试</h2>
                         <p>
                             当前路由：{ this.props.location.pathname }<br/>
-                            当前路由参数：{ Object.keys(this.props.location.query).map((v, i) => `${v}: ${this.props.location.query[v]}`).join('，') }
+                            search参数：{ this.props.location.search }<br/>
+                            state参数：{this.props.location.state ? Object.entries(this.props.location.state).map((v) => `${v[0]}=${v[1]}`).join('，') : ''}
                         </p>
+                        <p>所有页面都自动被注入location、match、history对象</p>
                     </div>
                     <div className="list">
                         <h2>action测试</h2>
@@ -112,8 +119,23 @@ class TestPageContainer extends React.Component {
                             store中数据num：{this.props.num}
                         </p>
                     </div>
+                    <div className="list">
+                        <h2>嵌套路由测试</h2>
+                        <BrowserRouter getUserConfirmation={(v) => this.onEnter(v)}>
+                            <div className='son-test'>
+                                <Link to={`${this.props.match.url}/Page1`} >子页1</Link>
+                                <Link to={`${this.props.match.url}/Page2`} >子页2</Link>
+                                <Link to={`${this.props.match.url}/Page3`} >子页3</Link>
+                                <Switch>
+                                    <Route exact path={`${this.props.match.url}/`} component={Page1} />
+                                    <Route exact path={`${this.props.match.url}/Page1`} component={Page1} />
+                                    <Route exact path={`${this.props.match.url}/Page2`} component={Page2} />
+                                    <Route exact path={`${this.props.match.url}/Page3`} component={Page3} />
+                                </Switch>
+                            </div>
+                        </BrowserRouter>
+                    </div>
                 </div>
-                <Menu />
                 <Modal
                   title="模态框"
                   visible={this.state.visible}
@@ -135,6 +157,8 @@ TestPageContainer.propTypes = {
     num: P.number,
     location: P.any,
     actions: P.any,
+    match: P.any,
+    history: P.any,
 };
 
 // ==================

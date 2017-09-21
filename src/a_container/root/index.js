@@ -1,21 +1,43 @@
 /* 根页 */
 import React from 'react';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// ==================
-// Definition
-// ==================
 
+import Home from '../home';
+import Features from '../features';
+import Test from '../test';
+import NotFound from '../notfound';
+
+import Menu from '../../a_component/menu';
+import Footer from '../../a_component/footer';
 class RootContainer extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  onEnter(v) {
+    console.log('onEnter=', v);
+    alert('111');
+  }
+
   render() {
     return (
       <div className="boss">
-        {this.props.children}
+        <BrowserRouter getUserConfirmation={(v) => this.onEnter(v)}>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/home" component={Home} />
+              <Route exact path="/features" component={Features} />
+              <Route exact path="/test" component={Test} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+            <Menu />
+          </div>
+        </BrowserRouter>
+        <Footer />
       </div>
     );
   }
