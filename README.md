@@ -1,9 +1,10 @@
-# react-luo
+# React-Luo
 [![Build Status](https://travis-ci.org/javaLuo/react-luo.svg?branch=master)](https://travis-ci.org/javaLuo/react-luo)
 [![codebeat badge](https://codebeat.co/badges/eb91ca34-7c1b-424f-be1c-a5d79fd3d269)](https://codebeat.co/projects/github-com-javaluo-react-luo-master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
+[![Coverage Status](https://coveralls.io/repos/github/javaLuo/react-luo/badge.svg?branch=master)](https://coveralls.io/github/javaLuo/react-luo?branch=master)
 
-## 构建
+## 构建 Start
 
 ```
 npm install       # 安装依赖模块
@@ -16,13 +17,13 @@ npm run dev       # 运行开发环境，默认监听8888端口
 ```
 npm run build     # 正式打包，用于生产环境
 ```
-## 分支
+## 分支 Branches
 * react-luo-react-routerV4
 	<br/> 配置了react-router4.0版本的分支
 * react-luo-noEslint-ES7
 	<br/> 取消了Eslint,配置了支持ES7装饰器的分支
 	
-## 更新日志
+## 更新日志 Update log
 * 2-17-09-21
 	<br/>1.主分支master也已升级为react-router 4.2
 	<br/>2.其他包更新
@@ -33,7 +34,7 @@ npm run build     # 正式打包，用于生产环境
 * 2017-09-07
 	<br/>1.使用react-hot-loader 3.0.0 配置了HMR热替换，不再需要以前的静态资源预编译了
 	<br/>2.配置了Antd自定义主题所需的代码，现在可以直接在package.json中的theme字段定义自己的Antd主题
-## 特性
+## 特性 Characteristic
 
 * HMR局部热替换
 
@@ -41,7 +42,7 @@ npm run build     # 正式打包，用于生产环境
 
 * 最终打包后，会在/build文件夹下生成 index.html 和 /dist文件夹，这两个东西是最终需要的。
 
-## 目录结构
+## 目录结构 structure
 
 ```
 .
@@ -60,6 +61,6 @@ npm run build     # 正式打包，用于生产环境
 │   └── index_template.html             # 生产环境打包时所用的主页html文件
 ```
 
-## 预览地址
+## 预览地址 Demo
 
 http://isluo.com/work/react-luo/index.html
