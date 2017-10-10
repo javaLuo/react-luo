@@ -87,7 +87,6 @@ module.exports = {
             id: 'happybabel',
             loaders: ['babel-loader'],
             threadPool: happyThreadPool,
-            cache: true,
             verbose: true
         }),
         new webpack.HotModuleReplacementPlugin(),   // 热更新插件
