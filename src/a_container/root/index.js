@@ -1,6 +1,6 @@
 /* 根页 */
 import React from 'react';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -50,14 +50,14 @@ class RootContainer extends React.Component {
   render() {
     return (
       <div className="boss">
-        <BrowserRouter>
+        <BrowserRouter basename="/br">
           <div>
             <Switch>
-              <Route exact path="/" component={Home} />
+              <Redirect exact from='/' to='/home'/>
               <Route path="/home" component={Home} />
               <Route path="/features" component={Features} />
               <Route path="/test" component={Test} />
-              <Route path="*" component={NotFound} />
+              <Route component={NotFound} />
             </Switch>
             <Menu />
           </div>
