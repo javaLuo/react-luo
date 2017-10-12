@@ -23,6 +23,9 @@ npm run build     # 正式打包，用于生产环境
 	<br/> 取消了Eslint,配置了支持ES7装饰器的分支
 	
 ## 更新日志 Update log
+* 2017-10-11
+	<br/>1.加入代码分割的例子，运用bundle-loader的懒加载方式
+	<br/>2.babel-preset-env代替原来的其他babel插件
 * 2017-09-21
 	<br/>1.主分支master也已升级为react-router 4.2
 	<br/>2.其他包更新
