@@ -16,13 +16,11 @@ npm run dev       # 运行开发环境，默认监听8888端口
 ```
 npm run build     # 正式打包，用于生产环境
 ```
-## 分支 Branches
-* react-luo-react-routerV4
-	<br/> 配置了react-router4.0版本的分支
-* react-luo-noEslint-ES7
-	<br/> 取消了Eslint,配置了支持ES7装饰器的分支
-	
 ## 更新日志 Update log
+* 2017-10-13
+	<br/>1.HMR热更新现在使用了webpack-dev-middleware 和 webpack-hot-middleware 的配置方式
+	<br/>2.更合理的路由跳转方式
+	<br/>3.其他包更新
 * 2017-10-11
 	<br/>1.加入代码分割的例子，运用bundle-loader的懒加载方式
 	<br/>2.babel-preset-env代替原来的其他babel插件
