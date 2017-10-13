@@ -28,7 +28,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, 'build/dist'),    // 将文件打包到此目录下
-        publicPath: '/work/react-luo/dist/',                                // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
+        publicPath: '/dist/',                           // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
         filename: '[name].js',
         chunkFilename: '[name].chunk.js',
     },
@@ -129,15 +129,14 @@ module.exports = {
         // 此插件详细教程 http://www.cnblogs.com/haogj/p/5160821.html
         new HtmlWebpackPlugin({                     //根据模板插入css/js等生成最终HTML
             filename: '../index.html',              //生成的html存放路径，相对于 output.path
-            template: './src/index_template.html',  //html模板路径
+            template: './src/index.html',           //html模板路径
             favicon: 'favicon.ico',                 // 自动把根目录下的favicon.ico图片加入html
             inject: true,                           // 是否将js放在body的末尾
-            hash: false,                            // 是否为本页面所有资源文件添加一个独特的hash值
         }),
 
     ],
     // 解析器， webpack提供的各种方便的工具函数
     resolve: {
-        extensions: ['.js', '.jsx', '.less', '.css'], //后缀名自动补全
+        extensions: ['.js', '.jsx', '.less', '.css', '.scss'], //后缀名自动补全
     }
 };

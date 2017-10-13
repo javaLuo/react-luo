@@ -1,10 +1,11 @@
 /* 这是用于开发环境的webpack配置文件 */
-var os = require("os");
-var path = require('path');
-var fs = require('fs');
-var webpack = require('webpack');
-var HappyPack = require('happypack');
-var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+var os = require("os");     // 获取系统信息用，用于happyPack插件
+var path = require('path'); // 获取绝对路径用
+var fs = require('fs');     // 文件操作，用于antd自定义主题
+var webpack = require('webpack');       // webpack核心
+var HappyPack = require('happypack');   // 多线程构建插件
+var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length }); // happyPack配置
+var HtmlWebpackPlugin = require('html-webpack-plugin');             // 动态生成html插件
 
 /** 用于自定义antd主题 **/
 var pkgPath = path.join(__dirname, 'package.json');
@@ -27,18 +28,16 @@ if (pkg.theme && typeof(pkg.theme) === 'string') {
 module.exports = {
     entry: {
         app: [
-            'react-hot-loader/patch',
-            'webpack-dev-server/client?http://localhost:8888',  // 热更新监听此地址
-            'webpack/hot/dev-server',                           // 启用热更新
-            path.resolve(__dirname, 'src', 'index')             // 项目的入口文件
+            "webpack-hot-middleware/client?reload=true&path=/__webpack_hmr", // webpack热更新插件，就这么写
+            './src/index.js'    // 项目入口
         ]
     },
     output: {
-        publicPath: '/dev',                         // 这是在启动webpack-dev-server时，index.html中引用的路径应该相对于此路径
-        path: path.resolve(__dirname, '/dev'),      // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径，只有在真正执行打包命令时，才会生成到此路径中
-        filename: 'bundle.js'                       //编译后的文件名字
+        publicPath: '/',          // 这是在启动服务时，index.html中引用的路径应该相对于此路径
+        path: __dirname+'/',      // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径
+        filename: 'bundle.js'     //编译后的文件名字
     },
-    devtool: 'eval',                          // 正确的输出代码行数
+    devtool: '#cheap-module-eval-source-map',     // 正确的输出代码行数
     module: {
         rules: [
             {   // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
@@ -83,15 +82,26 @@ module.exports = {
         ]
     },
     plugins: [
-        new HappyPack({
+        // https://doc.webpack-china.org/plugins/define-plugin/
+        // new webpack.DefinePlugin({
+        //     'process.env': {
+        //         NODE_ENV: JSON.stringify('development') //定义生产环境
+        //     }
+        // }),
+        new HtmlWebpackPlugin({                     //根据模板插入css/js等生成最终HTML
+            filename: 'index.html',                 //生成的html存放路径，相对于 output.path
+            template: './src/index.html',           //html模板路径
+            inject: true,                           // 是否将js放在body的末尾
+        }),
+        new HappyPack({                             // 多线程编译插件
             id: 'happybabel',
             loaders: ['babel-loader'],
             threadPool: happyThreadPool,
             verbose: true
         }),
-        new webpack.HotModuleReplacementPlugin(),   // 热更新插件
-        new webpack.optimize.ModuleConcatenationPlugin(), // 作用域提升，优化打包
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.HotModuleReplacementPlugin(),           // 热更新插件
+        new webpack.optimize.ModuleConcatenationPlugin(),   // 作用域提升，优化打包
+        new webpack.NoEmitOnErrorsPlugin()  // 在编译出现错误时，自动跳过输出阶段。这样可以确保编译出的资源中不会包含错误。
     ],
     resolve: {
         extensions: ['.js', '.jsx', '.less', '.css', '.scss'] //后缀名自动补全
