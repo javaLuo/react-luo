@@ -48,23 +48,25 @@ class RootContainer extends React.Component {
   }
 
   render() {
-    return (
-      <div className="boss">
-        <BrowserRouter basename="/br">
-          <div>
-            <Switch>
-              <Redirect exact from='/' to='/home'/>
-              <Route path="/home" component={Home} />
-              <Route path="/features" component={Features} />
-              <Route path="/test" component={Test} />
-              <Route component={NotFound} />
-            </Switch>
-            <Menu />
-          </div>
-        </BrowserRouter>
-        <Footer />
-      </div>
-    );
+    return ([
+      <BrowserRouter key='browserrouter'>
+        <Route render={(props) => {
+          return (
+            <div className="boss">
+                <Switch>
+                  <Redirect exact from='/' to='/home' />
+                  <Route path="/home" component={Home} />
+                  <Route path="/features" component={Features} />
+                  <Route path="/test" component={Test} />
+                  <Route component={NotFound} />
+                </Switch>
+                <Menu />
+            </div>
+          );
+        }}/>
+      </BrowserRouter>,
+      <Footer key="footer"/>
+    ]);
   }
 }
 
