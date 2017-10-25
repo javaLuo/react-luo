@@ -22,6 +22,7 @@ export function fetchApi(params) {
               type: 'TEST::testFetch',
               payload: msg,
             });
+            return msg;
           }
         ).catch(() => {
           message.error('网络错误，请重试');

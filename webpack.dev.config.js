@@ -34,10 +34,10 @@ module.exports = {
     },
     output: {
         publicPath: '/',          // 这是在启动服务时，index.html中引用的路径应该相对于此路径
-        path: __dirname+'/',      // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径
+        path: __dirname,            // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径
         filename: 'bundle.js'     //编译后的文件名字
     },
-    devtool: '#cheap-module-eval-source-map',     // 正确的输出代码行数
+    devtool: '#source-map',     // 正确的输出代码行数
     module: {
         rules: [
             {   // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
@@ -99,8 +99,9 @@ module.exports = {
             threadPool: happyThreadPool,
             verbose: true
         }),
+        // new webpack.optimize.OccurenceOrderPlugin(),     // 这个插件只有webpack1才需要
         new webpack.HotModuleReplacementPlugin(),           // 热更新插件
-        new webpack.optimize.ModuleConcatenationPlugin(),   // 作用域提升，优化打包
+        // new webpack.optimize.ModuleConcatenationPlugin(),   // 作用域提升，优化打包
         new webpack.NoEmitOnErrorsPlugin()  // 在编译出现错误时，自动跳过输出阶段。这样可以确保编译出的资源中不会包含错误。
     ],
     resolve: {
