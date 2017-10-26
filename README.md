@@ -64,3 +64,7 @@ npm run build     # 正式打包，用于生产环境
 ## 预览地址 Demo
 
 http://isluo.com/work/react-luo/index.html
+
+## 参阅资料 Consult
+
+React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768
