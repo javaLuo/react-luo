@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "build": "webpack -p --config webpack.production.config.js --progress --profile --colors",
+    "build": "npm run clear && webpack -p --config webpack.production.config.js --progress --profile --colors",
+    "clear": "rimraf ./build",
     "cover": "./node_modules/.bin/istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
@@ -59,6 +60,7 @@
     "less-loader": "^4.0.5",
     "node-sass": "^4.5.3",
     "postcss-loader": "^2.0.8",
+    "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
