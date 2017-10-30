@@ -1,10 +1,10 @@
 /* 根页 */
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
+import createHistory from 'history/createBrowserHistory';
 /* 下面是代码分割异步加载的例子 */
 import Bundle from '../../a_component/bundle';
 import lazeHome from 'bundle-loader?lazy!../home';
@@ -42,6 +42,7 @@ const NotFound = (props) => (
 import Menu from '../../a_component/menu';
 import Footer from '../../a_component/footer';
 
+const history = createHistory();
 class RootContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -49,7 +50,7 @@ class RootContainer extends React.Component {
 
   render() {
     return ([
-      <BrowserRouter key='browserrouter'>
+      <Router history={history} key="history">
         <Route render={(props) => {
           return (
             <div className="boss">
@@ -64,7 +65,7 @@ class RootContainer extends React.Component {
             </div>
           );
         }}/>
-      </BrowserRouter>,
+      </Router>,
       <Footer key="footer"/>
     ]);
   }
