@@ -1,4 +1,4 @@
-/* 根页 */
+/* 根页 - 包含了根级路由 */
 import React from 'react';
 import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';

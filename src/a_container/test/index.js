@@ -121,19 +121,17 @@ class TestPageContainer extends React.Component {
                     </div>
                     <div className="list">
                         <h2>嵌套路由测试</h2>
-                        <BrowserRouter getUserConfirmation={(v) => this.onEnter(v)}>
-                            <div className='son-test'>
-                                <Link to={`${this.props.match.url}/Page1`} >子页1</Link>
-                                <Link to={`${this.props.match.url}/Page2`} >子页2</Link>
-                                <Link to={`${this.props.match.url}/Page3`} >子页3</Link>
-                                <Switch>
-                                    <Route exact path={`${this.props.match.url}/`} component={Page1} />
-                                    <Route exact path={`${this.props.match.url}/Page1`} component={Page1} />
-                                    <Route exact path={`${this.props.match.url}/Page2`} component={Page2} />
-                                    <Route exact path={`${this.props.match.url}/Page3`} component={Page3} />
-                                </Switch>
-                            </div>
-                        </BrowserRouter>
+                        <div className='son-test'>
+                            <Link to={`${this.props.match.url}/Page1`} >子页1</Link>
+                            <Link to={`${this.props.match.url}/Page2`} >子页2</Link>
+                            <Link to={`${this.props.match.url}/Page3`} >子页3</Link>
+                            <Switch>
+                                <Route exact path={`${this.props.match.url}/`} component={Page1} />
+                                <Route exact path={`${this.props.match.url}/Page1`} component={Page1} />
+                                <Route exact path={`${this.props.match.url}/Page2`} component={Page2} />
+                                <Route exact path={`${this.props.match.url}/Page3`} component={Page3} />
+                            </Switch>
+                        </div>
                     </div>
                 </div>
                 <Modal
