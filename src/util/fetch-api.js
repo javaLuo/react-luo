@@ -7,6 +7,7 @@ export default class ApiService {
       method: 'post',
       contentType: 'application/json',
       crossOrigin: true,
+      withCredentials: true,
       data: JSON.stringify(bodyObj),
       dataType: 'json',
     });

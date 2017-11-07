@@ -4,7 +4,8 @@ import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import P from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
+import createHistory from 'history/createHashHistory';
 /* 下面是代码分割异步加载的例子 */
 import Bundle from '../../a_component/bundle';
 import lazeHome from 'bundle-loader?lazy!../home';
