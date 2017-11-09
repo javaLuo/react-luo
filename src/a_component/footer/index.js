@@ -1,6 +1,7 @@
 /* Footer 页面底部 */
 import React from 'react';
 import P from 'prop-types';
+import './index.scss';
 
 class Footer extends React.Component {
     constructor(props) {

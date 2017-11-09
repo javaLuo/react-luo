@@ -1,20 +1,21 @@
 /* 测试页 */
 
 // ==================
-// 所需的各种插件
+// 所需的第三方库或资源
 // ==================
 
 import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Modal } from 'antd';
+import { Button, Modal, message } from 'antd';
 import { bindActionCreators } from 'redux';
 
 // ==================
-// 所需的所有组件
+// 所需的我们自己的组件或资源
 // ==================
 
+import './index.scss';
 import ImgTest from '../../assets/test.jpg';
 import Mp3 from '../../assets/starSky.mp3';
 
@@ -23,11 +24,10 @@ import Page2 from './container/page2';
 import Page3 from './container/page3';
 
 // ==================
-// 本页面所需action
+// 本页面所需actions
 // ==================
 
-import { onTestAdd, fetchApi, testPromise } from '../../a_action/app-action';
-
+import { onTestAdd, fetchApi, fetchTest } from '../../a_action/app-action';
 
 // ==================
 // Definition
@@ -38,37 +38,56 @@ class TestPageContainer extends React.Component {
         super(props);
         this.state = {
             visible: false, // 模态框隐藏和显示
+            mokeFetch: [],  // 用于测试fetch请求
+            mokeAjax: [],   // 用于测试ajax请求
         };
     }
 
+    // 打开模态框按钮被点击时触发
     onBtnClick() {
         this.setState({
             visible: true,
         });
     }
 
-    handleOk() {
-        this.setState({
-            visible: false,
-        });
-    }
-
+    // 关闭模态框
     handleCancel() {
         this.setState({
             visible: false,
         });
     }
 
-    componentDidMount() {
-        // testPromise 测试。可以在此直接拿到结果。同时也会自动走reducer更新state
-        // 传1将返回成功，其他数返回失败
-        // this.props.actions.testPromise(1).then((res) => {
-        //     console.log('返回什么：', res);
-        // }).catch(() => {
-        //     console.log('错误：');
-        // });
-        console.log('this.props.location', this.props.location, this.props.match, this.props.history);
+    // Ajax测试按钮被点击时触发
+    onAjaxClick() {
+        this.props.actions.fetchApi().then((res) => {
+            if (res.code === 'success') {
+                this.setState({
+                    mokeAjax: res.data,
+                });
+            } else {
+                message.error('获取数据失败');
+            }
+        });
     }
+
+    // Fetch测试按钮点击时触发
+    onFetchClick() {
+        this.props.actions.fetchTest().then((res) => {
+            console.log(res);
+            if (res.code === 'success') {
+                this.setState({
+                    mokeFetch: res.data,
+                });
+            } else {
+                message.error('获取数据失败');
+            }
+        });
+    }
+
+    componentDidMount() {
+        console.log('所有页面默认拥有的3个对象：', this.props.location, this.props.match, this.props.history);
+    }
+
     render() {
         return (
             <div className="page-test">
@@ -120,6 +139,27 @@ class TestPageContainer extends React.Component {
                         </p>
                     </div>
                     <div className="list">
+                        <h2>异步请求测试（Mock模拟数据）</h2>
+                        <div className="p-box">
+                            <Button type="primary" onClick={() => this.onAjaxClick()}>ajax请求测试(使用的reqwest库)</Button><br/>
+                            数据：
+                            <ul>
+                                {
+                                    this.state.mokeAjax.map((item, index) => <li key={index}>{`id: ${item.id}, email: ${item.email}`}</li>)
+                                }
+                            </ul>
+                        </div>
+                        <div className="p-box">
+                            <Button type="primary" onClick={() => this.onFetchClick()}>fetch请求测试</Button><br/>
+                            数据：
+                            <ul>
+                                {
+                                    this.state.mokeFetch.map((item, index) => <li key={index}>{`id: ${item.id}, email: ${item.email}`}</li>)
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="list">
                         <h2>嵌套路由测试</h2>
                         <div className='son-test'>
                             <Link to={`${this.props.match.url}/Page1`} >子页1</Link>
@@ -137,7 +177,7 @@ class TestPageContainer extends React.Component {
                 <Modal
                   title="模态框"
                   visible={this.state.visible}
-                  onOk={() => this.handleOk()}
+                  onOk={() => this.handleCancel()}
                   onCancel={() => this.handleCancel()}
                 >
                   <p>内容...</p>
@@ -152,24 +192,23 @@ class TestPageContainer extends React.Component {
 // ==================
 
 TestPageContainer.propTypes = {
-    num: P.number,
-    location: P.any,
-    actions: P.any,
-    match: P.any,
-    history: P.any,
+    num: P.number,      // 测试： 来自store的全局变量num
+    location: P.any,    // 自动注入的location对象
+    match: P.any,       // 自动注入的match对象
+    history: P.any,     // 自动注入的history对象
+    actions: P.any,     // connect高阶函数注入的actions，见本页面最下面的actions
 };
 
 // ==================
 // Export
 // ==================
 
-
 export default connect(
     (state) => ({
         num: state.app.num,
     }), 
     (dispatch) => ({
-        actions: bindActionCreators({ onTestAdd, fetchApi, testPromise }, dispatch),
+        actions: bindActionCreators({ onTestAdd, fetchApi, fetchTest }, dispatch),
     }),
 )(TestPageContainer);
 

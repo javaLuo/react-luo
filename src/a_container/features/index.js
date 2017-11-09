@@ -1,4 +1,4 @@
-/* 主页 */
+/* 构建与特性页 */
 
 // ==================
 // 所需的各种插件
@@ -13,12 +13,12 @@ import { bindActionCreators } from 'redux';
 // 所需的所有组件
 // ==================
 
+import './index.scss';
 
 // ==================
 // 本页面所需action
 // ==================
 
-import appAction from '../../a_action/app-action';
 
 // ==================
 // Definition

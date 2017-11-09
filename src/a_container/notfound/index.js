@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import P from 'prop-types';
-
+import './index.scss';
 
 class HomePageContainer extends React.Component {
   constructor(props) {

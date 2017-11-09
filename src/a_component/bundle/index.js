@@ -1,4 +1,4 @@
-/* 按需加载 */
+/* 按需加载高阶组件 */
 import React from 'react';
 import P from 'prop-types';
 
@@ -24,7 +24,6 @@ class Bundle extends React.Component {
         this.setState({
             mod: null
         });
-        console.log('props:', props);
         props.load((mod) => {
             this.setState({
                 mod: mod.default ? mod.default : mod

@@ -1,48 +1,43 @@
+/*
+  一些公共的action可以写在这里，比如用户登录、退出登录、权限查询等
+  其他的action可以按模块不同，创建不同的js文件
+*/
 import _ from 'lodash';
 import Fetchapi from '../util/fetch-api';
 import { message } from 'antd';
 
-
-export function onTestAdd(num) {
-  return {
+// 测试页：num数据测试
+export const onTestAdd = (num) => async(dispatch) => {
+  dispatch({
     type: 'TEST::add',
-    payload: num + 1,
-  };
-}
+    payload: ++num,
+  });
+};
 
-// Fetchapi 异步请求测试
-export function fetchApi(params) {
-  return (dispatch) => {
-      return Fetchapi.newPost(
-        'url', params
-      ).then(
-          msg => {
-            console.log('返回数据', msg);
-            dispatch({
-              type: 'TEST::testFetch',
-              payload: msg,
-            });
-            return msg;
-          }
-        ).catch(() => {
-          message.error('网络错误，请重试');
-        });
-    };
-}
+// 异步请求测试 ajax
+export const fetchApi = (params = {}) => async(dispatch) => {
+  try {
+    const res = await Fetchapi.newPost('url.ajax', params);
+    dispatch({
+      type: 'TEST::ajax',
+      payload: res,
+    });
+    return res;
+  } catch(err) {
+    message.error('网络错误，请重试');
+  }
+};
 
-// promise测试
-export function testPromise(params) {
-  return (dispatch) => {
-      return new Promise((resolve, reject) => {
-        if (params === 1) {
-          resolve('success');
-          dispatch({
-              type: 'TEST::add',
-              payload: 10000,
-            });
-        } else {
-          reject('error');
-        }
-      });
-    };
-}
+// 异步请求测试 fetch
+export const fetchTest = (params = {}) => async(dispatch) => {
+  try {
+    const res = await Fetchapi.newFetch('url.ajax', params);
+    dispatch({
+      type: 'TEST::fetch',
+      payload: res.data,
+    });
+    return res.data;
+  } catch(err) {
+    message.error('网络错误，请重试');
+  }
+};

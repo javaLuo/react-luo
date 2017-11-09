@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import P from 'prop-types';
+import './index.scss';
 
 class Menu extends React.Component {
     constructor(props) {

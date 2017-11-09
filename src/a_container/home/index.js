@@ -14,13 +14,13 @@ import P from 'prop-types';
 // 所需的所有组件
 // ==================
 
+import './index.scss';
 import ImgLogo from '../../assets/react-logo.jpg';
 
 // ==================
 // 本页面所需action
 // ==================
 
-import appAction from '../../a_action/app-action';
 
 // ==================
 // Definition
@@ -60,8 +60,6 @@ HomePageContainer.propTypes = {
 
 export default connect(
   (state) => ({
-    testvalue: state.app.inputvalue,
-    fetchValue: state.app.fetchvalue,
   }), 
   (dispatch) => ({
     actions: bindActionCreators({}, dispatch),
