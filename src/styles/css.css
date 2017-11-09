@@ -17,7 +17,7 @@ body{
     font-family: "Segoe UI","Lucida Grande",'Microsoft YaHei', sans-serif;
     font-size:14px;
 }
-div,ul,li{position:relative;display:block;}			/* 全部默认相对定位 */
+ul,li{position:relative;display:block;}			    /* 全部默认相对定位 */
 ul{margin:0;padding:0;}								/* ul相当于div */
 li{list-style:none;margin:0;padding:0;}				/* li相当于div */
 img{border:0;}
@@ -28,30 +28,6 @@ sub,sup{font-size:75%;line-height: 0;position: relative;vertical-align: baseline
 sup{top: -.5em;}
 sub{bottom: -.25em;}
 
-/* 美化滚动条 */
-::-webkit-scrollbar
-{
-    width: 10px;
-    height: 10px;
-    background-color: #F5F5F5;
-}
-
-/*定义滚动条轨道 内阴影+圆角*/
-::-webkit-scrollbar-track
-{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 3px;
-    background-color: #F5F5F5;
-}
-
-/*定义滑块 内阴影+圆角*/
-::-webkit-scrollbar-thumb
-{
-    border-radius: 3px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #777;
-}
-
 /* 常用功能 */
 .all_nowarp{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}/* 禁止换行,末尾省略 */
 .all_nowarp2{display: -webkit-box;-webkit-box-orient: vertical;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:2;}/* 禁止换行，2行，末尾省略，div的高度需要正好是2行的高度 */
@@ -60,3 +36,24 @@ sub{bottom: -.25em;}
 .all_b{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}	/* 内框模式 */
 .all_clear:after{content:".";height:0;overflow:hidden;visibility:hidden;display:block;clear:both;} /* 清楚浮动 */
 .all_trans{transition:all 200ms;-webkit-transition:all 200ms;}/* 过渡效果 */
+
+/* 美化滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+    background-color: #F5F5F5;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 3px;
+    background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #888;
+}

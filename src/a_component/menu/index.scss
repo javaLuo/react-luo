@@ -1,0 +1,16 @@
+.menu{
+	margin-top:10px;
+	color:#888;
+	text-align: center;
+	.active{
+		color: #67DAF9;
+	}
+	a{
+		padding:0 5px;
+		color:#0066cc;
+		text-decoration: none
+		&:hover{
+			text-decoration: underline;
+		}
+	}
+}
