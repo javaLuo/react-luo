@@ -79,6 +79,6 @@ http://isluo.com/work/react-luo/index.html
 
 ## 参阅资料 Consult
 
-React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768
-mockjs官网：http://mockjs.com/
-Eslint中文站：http://eslint.cn/
+React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768 <br/>
+mockjs官网：http://mockjs.com/ <br/>
+Eslint中文站：http://eslint.cn/ <br/>
