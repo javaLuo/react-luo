@@ -21,6 +21,7 @@ npm run build     # 正式打包，用于生产环境
 	<br/>1.action均改为async/await形式
 	<br/>2.加入mock模拟数据测试ajax请求
 	<br/>3.加入axios库，可用于fetch请求，reqwest仍然保留
+	<br/>4.a_container/root/index.js中用render方法渲染路由，加入了模拟onEnter方法的例子
 * 2017-10-13
 	<br/>1.HMR热更新现在使用了webpack-dev-middleware 和 webpack-hot-middleware 的配置方式
 	<br/>2.更合理的路由跳转方式
