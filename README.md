@@ -78,7 +78,7 @@ npm run build     # 正式打包，用于生产环境
 http://isluo.com/work/react-luo/index.html
 
 ## 参阅资料 Consult
-
+React官方更新日志：https://github.com/facebook/react/releases <br/>
 React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768 <br/>
 mockjs官网：http://mockjs.com/ <br/>
 Eslint中文站：http://eslint.cn/ <br/>
