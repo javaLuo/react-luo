@@ -63,7 +63,7 @@ npm run build     # 正式打包，用于生产环境
 │   ├── styles                          # 所有的样式文件
 │   ├── store                           # store数据中心
 │   ├── util                            # 自定义工具
-|   	├── all.js			# 封装了一些工具函数，比如去掉两端空格之类的
+|   	├── tools.js			# 封装了一些工具函数，比如去掉两端空格之类的
 |	├── fetch-api.js		# 封装了2个异步请求，所有的action都调用的这个js中的方法
 |	└── mock-data.js		# mock模拟数据的模版，只在fetch-api.js中有用到
 │   ├── index.js                        # 项目入口JS
