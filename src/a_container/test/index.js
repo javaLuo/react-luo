@@ -150,7 +150,7 @@ class TestPageContainer extends React.Component {
                             </ul>
                         </div>
                         <div className="p-box">
-                            <Button type="primary" onClick={() => this.onFetchClick()}>fetch请求测试</Button><br/>
+                            <Button type="primary" onClick={() => this.onFetchClick()}>fetch请求测试(使用的axios库)</Button><br/>
                             数据：
                             <ul>
                                 {

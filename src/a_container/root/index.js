@@ -49,6 +49,18 @@ class RootContainer extends React.Component {
     super(props);
   }
 
+  /* 权限控制 */
+  onEnter(Component, props) {
+    console.log('权限控制：', props);
+    // 例子：如果没有登录，直接跳转至login页
+    // if (sessionStorage.getItem('userInfo')) {
+    //   return <Component {...props} />;
+    // } else {
+    //   return <Redirect to='/login' />;
+    // }
+    return <Component {...props}/>;
+  }
+
   render() {
     return ([
       <Router history={history} key="history">
@@ -57,9 +69,9 @@ class RootContainer extends React.Component {
             <div className="boss">
                 <Switch>
                   <Redirect exact from='/' to='/home' />
-                  <Route path="/home" component={Home} />
-                  <Route path="/features" component={Features} />
-                  <Route path="/test" component={Test} />
+                  <Route path="/home" render={(props) => this.onEnter(Home, props)} />
+                  <Route path="/features" render={(props) => this.onEnter(Features, props)} />
+                  <Route path="/test" render={(props) => this.onEnter(Test, props)} />
                   <Route component={NotFound} />
                 </Switch>
                 <Menu />
