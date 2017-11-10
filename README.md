@@ -17,6 +17,10 @@ npm run dev       # 运行开发环境，默认监听8888端口
 npm run build     # 正式打包，用于生产环境
 ```
 ## 更新日志 Update log
+* 2017-11-10
+	<br/>1.action均改为async/await形式
+	<br/>2.加入mock模拟数据测试ajax请求
+	<br/>3.加入axios库，可用于fetch请求，reqwest仍然保留
 * 2017-10-13
 	<br/>1.HMR热更新现在使用了webpack-dev-middleware 和 webpack-hot-middleware 的配置方式
 	<br/>2.更合理的路由跳转方式
