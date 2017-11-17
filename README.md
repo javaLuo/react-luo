@@ -16,6 +16,11 @@ npm run dev       # 运行开发环境，默认监听8888端口
 ```
 npm run build     # 正式打包，用于生产环境
 ```
+
+```
+npm run dist     # 运行正式打包后的最终代码，默认监听8888端口
+```
+
 ## 更新日志 Update log
 * 2017-11-10
 	<br/>1.action均改为async/await形式
