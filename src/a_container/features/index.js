@@ -52,8 +52,18 @@ class FeaturesPageContainer extends React.Component {
             <div>/build文件夹中的index.html 和 /build/dist文件夹 仅这两样东西是最终需要的</div>
           </div>
           <div className="list">
+            <h2>运行生产环境的代码</h2>
+            <p>npm run dist</p>
+            <div>运行build文件夹下生成好的最终代码</div>
+          </div>
+          <div className="list">
             <h2>HMR局部热更新</h2>
-            <div>使用了react-hot-loader 3.0 实现局部刷新</div>
+            <div>使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新</div>
+          </div>
+          <div className="list">
+            <h2>代码分割</h2>
+            <div>bundle-loader实现的代码分割</div>
+            <div>src/a_container/root/index.js中能查看例子</div>
           </div>
           <div className="list">
             <h2>HappyPack多线程编译</h2>
