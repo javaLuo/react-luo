@@ -4,8 +4,9 @@
   "description": "react脚手架,最新技术",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "set NODE_ENV=dev&& node server.js",
     "build": "npm run clear && webpack -p --config webpack.production.config.js --progress --profile --colors",
+    "dist": "set NODE_ENV=production&& node server.js",
     "clear": "rimraf ./build",
     "cover": "./node_modules/.bin/istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
