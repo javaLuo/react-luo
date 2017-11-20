@@ -87,11 +87,11 @@ module.exports = {
     },
     plugins: [
         // https://doc.webpack-china.org/plugins/define-plugin/
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         NODE_ENV: JSON.stringify('production') //定义生产环境
-        //     }
-        // }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('production') //定义生产环境
+            }
+        }),
 
         /**
             CommonsChunkPlugin 插件，是一个可选的用于建立一个独立文件(又称作 chunk)的功能，

@@ -83,11 +83,11 @@ module.exports = {
     },
     plugins: [
         // https://doc.webpack-china.org/plugins/define-plugin/
-        // new webpack.DefinePlugin({
-        //     'process.env': {
-        //         NODE_ENV: JSON.stringify('development') //定义生产环境
-        //     }
-        // }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('dev') //定义开发环境环境
+            }
+        }),
         new HtmlWebpackPlugin({                     //根据模板插入css/js等生成最终HTML
             filename: 'index.html',                 //生成的html存放路径，相对于 output.path
             template: './src/index.html',           //html模板路径

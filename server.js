@@ -11,7 +11,7 @@ const DIST_DIR = webpackConfig.output.path;	// webpack配置中设置的文件�
 const PORT = 8888;	// 服务启动端口号
 const compiler = webpack(webpackConfig);	// 实例化webpack
 
-if (env == 'production') {
+if (env === 'production') {
     app.use(express.static('build'));
     app.get('*', function (req, res) {
       res.sendFile(path.join(__dirname, 'build', 'index.html'));
