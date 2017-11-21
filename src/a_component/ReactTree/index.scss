@@ -1,0 +1,15 @@
+.react-antd-tree{
+	&.lengthen{
+		.ant-tree-checkbox{
+			width: 100%;
+			z-index: 2;
+			display: inline-block;
+			padding: 5px 0;
+			position: relative;
+		}
+		.ant-tree-node-content-wrapper{
+			position: absolute;
+			left: 45px;
+		}
+	}
+}
