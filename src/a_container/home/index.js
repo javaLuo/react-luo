@@ -16,7 +16,7 @@ import P from 'prop-types';
 
 import './index.scss';
 import ImgLogo from '../../assets/react-logo.jpg';
-import ReactTree from '../../a_component/ReactTree';
+
 // ==================
 // 本页面所需action
 // ==================
@@ -29,34 +29,6 @@ class HomePageContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [
-        {id:1, pid: null, title: '根节点1'},
-        {id:2, pid: 1, title: '0-0'},
-        {id:3, pid: 1, title: '0-1'},
-        {id:4, pid: 2, title: '0-0-0'},
-        {id:5, pid: 2, title: '0-0-1'},
-        {id:6, pid: 3, title: '0-1-0'},
-        {id:7, pid: 3, title: '0-1-1'},
-        {id:8, pid: 3, title: '0-1-2'},
-        {id:9, pid: 7, title: '0-1-1-0'},
-        {id:10, pid: null, title: '根节点2'},
-      ],
-      data2: [
-        {id: 1, title: '根节点A', children: [
-          {id: 2, title: '0-0', children: [
-            {id: 4, title: '0-0-0'},
-            {id: 5, title: '0-0-1'},
-          ]},
-          {id: 3, title: '0-1', children: [
-            {id: 6, title: '0-1-0'},
-            {id: 7, title: '0-1-1', children: [
-              {id: 9, title: '0-1-1-0'}
-            ]},
-            {id: 8, title: '0-1-2'},
-          ]}
-        ]},
-        {id: 10, title: '根节点B', children: []}
-      ]
     };
   }
 
@@ -67,18 +39,6 @@ class HomePageContainer extends React.Component {
   render() {
     return (
       <div className="page-home">
-          <div style={{width: '500px'}}>
-            <ReactTree
-              data={this.state.data2}
-              dataIsCascade={true}
-              checkable={true}
-              defaultChecked={[6]}
-              defaultDisabled={['6']}
-              defaultHide={[9]}
-              lengthen={true}
-              onOk={(obj,keys) => this.onOk(obj,keys)}
-            />
-          </div>
           <div className="box">
               <img src={ImgLogo} />
               <div className="title">React-Luo</div>
