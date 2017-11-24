@@ -3,6 +3,12 @@
 [![codebeat badge](https://codebeat.co/badges/eb91ca34-7c1b-424f-be1c-a5d79fd3d269)](https://codebeat.co/projects/github-com-javaluo-react-luo-master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
+## what fuck this?
+
+这就是个React脚手架，没有使用create-react-app。<br/>
+经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
+
+
 ## 构建 Start
 
 ```
