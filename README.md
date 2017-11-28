@@ -4,8 +4,8 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
 ## what fuck this?
-
-这就是个React脚手架，没有使用create-react-app。<br/>
+react automaticaly<br/>
+这就是个React脚手架，没有使用create-react-app<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
 
