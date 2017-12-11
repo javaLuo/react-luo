@@ -6,40 +6,26 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 // import createHistory from 'history/createBrowserHistory';
 import createHistory from 'history/createHashHistory';
-/* 下面是代码分割异步加载的例子 */
-import Bundle from '../../a_component/bundle';
-import lazeHome from 'bundle-loader?lazy!../home';
-import lazeFeatures from 'bundle-loader?lazy!../features';
-import lazeTest from 'bundle-loader?lazy!../test';
-import lazeNotFound from 'bundle-loader?lazy!../notfound';
-const Home = (props) => (
-  <Bundle load={lazeHome}>
-    {(Home) => <Home {...props} />}
-  </Bundle>
-);
-const Features = (props) => (
-  <Bundle load={lazeFeatures}>
-    {(Features) => <Features {...props} />}
-  </Bundle>
-);
-const Test = (props) => (
-  <Bundle load={lazeTest}>
-    {(Test) => <Test {...props} />}
-  </Bundle>
-);
-const NotFound = (props) => (
-  <Bundle load={lazeNotFound}>
-    {(NotFound) => <NotFound {...props} />}
-  </Bundle>
-);
-/* 上面是代码分割异步加载的例子 */
 
-/* 下面是代码不分割的用法 */
+/** 下面是代码分割异步加载的例子 **/
+import Bundle from '../../a_component/bundle';                          // 异步加载高阶组件
+import lazeHome from 'bundle-loader?lazy&name=home!../home';            // 首页
+import lazeFeatures from 'bundle-loader?lazy&name=features!../features';// 说明页
+import lazeTest from 'bundle-loader?lazy&name=test!../test';            // 功能测试页
+import lazeNotFound from 'bundle-loader?lazy&name=notfound!../notfound';// 404页
+const Home = (props) => (<Bundle load={lazeHome}>{(Home) => <Home {...props} />}</Bundle>);
+const Features = (props) => (<Bundle load={lazeFeatures}>{(Features) => <Features {...props} />}</Bundle>);
+const Test = (props) => (<Bundle load={lazeTest}>{(Test) => <Test {...props} />}</Bundle>);
+const NotFound = (props) => (<Bundle load={lazeNotFound}>{(NotFound) => <NotFound {...props} />}</Bundle>);
+
+
+/** 下面是代码不分割的用法 **/
 // import Home from '../home';
 // import Features from '../features';
 // import Test from '../test';
 // import NotFound from '../notfound';
 
+/** 普通组件 **/
 import Menu from '../../a_component/menu';
 import Footer from '../../a_component/footer';
 
