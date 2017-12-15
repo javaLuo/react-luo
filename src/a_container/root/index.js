@@ -1,11 +1,11 @@
-/* 根页 - 包含了根级路由 */
+/** 根页 - 包含了根级路由 **/
 import React from 'react';
 import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-// import createHistory from 'history/createBrowserHistory';
-import createHistory from 'history/createHashHistory';
+// import createHistory from 'history/createBrowserHistory';  // URL模式的history
+import createHistory from 'history/createHashHistory';        // 锚点模式的history
 
 /** 下面是代码分割异步加载的例子 **/
 import Bundle from '../../a_component/bundle';                          // 异步加载高阶组件
@@ -35,7 +35,7 @@ class RootContainer extends React.Component {
     super(props);
   }
 
-  /* 权限控制 */
+  /** 权限控制 **/
   onEnter(Component, props) {
     console.log('权限控制：', props);
     // 例子：如果没有登录，直接跳转至login页

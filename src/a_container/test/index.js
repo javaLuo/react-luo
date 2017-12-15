@@ -19,9 +19,9 @@ import './index.scss';
 import ImgTest from '../../assets/test.jpg';
 import Mp3 from '../../assets/starSky.mp3';
 
-import Page1 from './container/page1';
-import Page2 from './container/page2';
-import Page3 from './container/page3';
+import Page1 from './container/page1';      // 子页面1
+import Page2 from './container/page2';      // 子页面2
+import Page3 from './container/page3';      // 子页面3
 
 // ==================
 // 本页面所需actions

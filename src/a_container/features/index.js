@@ -82,6 +82,7 @@ class FeaturesPageContainer extends React.Component {
 FeaturesPageContainer.propTypes = {
   location: P.any,
   history: P.any,
+  actions: P.any,
 };
 
 // ==================

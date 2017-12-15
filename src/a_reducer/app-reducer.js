@@ -1,10 +1,8 @@
-// ============================================
-// ============================================
-// Import modules
+/** 通用reducer **/
 
 const initState = {
-  num: 0,           // 初始值0
-  fetchvalue: [],
+  num: 0,           // 页面测试数据 初始值0
+  fetchvalue: [],   // 异步测试数据
 };
 
 // ============================================
@@ -31,10 +29,9 @@ const testFetch = (state, action) => {
 
 const reducerFn = (state = initState, action) => {
   switch (action.type) {
-  // 进入主页时，初始化左边box数据
-  case 'TEST::add':
+  case 'TEST::add':       // 测试页 - 按钮点击出发num改变
     return testAdd(state, action);
-  case 'TEST::testFetch':
+  case 'TEST::testFetch': // 测试页 - 保存异步请求的数据
     return testFetch(state, action);
   default:
     return actDefault(state, action);

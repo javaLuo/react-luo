@@ -11,7 +11,6 @@ var pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
 var theme = {};
 if (pkg.theme && typeof(pkg.theme) === 'string') {
     var cfgPath = pkg.theme;
-    // relative path
     if (cfgPath.charAt(0) === '.') {
       cfgPath = path.resolve(args.cwd, cfgPath);
     }
@@ -29,8 +28,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'build/dist'),    // 将文件打包到此目录下
         publicPath: '/dist/',                           // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
-        filename: '[name].js',
-        chunkFilename: '[name].chunk.js',
+        filename: '[name].[hash:6].js',
+        chunkFilename: '[name].[hash:6].chunk.js',
     },
     module: {
         rules: [
@@ -43,7 +42,6 @@ module.exports = {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                     use: ['css-loader', 'postcss-loader']
                 })
             },
@@ -51,16 +49,14 @@ module.exports = {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                     use: ['css-loader', 'postcss-loader', 'less-loader']
                 }),
                 include: path.resolve(__dirname, "src")
             },
-            {   // .less 解析
+            {   // .less 解析 (用于自定义antd主题)
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                     use: ['css-loader', 'postcss-loader', `less-loader?{"sourceMap":false, "modifyVars": ${JSON.stringify(theme)}}`]
                 }),
                 include: path.resolve(__dirname, "node_modules")
@@ -69,7 +65,6 @@ module.exports = {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
                     use: ['css-loader', 'postcss-loader', 'sass-loader']
                 })
             },
@@ -108,17 +103,17 @@ module.exports = {
 
         // 配置了这个插件，再配合上面loader中的配置，将所有样式文件打包为一个单独的css文件
         new ExtractTextPlugin({
-            filename:'[name].css',  // 生成的文件名
-            allChunks: true,        // 从所有chunk中提取
+            filename:'[name].[hash:6].css', // 生成的文件名
+            allChunks: true,                // 从所有chunk中提取
         }),
 
         // Uglify 加密压缩源代码
         new webpack.optimize.UglifyJsPlugin({
             output: {
-                comments: true, // 删除代码中所有注释
+                comments: true,     // 删除代码中所有注释
             },
             compress: {
-                warnings: false, // 删除没有用的代码时是否发出警告
+                warnings: false,    // 删除没有用的代码时是否发出警告
                 drop_console: true, // 是否删除所有的console
             },
         }),

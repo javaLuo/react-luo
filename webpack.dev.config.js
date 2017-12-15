@@ -14,7 +14,6 @@ var pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
 var theme = {};
 if (pkg.theme && typeof(pkg.theme) === 'string') {
     var cfgPath = pkg.theme;
-    // relative path
     if (cfgPath.charAt(0) === '.') {
       cfgPath = path.resolve(args.cwd, cfgPath);
     }
@@ -29,15 +28,15 @@ module.exports = {
     entry: {
         app: [
             "webpack-hot-middleware/client?reload=true&path=/__webpack_hmr", // webpack热更新插件，就这么写
-            './src/index.js'    // 项目入口
+            './src/index.js'        // 项目入口
         ]
     },
     output: {
-        publicPath: '/',          // 这是在启动服务时，index.html中引用的路径应该相对于此路径
+        publicPath: '/',            // 这是在启动服务时，index.html中引用的路径应该相对于此路径
         path: __dirname,            // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径
-        filename: 'bundle.js'     //编译后的文件名字
+        filename: 'bundle.js'       //编译后的文件名字
     },
-    devtool: '#source-map',     // 正确的输出代码行数
+    devtool: '#source-map',         // 报错的时候正确的输出哪一行报错
     module: {
         rules: [
             {   // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
@@ -60,7 +59,7 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
                 include: path.resolve(__dirname, "src")
             },
-            {   // .less 解析 用于antd自定义主题
+            {   // .less 解析 (用于antd自定义主题)
                 test: /\.less$/,
                 loaders: ['style-loader', 'css-loader', 'postcss-loader', `less-loader?{"sourceMap":false, "modifyVars": ${JSON.stringify(theme)}}`],
                 include: path.resolve(__dirname, "node_modules")
@@ -85,7 +84,7 @@ module.exports = {
         // https://doc.webpack-china.org/plugins/define-plugin/
         new webpack.DefinePlugin({
             'process.env': {
-                NODE_ENV: JSON.stringify('dev') //定义开发环境环境
+                NODE_ENV: JSON.stringify('dev')     //定义开发环境环境
             }
         }),
         new HtmlWebpackPlugin({                     //根据模板插入css/js等生成最终HTML
@@ -99,9 +98,9 @@ module.exports = {
             threadPool: happyThreadPool,
             verbose: true
         }),
-        // new webpack.optimize.OccurenceOrderPlugin(),     // 这个插件只有webpack1才需要
-        new webpack.HotModuleReplacementPlugin(),           // 热更新插件
-        // new webpack.optimize.ModuleConcatenationPlugin(),   // 作用域提升，优化打包
+        // new webpack.optimize.OccurenceOrderPlugin(),         // 这个插件只有webpack1才需要
+        new webpack.HotModuleReplacementPlugin(),               // 热更新插件
+        // new webpack.optimize.ModuleConcatenationPlugin(),    // 作用域提升，优化打包 (开发环境不需要，与HMR冲突)
         new webpack.NoEmitOnErrorsPlugin()  // 在编译出现错误时，自动跳过输出阶段。这样可以确保编译出的资源中不会包含错误。
     ],
     resolve: {

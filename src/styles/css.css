@@ -17,9 +17,8 @@ body{
     font-family: "Segoe UI","Lucida Grande",'Microsoft YaHei', sans-serif;
     font-size:14px;
 }
-ul,li{position:relative;display:block;}			    /* 全部默认相对定位 */
-ul{margin:0;padding:0;}								/* ul相当于div */
-li{list-style:none;margin:0;padding:0;}				/* li相当于div */
+ul{position:relative;margin:0;padding:0;}								/* ul样式重置 */
+li{position:relative;list-style:none;margin:0;padding:0;}				/* li样式重置 */
 img{border:0;}
 input{line-height:normal;}
 img,a:focus,a:hover,a:active{outline:none;}

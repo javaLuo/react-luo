@@ -1,10 +1,10 @@
 import reqwest from 'reqwest';  // 封装了ajax请求的库
 import axios from 'axios';      // 封装了fetch请求的库
 
-import Mock from 'mockjs';      // 数据模拟的库
-import { ajaxTest } from '../util/mock-data.js';  // 自己定义的mock模拟数据模版
+import Mock from 'mockjs';      // 数据模拟的库（真实开发时需删掉）
+import { ajaxTest } from '../util/mock-data.js';  // 自己定义的mock模拟数据模版（真实开发时需删掉）
 
-Mock.mock(/\.ajax/, ajaxTest);  // 拦截url中带.ajax的异步请求，返回模拟数据
+Mock.mock(/\.ajax/, ajaxTest);  // 拦截url中带.ajax的异步请求，返回模拟数据（真实开发时需删掉）
 
 export default class ApiService {
   // ajax请求

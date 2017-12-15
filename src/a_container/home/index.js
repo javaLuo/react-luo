@@ -56,6 +56,7 @@ class HomePageContainer extends React.Component {
 HomePageContainer.propTypes = {
   location: P.any,
   history: P.any,
+  actions: P.any,
 };
 
 // ==================
