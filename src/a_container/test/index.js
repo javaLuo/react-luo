@@ -86,6 +86,9 @@ class TestPageContainer extends React.Component {
 
     componentDidMount() {
         console.log('所有页面默认拥有的3个对象：', this.props.location, this.props.match, this.props.history);
+        const set = new Set([1,2,3]);
+        const map = new Map();
+        console.log('Set 和 Map 测试', set, map);
     }
 
     render() {

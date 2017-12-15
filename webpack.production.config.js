@@ -23,7 +23,7 @@ if (pkg.theme && typeof(pkg.theme) === 'string') {
 
 module.exports = {
     entry: {
-        app: path.resolve(__dirname, 'src', 'index')
+        app: ["babel-polyfill", path.resolve(__dirname, 'src', 'index')]
     },
     output: {
         path: path.resolve(__dirname, 'build/dist'),    // 将文件打包到此目录下
@@ -94,8 +94,8 @@ module.exports = {
             在最开始的时候加载一次，便存起来到缓存中供后续使用。这个带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件。
         **/ 
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'vendors',            // 公共chunk名
-            filename: 'vendors.js',     // 生成的文件名
+            name: 'vendors',                    // 公共chunk名
+            filename: 'vendors.[hash:6].js',    // 生成的文件名
             minChunks: function(module, count) {
                return module.resource && module.resource.indexOf(path.resolve(__dirname, 'src')) < 0;
             }
