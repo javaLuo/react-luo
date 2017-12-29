@@ -89,6 +89,8 @@ npm run dist     # 运行正式打包后的最终代码，默认监听8888端�
 http://isluo.com/work/react-luo/index.html
 
 ## 参阅资料 Consult
+React GitHub地址：https://github.com/facebook/react <br/>
+react-router GitHub地址：https://github.com/ReactTraining/react-router <br/>
 React官方更新日志：https://github.com/facebook/react/releases <br/>
 React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768 <br/>
 mockjs官网：http://mockjs.com/ <br/>
