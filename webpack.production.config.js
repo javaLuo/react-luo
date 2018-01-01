@@ -34,7 +34,6 @@ module.exports = {
                     fallback: 'style-loader',
                     use: ['css-loader', 'postcss-loader', 'less-loader']
                 }),
-                include: path.resolve(__dirname, "src")
             },
             {   // .scss 解析
                 test: /\.scss$/,

@@ -58,7 +58,6 @@ module.exports = {
             {   // .less 解析
                 test: /\.less$/,
                 loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
-                include: path.resolve(__dirname, "src")
             },
             // {   // .less 解析 (用于antd自定义主题)
             //     test: /\.less$/,
