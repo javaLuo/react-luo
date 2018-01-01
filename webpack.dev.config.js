@@ -8,20 +8,20 @@ var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length }); // happy
 var HtmlWebpackPlugin = require('html-webpack-plugin');             // 动态生成html插件
 
 /** 用于自定义antd主题 **/
-var pkgPath = path.join(__dirname, 'package.json');
-var pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
+// var pkgPath = path.join(__dirname, 'package.json');
+// var pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
 
-var theme = {};
-if (pkg.theme && typeof(pkg.theme) === 'string') {
-    var cfgPath = pkg.theme;
-    if (cfgPath.charAt(0) === '.') {
-      cfgPath = path.resolve(args.cwd, cfgPath);
-    }
-    var getThemeConfig = require(cfgPath);
-    theme = getThemeConfig();
-} else if (pkg.theme && typeof(pkg.theme) === 'object') {
-    theme = pkg.theme;
-}
+// var theme = {};
+// if (pkg.theme && typeof(pkg.theme) === 'string') {
+//     var cfgPath = pkg.theme;
+//     if (cfgPath.charAt(0) === '.') {
+//       cfgPath = path.resolve(args.cwd, cfgPath);
+//     }
+//     var getThemeConfig = require(cfgPath);
+//     theme = getThemeConfig();
+// } else if (pkg.theme && typeof(pkg.theme) === 'object') {
+//     theme = pkg.theme;
+// }
 /** /用于自定义antd主题 **/
 
 module.exports = {
@@ -60,11 +60,11 @@ module.exports = {
                 loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
                 include: path.resolve(__dirname, "src")
             },
-            {   // .less 解析 (用于antd自定义主题)
-                test: /\.less$/,
-                loaders: ['style-loader', 'css-loader', 'postcss-loader', `less-loader?{"sourceMap":false, "modifyVars": ${JSON.stringify(theme)}}`],
-                include: path.resolve(__dirname, "node_modules")
-            },
+            // {   // .less 解析 (用于antd自定义主题)
+            //     test: /\.less$/,
+            //     loaders: ['style-loader', 'css-loader', 'postcss-loader', `less-loader?{"sourceMap":false, "modifyVars": ${JSON.stringify(theme)}}`],
+            //     include: path.resolve(__dirname, "node_modules")
+            // },
             {   // .scss 解析
                 test: /\.scss$/,
                 loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']

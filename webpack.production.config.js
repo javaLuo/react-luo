@@ -4,23 +4,6 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');     // 为了单独打包css
 var HtmlWebpackPlugin = require('html-webpack-plugin');             // 生成html
 
-/** 用于自定义antd主题 **/
-var pkgPath = path.join(__dirname, 'package.json');
-var pkg = fs.existsSync(pkgPath) ? require(pkgPath) : {};
-
-var theme = {};
-if (pkg.theme && typeof(pkg.theme) === 'string') {
-    var cfgPath = pkg.theme;
-    if (cfgPath.charAt(0) === '.') {
-      cfgPath = path.resolve(args.cwd, cfgPath);
-    }
-    var getThemeConfig = require(cfgPath);
-    theme = getThemeConfig();
-} else if (pkg.theme && typeof(pkg.theme) === 'object') {
-    theme = pkg.theme;
-}
-/** /用于自定义antd主题 **/
-
 module.exports = {
     entry: {
         app: ["babel-polyfill", path.resolve(__dirname, 'src', 'index')]
@@ -52,14 +35,6 @@ module.exports = {
                     use: ['css-loader', 'postcss-loader', 'less-loader']
                 }),
                 include: path.resolve(__dirname, "src")
-            },
-            {   // .less 解析 (用于自定义antd主题)
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', `less-loader?{"sourceMap":false, "modifyVars": ${JSON.stringify(theme)}}`]
-                }),
-                include: path.resolve(__dirname, "node_modules")
             },
             {   // .scss 解析
                 test: /\.scss$/,
