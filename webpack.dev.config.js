@@ -57,7 +57,7 @@ module.exports = {
             },
             {   // .less 解析
                 test: /\.less$/,
-                loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader'],
+                loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
             },
             // {   // .less 解析 (用于antd自定义主题)
             //     test: /\.less$/,
