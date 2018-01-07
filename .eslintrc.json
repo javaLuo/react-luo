@@ -3,8 +3,10 @@
         "browser": true,
         "commonjs": true,
         "es6": true,
+        "mocha": true,
         "jquery": true
     },
+    "parser": "babel-eslint",
     "extends": "plugin:react/recommended",
     "parserOptions": {
         "ecmaVersion": 8,
@@ -19,10 +21,7 @@
         "react"
     ],
     "rules": {
-        "semi": [
-            "error",
-            "always"
-        ],
+        "semi": "warn",
         "no-cond-assign": "error",
         "no-debugger": "error",
         "no-dupe-args": "error",

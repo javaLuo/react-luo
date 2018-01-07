@@ -28,7 +28,7 @@ module.exports = {
     entry: {
         app: [
             "webpack-hot-middleware/client?reload=true&path=/__webpack_hmr", // webpack热更新插件，就这么写
-            "babel-polyfill",
+            "babel-polyfill",       // babel垫片库
             "./src/index.js"        // 项目入口
         ]
     },

@@ -8,7 +8,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
-import { Button, Modal, message } from 'antd';
+import { Button, Modal, message, Form } from 'antd';
 import { bindActionCreators } from 'redux';
 
 // ==================
@@ -29,11 +29,19 @@ import Page3 from './container/page3';      // 子页面3
 
 import { onTestAdd, fetchApi, fetchTest } from '../../a_action/app-action';
 
-// ==================
-// Definition
-// ==================
 
-class TestPageContainer extends React.Component {
+/** 修饰器测试 **/
+@connect(
+    (state) => ({
+        num: state.app.num,
+    }), 
+    (dispatch) => ({
+        actions: bindActionCreators({ onTestAdd, fetchApi, fetchTest }, dispatch),
+    })
+)
+@Form.create()
+/** 定义组件class **/
+export default class TestPageContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -58,7 +66,7 @@ class TestPageContainer extends React.Component {
     }
 
     // Ajax测试按钮被点击时触发
-    onAjaxClick() {
+    onAjaxClick = () => {
         this.props.actions.fetchApi().then((res) => {
             if (res.code === 'success') {
                 this.setState({
@@ -68,7 +76,7 @@ class TestPageContainer extends React.Component {
                 message.error('获取数据失败');
             }
         });
-    }
+    };
 
     // Fetch测试按钮点击时触发
     onFetchClick() {
@@ -92,6 +100,8 @@ class TestPageContainer extends React.Component {
     }
 
     render() {
+        const { form } = this.props;
+        console.log('通过修饰器注入的form对象：', form);
         return (
             <div className="page-test">
                 <h1 className="title">功能测试</h1>
@@ -144,7 +154,7 @@ class TestPageContainer extends React.Component {
                     <div className="list">
                         <h2>异步请求测试（Mock模拟数据）</h2>
                         <div className="p-box">
-                            <Button type="primary" onClick={() => this.onAjaxClick()}>ajax请求测试(使用的reqwest库)</Button><br/>
+                            <Button type="primary" onClick={this.onAjaxClick}>ajax请求测试(使用的reqwest库)</Button><br/>
                             数据：
                             <ul>
                                 {
@@ -193,25 +203,12 @@ class TestPageContainer extends React.Component {
 // ==================
 // PropTypes
 // ==================
-
 TestPageContainer.propTypes = {
     num: P.number,      // 测试： 来自store的全局变量num
     location: P.any,    // 自动注入的location对象
     match: P.any,       // 自动注入的match对象
     history: P.any,     // 自动注入的history对象
     actions: P.any,     // connect高阶函数注入的actions，见本页面最下面的actions
+    form: P.any,
 };
-
-// ==================
-// Export
-// ==================
-
-export default connect(
-    (state) => ({
-        num: state.app.num,
-    }), 
-    (dispatch) => ({
-        actions: bindActionCreators({ onTestAdd, fetchApi, fetchTest }, dispatch),
-    }),
-)(TestPageContainer);
 
