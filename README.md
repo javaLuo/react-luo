@@ -28,6 +28,11 @@ npm run dist     # 运行正式打包后的最终代码，默认监听8888端�
 ```
 
 ## 更新日志 Update log
+* 2018-01-07
+	<br/>1.支持修饰器，修改了Eslint的检测规则
+	<br/>2.支持class中定义箭头函数的语法
+	<br/>3.Babel插件设置细节调整
+	<br/>4.增加了依赖清单说明(依赖清单.js)
 * 2017-11-10
 	<br/>1.action均改为async/await形式
 	<br/>2.加入mock模拟数据测试ajax请求
@@ -53,6 +58,8 @@ npm run dist     # 运行正式打包后的最终代码，默认监听8888端�
 ## 特性 Characteristic
 
 * HMR局部热替换
+
+* 代码分割按需加载
 
 * HappyPack多线程编译
 
