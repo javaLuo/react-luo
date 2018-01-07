@@ -38,14 +38,12 @@ sub{bottom: -.25em;}
 
 /* 美化滚动条 */
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 6px;
+    height: 6px;
     background-color: transparent;
 }
 
-
 /*定义滑块 内阴影+圆角*/
 ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: #444;
+    background-color: #333;
 }
