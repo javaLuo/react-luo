@@ -28,6 +28,9 @@ npm run dist     # 运行正式打包后的最终代码，默认监听8888端�
 ```
 
 ## 更新日志 Update log
+* 2018-01-10
+	<br/>1.className均改为module形式,自动设置局部css命名空间
+	<br/>2.npm i classnames --save, 用于添加多个className时，对所有className进行封装
 * 2018-01-07
 	<br/>1.支持修饰器，修改了Eslint的检测规则
 	<br/>2.支持class中定义箭头函数的语法
