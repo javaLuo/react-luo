@@ -4,7 +4,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import P from 'prop-types';
-import './index.scss';
+import css from './index.scss';
 
 class HomePageContainer extends React.Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class HomePageContainer extends React.Component {
 
   render() {
     return (
-      <div className="page-notfound">
-          <div className="box">
+      <div className={css.page}>
+          <div className={css.box}>
               404 not found
           </div>
       </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { bindActionCreators } from 'redux';
 // import createHistory from 'history/createBrowserHistory';  // URL模式的history
 import createHistory from 'history/createHashHistory';        // 锚点模式的history
@@ -28,6 +29,7 @@ const NotFound = (props) => (<Bundle load={lazeNotFound}>{(NotFound) => <NotFoun
 /** 普通组件 **/
 import Menu from '../../a_component/menu';
 import Footer from '../../a_component/footer';
+import css from './index.scss';
 
 const history = createHistory();
 class RootContainer extends React.Component {
@@ -52,7 +54,7 @@ class RootContainer extends React.Component {
       <Router history={history} key="history">
         <Route render={(props) => {
           return (
-            <div className="boss">
+            <div className={css.boss}>
                 <Switch>
                   <Redirect exact from='/' to='/home' />
                   <Route path="/home" render={(props) => this.onEnter(Home, props)} />

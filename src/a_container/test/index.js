@@ -15,7 +15,7 @@ import { bindActionCreators } from 'redux';
 // 所需的我们自己的组件或资源
 // ==================
 
-import './index.scss';
+import css from './index.scss';
 import ImgTest from '../../assets/test.jpg';
 import Mp3 from '../../assets/starSky.mp3';
 
@@ -103,25 +103,25 @@ export default class TestPageContainer extends React.Component {
         const { form } = this.props;
         console.log('通过修饰器注入的form对象：', form);
         return (
-            <div className="page-test">
-                <h1 className="title">功能测试</h1>
-                <div className="box">
-                    <div className="list">
+            <div className={css.page}>
+                <h1 className={css.title}>功能测试</h1>
+                <div className={css.box}>
+                    <div className={css.list}>
                         <h2>引入图片</h2>
                         <p><img src={ImgTest} style={{ height: '150px' }}/></p>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>引入其他种类的资源</h2>
                         <p><audio src={Mp3} controls/></p>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>LESS、SASS测试</h2>
                         <p>
-                            <span className='less_btn'>来自LESS样式</span>&nbsp;
-                            <span className='scss_btn'>来自SASS样式</span>
+                            <span className={'less_btn'}>来自LESS样式</span>&nbsp;
+                            <span className={'scss_btn'}>来自SASS样式</span>
                         </p>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>Antd组件测试</h2>
                         <p>
                             <Button type="primary">
@@ -135,7 +135,7 @@ export default class TestPageContainer extends React.Component {
                             </Button>&nbsp;
                         </p>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>location对象测试</h2>
                         <p>
                             当前路由：{ this.props.location.pathname }<br/>
@@ -144,16 +144,16 @@ export default class TestPageContainer extends React.Component {
                         </p>
                         <p>所有页面都自动被注入location、match、history对象</p>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>action测试</h2>
                         <p>
                             <Button type="primary" onClick={() => this.props.actions.onTestAdd(this.props.num)}>通过action改变数据num</Button>&nbsp;<br/>
                             store中数据num：{this.props.num}
                         </p>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>异步请求测试（Mock模拟数据）</h2>
-                        <div className="p-box">
+                        <div className={css.pbox}>
                             <Button type="primary" onClick={this.onAjaxClick}>ajax请求测试(使用的reqwest库)</Button><br/>
                             数据：
                             <ul>
@@ -162,7 +162,7 @@ export default class TestPageContainer extends React.Component {
                                 }
                             </ul>
                         </div>
-                        <div className="p-box">
+                        <div className={css.pbox}>
                             <Button type="primary" onClick={() => this.onFetchClick()}>fetch请求测试(使用的axios库)</Button><br/>
                             数据：
                             <ul>
@@ -172,9 +172,9 @@ export default class TestPageContainer extends React.Component {
                             </ul>
                         </div>
                     </div>
-                    <div className="list">
+                    <div className={css.list}>
                         <h2>嵌套路由测试</h2>
-                        <div className='son-test'>
+                        <div className={css.sonTest}>
                             <Link to={`${this.props.match.url}/Page1`} >子页1</Link>
                             <Link to={`${this.props.match.url}/Page2`} >子页2</Link>
                             <Link to={`${this.props.match.url}/Page3`} >子页3</Link>

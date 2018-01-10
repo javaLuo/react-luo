@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import P from 'prop-types';
-import './index.scss';
+import css from './index.scss';
 
 class Menu extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ class Menu extends React.Component {
 
     render() {
         return (
-            <div className="menu">
+            <div className={css.menu}>
                 <NavLink to="/home">首页</NavLink>|
                 <NavLink to="/features">构建与特性</NavLink>|
                 <NavLink to={{ pathname: '/test', search: '?a=123&b=abc', state: { c: '456', d: 'ABC'} }}>测试页面</NavLink>|

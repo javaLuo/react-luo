@@ -31,6 +31,7 @@ const packageJson = {
         "antd": "^3.1.0",                           // 蚂蚁金服antd组件库
         "axios": "^0.17.1",                         // 封装的fetch的异步请求库
         "bundle-loader": "^0.5.5",                  // 用于异步加载、代码分割的组件加载器
+        "classnames": "^2.2.5",                     // 在className中添加多个属性时需用此插件封装
         "history": "^4.7.2",                        // 历史对象，项目中用的是这个，没有用react-router自带的history
         "immutable": "^3.8.2",                      // 一个控制变量改变的库，总是返回新的对象（项目中没用到，只是antd依赖这个）
         "lodash": "^4.17.4",                        // 提供了很多方便的工具，最常用的是cloneDeep深拷贝

@@ -23,24 +23,47 @@ module.exports = {
             },
             {   // .css 解析
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader']
-                })
+                loaders: [
+                    'style-loader',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            localIdentName: '[local]_[hash:base64:5]'
+                        }
+                    },
+                    'postcss-loader'
+                ]
             },
             {   // .less 解析
                 test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'less-loader']
-                }),
+                loaders: [
+                    'style-loader',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            localIdentName: '[local]_[hash:base64:5]'
+                        }
+                    },
+                    'postcss-loader',
+                    'less-loader'
+                ]
             },
             {   // .scss 解析
                 test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: ['css-loader', 'postcss-loader', 'sass-loader']
-                })
+                loaders: [
+                    'style-loader',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            localIdentName: '[local]_[hash:base64:5]'
+                        }
+                    },
+                    'postcss-loader',
+                    'sass-loader'
+                ]
             },
             {   // 文件解析
                 test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,

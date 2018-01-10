@@ -1,7 +1,7 @@
 /* Footer 页面底部 */
 import React from 'react';
 import P from 'prop-types';
-import './index.scss';
+import css from './index.scss';
 
 class Footer extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <div className="footer">
+            <div className={css.footer}>
                 © 2017 <a href="http://isluo.com" target="_blank" rel="noopener noreferrer">isluo.com</a>, Inc.
             </div>
         );

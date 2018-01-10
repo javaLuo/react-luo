@@ -1,4 +1,4 @@
-.page-test{
+.page{
 	width:100%;
 	max-width:1200px;
 	margin:0 auto;
@@ -19,20 +19,19 @@
 				font-size:12px;
 			}
 		}
-		.son-test{
+		.sonTest{
 			a{
 				margin-right: 5px;
 			}
 		}
 	}
-	.p-box{
+	.pbox{
 		font-size: 14px;
 		padding: 5px 10px;
 		margin: 10px 0;
 		background-color: #eeeeff;
 	}
 }
-
-.son{
+:global(.son){
 	padding: 20px;
 }

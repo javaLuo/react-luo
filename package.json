@@ -22,6 +22,7 @@
     "antd": "^3.1.0",
     "axios": "^0.17.1",
     "bundle-loader": "^0.5.5",
+    "classnames": "^2.2.5",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "lodash": "^4.17.4",

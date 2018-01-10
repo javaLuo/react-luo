@@ -6,15 +6,18 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, hashHistory } from 'react-router';
+import classNames from 'classnames';
+import tools from '../../util/tools';
 import { bindActionCreators } from 'redux';
 import P from 'prop-types';
+
+import { Link, hashHistory } from 'react-router';
 
 // ==================
 // 所需的所有组件
 // ==================
 
-import './index.scss';
+import css from './index.scss';
 import ImgLogo from '../../assets/react-logo.jpg';
 
 // ==================
@@ -38,11 +41,11 @@ class HomePageContainer extends React.Component {
 
   render() {
     return (
-      <div className="page-home">
-          <div className="box">
+      <div className={classNames(css.home, "all_nowarp")}>
+          <div className={css.box}>
               <img src={ImgLogo} />
-              <div className="title">React-Luo</div>
-              <div className="info">react、redux、webpack3、eslint、babel6、antd</div>
+              <div className={css.title}>React-Luo</div>
+              <div className={css.info}>react、redux、webpack3、eslint、babel6、antd</div>
           </div>
       </div>
     );
