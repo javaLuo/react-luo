@@ -1,29 +1,35 @@
-/* 构建与特性页 */
+/** 构建与特性页 **/
 
 // ==================
 // 所需的各种插件
 // ==================
-
 import React from 'react';
-import P from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 import { bindActionCreators } from 'redux';
-// ==================
-// 所需的所有组件
-// ==================
+import P from 'prop-types';
 
+// ==================
+// 所需的所有资源
+// ==================
 import css from './index.scss';
 
 // ==================
-// 本页面所需action
+// 组件
 // ==================
+@connect(
+    (state) => ({
+    }),
+    (dispatch) => ({
+        actions: bindActionCreators({}, dispatch),
+    })
+)
+export default class FeaturesPageContainer extends React.Component {
+  static propTypes = {
+    location: P.any,
+    history: P.any,
+    actions: P.any,
+  };
 
-
-// ==================
-// Definition
-// ==================
-class FeaturesPageContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,25 +80,3 @@ class FeaturesPageContainer extends React.Component {
     );
   }
 }
-
-// ==================
-// PropTypes
-// ==================
-
-FeaturesPageContainer.propTypes = {
-  location: P.any,
-  history: P.any,
-  actions: P.any,
-};
-
-// ==================
-// Export
-// ==================
-
-export default connect(
-  (state) => ({
-  }), 
-  (dispatch) => ({
-    actions: bindActionCreators({}, dispatch),
-  })
-)(FeaturesPageContainer);

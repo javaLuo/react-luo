@@ -1,14 +1,17 @@
 /** 根页 - 包含了根级路由 **/
+
+// ==================
+// 所需的各种插件
+// ==================
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';
-import { connect } from 'react-redux';
-import classNames from 'classnames';
-import { bindActionCreators } from 'redux';
-// import createHistory from 'history/createBrowserHistory';  // URL模式的history
+// import createHistory from 'history/createBrowserHistory';   // URL模式的history
 import createHistory from 'history/createHashHistory';        // 锚点模式的history
 
-/** 下面是代码分割异步加载的例子 **/
+/** 下面是代码分割异步加载的方式引入各页面 **/
 import Bundle from '../../a_component/bundle';                          // 异步加载高阶组件
 import lazeHome from 'bundle-loader?lazy&name=home!../home';            // 首页
 import lazeFeatures from 'bundle-loader?lazy&name=features!../features';// 说明页
@@ -20,7 +23,7 @@ const Test = (props) => (<Bundle load={lazeTest}>{(Test) => <Test {...props} />}
 const NotFound = (props) => (<Bundle load={lazeNotFound}>{(NotFound) => <NotFound {...props} />}</Bundle>);
 
 
-/** 下面是代码不分割的用法 **/
+/** 下面是代码不分割的方式引入各页面 **/
 // import Home from '../home';
 // import Features from '../features';
 // import Test from '../test';
@@ -32,7 +35,23 @@ import Footer from '../../a_component/footer';
 import css from './index.scss';
 
 const history = createHistory();
-class RootContainer extends React.Component {
+
+// ==================
+// 组件
+// ==================
+@connect(
+    (state) => ({
+    }),
+    (dispatch) => ({
+        actions: bindActionCreators({}, dispatch),
+    })
+)
+export default class RootContainer extends React.Component {
+  static propTypes = {
+      dispatch: P.func,
+      children: P.any,
+  };
+
   constructor(props) {
     super(props);
   }
@@ -52,7 +71,7 @@ class RootContainer extends React.Component {
   render() {
     return ([
       <Router history={history} key="history">
-        <Route render={(props) => {
+        <Route render={() => {
           return (
             <div className={css.boss}>
                 <Switch>
@@ -71,24 +90,3 @@ class RootContainer extends React.Component {
     ]);
   }
 }
-
-// ==================
-// PropTypes
-// ==================
-
-RootContainer.propTypes = {
-  dispatch: P.func,
-  children: P.any,
-};
-
-// ==================
-// Export
-// ==================
-
-export default connect(
-  (state) => ({
-  }), 
-  (dispatch) => ({
-      actions: bindActionCreators({}, dispatch),
-  })
-)(RootContainer);

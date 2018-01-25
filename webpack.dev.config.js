@@ -1,7 +1,7 @@
-/* 这是用于开发环境的webpack配置文件 */
+/** 这是用于开发环境的webpack配置文件 **/
+
 var os = require("os");     // 获取系统信息用，用于happyPack插件
 var path = require('path'); // 获取绝对路径用
-var fs = require('fs');     // 文件操作，用于antd自定义主题
 var webpack = require('webpack');       // webpack核心
 var HappyPack = require('happypack');   // 多线程构建插件
 var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length }); // happyPack配置

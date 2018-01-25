@@ -1,18 +1,16 @@
+/** 导航 **/
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import P from 'prop-types';
 import css from './index.scss';
 
-class Menu extends React.Component {
+export default class Menu extends React.PureComponent {
+    static propTypes = {};
+
     constructor(props) {
         super(props);
         this.state = {
-            value: 5,
         };
-    }
-
-    // 组件初始化完毕时触发
-    componentDidMount() {
     }
 
     render() {
@@ -26,11 +24,3 @@ class Menu extends React.Component {
         );
     }
 }
-
-Menu.propTypes = {
-    value: P.number,
-    onClick: P.func,
-    fetchValue: P.array,
-};
-
-export default Menu;

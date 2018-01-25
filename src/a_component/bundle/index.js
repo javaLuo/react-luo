@@ -1,8 +1,14 @@
-/* 按需加载高阶组件 */
+/** 按需加载高阶组件 **/
+
 import React from 'react';
 import P from 'prop-types';
 
-class Bundle extends React.Component {
+export default class Bundle extends React.Component {
+    static propTypes = {
+        load: P.any,
+        children: P.any,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -35,10 +41,3 @@ class Bundle extends React.Component {
         return this.state.mod ? this.props.children(this.state.mod) : null;
     }
 }
-
-Bundle.propTypes = {
-    load: P.any,
-    children: P.any,
-};
-
-export default Bundle;

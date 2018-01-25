@@ -1,24 +1,21 @@
-/* 测试页 */
+/** 测试页 **/
 
 // ==================
-// 所需的第三方库或资源
+// 所需的各种插件
 // ==================
-
 import React from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import P from 'prop-types';
-import { connect } from 'react-redux';
+
+// ==================
+// 所需的所有资源
+// ==================
 import { Button, Modal, message, Form } from 'antd';
-import { bindActionCreators } from 'redux';
-
-// ==================
-// 所需的我们自己的组件或资源
-// ==================
-
 import css from './index.scss';
 import ImgTest from '../../assets/test.jpg';
 import Mp3 from '../../assets/starSky.mp3';
-
 import Page1 from './container/page1';      // 子页面1
 import Page2 from './container/page2';      // 子页面2
 import Page3 from './container/page3';      // 子页面3
@@ -26,11 +23,11 @@ import Page3 from './container/page3';      // 子页面3
 // ==================
 // 本页面所需actions
 // ==================
-
 import { onTestAdd, fetchApi, fetchTest } from '../../a_action/app-action';
 
-
-/** 修饰器测试 **/
+// ==================
+// 组件
+// ==================
 @connect(
     (state) => ({
         num: state.app.num,
@@ -40,8 +37,16 @@ import { onTestAdd, fetchApi, fetchTest } from '../../a_action/app-action';
     })
 )
 @Form.create()
-/** 定义组件class **/
 export default class TestPageContainer extends React.Component {
+    static propTypes = {
+        num: P.number,      // 测试： 来自store的全局变量num
+        location: P.any,    // 自动注入的location对象
+        match: P.any,       // 自动注入的match对象
+        history: P.any,     // 自动注入的history对象
+        actions: P.any,     // connect高阶函数注入的actions，见本页面最下面的actions
+        form: P.any,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
@@ -96,7 +101,7 @@ export default class TestPageContainer extends React.Component {
         console.log('所有页面默认拥有的3个对象：', this.props.location, this.props.match, this.props.history);
         const set = new Set([1,2,3]);
         const map = new Map();
-        console.log('Set 和 Map 测试', set, map);
+        console.log('Set 和 Map 测试:', set, map);
     }
 
     render() {
@@ -199,16 +204,3 @@ export default class TestPageContainer extends React.Component {
         );
     }
 }
-
-// ==================
-// PropTypes
-// ==================
-TestPageContainer.propTypes = {
-    num: P.number,      // 测试： 来自store的全局变量num
-    location: P.any,    // 自动注入的location对象
-    match: P.any,       // 自动注入的match对象
-    history: P.any,     // 自动注入的history对象
-    actions: P.any,     // connect高阶函数注入的actions，见本页面最下面的actions
-    form: P.any,
-};
-

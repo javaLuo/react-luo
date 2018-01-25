@@ -1,9 +1,10 @@
-/* Footer 页面底部 */
+/** Footer 页面底部 **/
 import React from 'react';
-import P from 'prop-types';
 import css from './index.scss';
 
-class Footer extends React.Component {
+export default class Footer extends React.PureComponent {
+    static propTypes = {};
+
     constructor(props) {
         super(props);
         this.state = {
@@ -18,8 +19,3 @@ class Footer extends React.Component {
         );
     }
 }
-
-Footer.propTypes = {
-};
-
-export default Footer;

@@ -1,12 +1,30 @@
-/* 404 NotFound */
+/** 404 NotFound **/
 
+// ==================
+// 所需的各种插件
+// ==================
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import P from 'prop-types';
+
+// ==================
+// 所需的所有资源
+// ==================
 import css from './index.scss';
 
-class HomePageContainer extends React.Component {
+// ==================
+// 组件
+// ==================
+@connect(
+  (state) => ({
+  }),
+  (dispatch) => ({
+      actions: bindActionCreators({}, dispatch),
+  })
+)
+export default class HomePageContainer extends React.Component {
+  static propTypes = {};
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,29 +34,10 @@ class HomePageContainer extends React.Component {
   render() {
     return (
       <div className={css.page}>
-          <div className={css.box}>
-              404 not found
-          </div>
+        <div className={css.box}>
+          404 not found
+        </div>
       </div>
     );
   }
 }
-
-// ==================
-// PropTypes
-// ==================
-
-HomePageContainer.propTypes = {
-};
-
-// ==================
-// Export
-// ==================
-
-export default connect(
-  (state) => ({
-  }), 
-  (dispatch) => ({
-    actions: bindActionCreators({}, dispatch),
-  })
-)(HomePageContainer);

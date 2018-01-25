@@ -4,9 +4,21 @@ import { bindActionCreators } from 'redux';
 import P from 'prop-types';
 
 // ==================
-// Definition
+// 组件
 // ==================
-class Page1 extends React.Component {
+@connect(
+    (state) => ({
+    }),
+    (dispatch) => ({
+        actions: bindActionCreators({}, dispatch),
+    })
+)
+export default class Page1 extends React.Component {
+  static propTypes = {
+    location: P.any,
+    history: P.any,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,24 +31,3 @@ class Page1 extends React.Component {
     );
   }
 }
-
-// ==================
-// PropTypes
-// ==================
-
-Page1.propTypes = {
-  location: P.any,
-  history: P.any,
-};
-
-// ==================
-// Export
-// ==================
-
-export default connect(
-  (state) => ({
-  }), 
-  (dispatch) => ({
-    actions: bindActionCreators({}, dispatch),
-  })
-)(Page1);
