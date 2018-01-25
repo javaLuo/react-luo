@@ -6,6 +6,7 @@
 ## what fuck this?
 react automaticaly<br/>
 这是一个React脚手架，没有使用create-react-app<br/>
+标准的React+Redux分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
 
@@ -28,6 +29,9 @@ npm run dist     # 运行正式打包后的最终代码，默认监听8888端�
 ```
 
 ## 更新日志 Update log
+* 2018-01-25
+	<br/>1.propTypes父级参数类型判断均提到了class的顶部
+	<br/>2.高阶组件等方法均用@修饰器提到了class的顶部，比如@connect、@From.create
 * 2018-01-10
 	<br/>1.className均改为module形式,自动设置局部css命名空间
 	<br/>2.npm i classnames --save, 用于添加多个className时，对所有className进行封装
