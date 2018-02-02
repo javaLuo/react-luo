@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node server.js",
-    "build": "npm run clear && webpack -p --config webpack.production.config.js --progress --profile --colors",
+    "build": "npm run clear && webpack -p --config webpack.production.config.js --progress --profile --colors --display errors-only",
     "dist": "set NODE_ENV=production&& node server.js",
     "clear": "rimraf ./build",
     "cover": "./node_modules/.bin/istanbul cover _mocha",
@@ -63,7 +63,7 @@
     "less-loader": "^4.0.5",
     "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.7.2",
-    "postcss-loader": "^2.0.10",
+    "postcss-loader": "^2.1.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.20.1",
