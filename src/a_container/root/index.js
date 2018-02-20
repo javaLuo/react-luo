@@ -6,7 +6,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Router, BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
+import { Router, Route, Switch, Redirect} from 'react-router-dom';
 import P from 'prop-types';
 // import createHistory from 'history/createBrowserHistory';   // URL模式的history
 import createHistory from 'history/createHashHistory';        // 锚点模式的history

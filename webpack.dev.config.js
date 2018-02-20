@@ -48,6 +48,11 @@ module.exports = {
                     'postcss-loader'
                 ]
             },
+            {   // .less 解析 (用于解析antd的LESS文件)
+                test: /\.less$/,
+                loaders: ['style-loader', 'css-loader', 'postcss-loader', `less-loader`],
+                include: path.resolve(__dirname, "node_modules")
+            },
             {   // .less 解析
                 test: /\.less$/,
                 loaders: [
@@ -63,11 +68,6 @@ module.exports = {
                     'less-loader'
                 ],
                 include: path.resolve(__dirname, "src")
-            },
-            {   // .less 解析 (用于解析antd的LESS文件)
-                test: /\.less$/,
-                loaders: ['style-loader', 'css-loader', 'postcss-loader', `less-loader`],
-                include: path.resolve(__dirname, "node_modules")
             },
             {   // .scss 解析
                 test: /\.scss$/,
