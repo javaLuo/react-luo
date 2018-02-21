@@ -58,6 +58,7 @@ const packageJson = {
         "babel-polyfill": "^6.26.0",                            // Babel垫片库，支持ES6的一些新功内容，比如Set和Map
         "babel-preset-env": "^1.6.1",                           // Babel根据浏览器和运行时环境自动识别运用哪些垫片库来兼容ES6+语法
         "babel-preset-react": "^6.24.1",                        // Babel支持react语法
+        "body-parser": "^1.18.2",                               // express插件，用于server.js中处理POST请求的参数，mock要用
         "babel-runtime": "^6.26.0",                             // Babel垫片库，提供了各种ES6的垫片，最终会自动编译为ES5
         "css-loader": "^0.28.8",                                // Webpack解析器 - 用于解析js中import的css，和css中所有url()中的路径问题
         "eslint": "^4.15.0",                                    // Eslint 代码规范检测器
