@@ -6,8 +6,6 @@
 import reqwest from 'reqwest';  // 封装了ajax请求的库
 import axios from 'axios';      // 封装了fetch请求的库
 
-import '../util/mock-data.js';  /** 自己定义的mock模拟数据拦截ajax请求（注：真实开发时需删掉）**/
-
 export default class ApiService {
   /** ajax请求(用的reqwest.js) **/
   static newPost(url, bodyObj = {}) {
