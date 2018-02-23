@@ -29,6 +29,8 @@ npm run dist     # 运行正式打包后的最终代码，默认监听8888端�
 ```
 
 ## 更新日志 Update log
+* 2018-02-21
+	<br/>1.mock改为随server.js一起使用，请求在server.js中有配置。代码正式打包不再包含mock
 * 2018-01-25
 	<br/>1.propTypes父级参数类型判断均提到了class的顶部
 	<br/>2.高阶组件等方法均用@修饰器提到了class的顶部，比如@connect、@From.create
