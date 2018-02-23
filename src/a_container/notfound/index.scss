@@ -1,11 +1,11 @@
-.page{
-	height: calc(100vh - 62px);
-	.box{
-		position: absolute;
-		top: 40%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		font-size: 16px;
-		color: #888;
-	}
+.page {
+  height: calc(100vh - 62px);
+  .box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #888;
+  }
 }

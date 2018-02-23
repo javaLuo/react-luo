@@ -3,37 +3,35 @@
 // ==================
 // 所需的各种插件
 // ==================
-import React from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import P from 'prop-types';
+import React from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import P from "prop-types";
 
 // ==================
 // 所需的所有资源
 // ==================
-import css from './index.scss';
+import css from "./index.scss";
 
 // ==================
 // 组件
 // ==================
 @connect(
-    (state) => ({
-    }),
-    (dispatch) => ({
-        actions: bindActionCreators({}, dispatch),
-    })
+  state => ({}),
+  dispatch => ({
+    actions: bindActionCreators({}, dispatch)
+  })
 )
 export default class FeaturesPageContainer extends React.Component {
   static propTypes = {
     location: P.any,
     history: P.any,
-    actions: P.any,
+    actions: P.any
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -55,7 +53,10 @@ export default class FeaturesPageContainer extends React.Component {
             <h2>正式打包</h2>
             <p>npm run build</p>
             <div>会将最终代码打包至/build文件夹中</div>
-            <div>/build文件夹中的index.html 和 /build/dist文件夹 仅这两样东西是最终需要的</div>
+            <div>
+              /build文件夹中的index.html 和 /build/dist文件夹
+              仅这两样东西是最终需要的
+            </div>
           </div>
           <div className={css.list}>
             <h2>运行生产环境的代码</h2>
@@ -64,7 +65,9 @@ export default class FeaturesPageContainer extends React.Component {
           </div>
           <div className={css.list}>
             <h2>HMR局部热更新</h2>
-            <div>使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新</div>
+            <div>
+              使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新
+            </div>
           </div>
           <div className={css.list}>
             <h2>代码分割</h2>

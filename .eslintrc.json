@@ -18,7 +18,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
         "semi": "warn",
@@ -28,6 +29,7 @@
         "no-caller": "error",
         "no-unmodified-loop-condition": "error",
         "no-with": "error",
-        "no-catch-shadow": "error"
+        "no-catch-shadow": "error",
+        "prettier/prettier": "warn"
     }
 }

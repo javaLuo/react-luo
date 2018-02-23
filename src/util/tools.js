@@ -10,7 +10,9 @@ const tools = {
       x   - 保留几位小数点
   */
   pointX(str, x = 0) {
-    if (!str && str !== 0) { return str; }
+    if (!str && str !== 0) {
+      return str;
+    }
     const temp = Number(str);
     if (temp === 0) {
       return temp.toFixed(x);
@@ -23,7 +25,7 @@ const tools = {
   */
   trim(str) {
     const reg = /^\s*|\s*$/g;
-    return str.replace(reg, '');
+    return str.replace(reg, "");
   },
 
   /**
@@ -39,17 +41,19 @@ const tools = {
         return s.length;
       }
       const l = s.length - 2;
-      if (l <= 6) { return l; }
+      if (l <= 6) {
+        return l;
+      }
       return 6;
     })();
     const start = Math.floor((lenth - howmuch) / 2);
-    const ret = s.split('').map((v, i) => {
+    const ret = s.split("").map((v, i) => {
       if (i >= start && i < start + howmuch) {
-        return '*';
+        return "*";
       }
       return v;
     });
-    return ret.join('');
+    return ret.join("");
   },
   /**
     字符串加密
@@ -60,7 +64,7 @@ const tools = {
     for (let i = 1; i < code.length; i++) {
       c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));
     }
-    console.log('加谜：', code, c);
+    console.log("加谜：", code, c);
     return c;
   },
   /**
@@ -72,9 +76,9 @@ const tools = {
     for (let i = 1; i < code.length; i++) {
       c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1));
     }
-    console.log('解谜：', code, c);
+    console.log("解谜：", code, c);
     return c;
-  },
+  }
 };
 
 export default tools;
