@@ -63,6 +63,7 @@ const packageJson = {
         "css-loader": "^0.28.8",                                // Webpack解析器 - 用于解析js中import的css，和css中所有url()中的路径问题
         "eslint": "^4.15.0",                                    // Eslint 代码规范检测器
         "eslint-loader": "^1.9.0",                              // Webpack解析器 - 打包时检测代码规范时用
+        "eslint-plugin-prettier": "^2.6.0",                     // Eslint插件 - prettier风格的代码格式
         "eslint-plugin-react": "^7.5.1",                        // Eslint插件 - 让Eslint支持检测React语法（JSX）（.eslintrc.json中配置的plugins参数）
         "express": "^4.16.2",                                   // Node.js框架 - 用于server.js中提供开发环境的服务
         "extract-text-webpack-plugin": "^3.0.2",                // Webpack插件 - 用于提取项目中的所有CSS，生成单独的.css文件（webpack.production.config.js中有配置）
@@ -74,6 +75,7 @@ const packageJson = {
         "mockjs": "^1.0.1-beta3",                               // Mock 模拟假数据的库
         "node-sass": "^4.7.2",                                  // Sass 核心
         "postcss-loader": "^2.0.10",                            // Webpack解析器 - 用于进一步解析CSS，比如自动添加-webkit-前缀等
+        "prettier": "1.10.2",                                   // 代码自动格式化工具
         "rimraf": "^2.6.2",                                     // 文件操作工具 - 用于删除文件（package.json的scripts.clear脚本用到了）
         "sass-loader": "^6.0.6",                                // Webpack解析器 - 解析.sass/.scss文件，编译为.css
         "style-loader": "^0.19.1",                              // Webpack解析器 - 用于将css文件的代码加入到index.html中的<style>标签里
