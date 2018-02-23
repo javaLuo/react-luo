@@ -28,7 +28,7 @@ npm run build     # 正式打包，用于生产环境
 ### 额外的命令
 
 ```
-npm pretter       # 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
+npm prettier       # 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
 ```
 
 ```
@@ -37,7 +37,7 @@ npm run dist     # 运行正式打包后的最终文件（build目录下的文
 
 ## 更新日志 Update log
 * 2018-02-23
-    <br/>1.增加了pretter自动代码格式化，npm run pretter 将自动按照pretter风格对{src,mock}/**/*.{js,css,scss,less}的文件进行格式化
+    <br/>1.增加了prettier自动代码格式化，npm run prettier 将自动按照prettier风格对{src,mock}/**/*.{js,css,scss,less}的文件进行格式化
     <br/>2.Eslint现在会根据pretter风格进行代码检测，不符合的会在控制台输出warning
 * 2018-02-21
 	<br/>1.mock改为随server.js一起使用，请求在server.js中有配置。代码正式打包不再包含mock
