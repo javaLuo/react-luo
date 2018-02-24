@@ -50,6 +50,23 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
 ```
 
+## 预览地址 Demo
+
+http://isluo.com/work/react-luo/index.html
+
+## 特性 Characteristic
+
+* HMR局部热替换
+
+* 代码分割按需加载
+
+* Prettier自动代码格式化
+
+* HappyPack多线程编译(webpack分支)
+
+* 最终打包后，会在/build文件夹下生成最终代码。
+
+
 ## 更新日志 Update log
 * 2018-02-24
 	<br/>1.使用了Parcel对项目进行打包，主分支移除了webpack及相关插件
@@ -94,15 +111,6 @@ yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.l
 	<br/>1.使用react-hot-loader 3.0.0 配置了HMR热替换，不再需要以前的静态资源预编译了
 	<br/>2.配置了Antd自定义主题所需的代码，现在可以直接在package.json中的theme字段定义自己的Antd主题
 	
-## 特性 Characteristic
-
-* HMR局部热替换
-
-* 代码分割按需加载
-
-* HappyPack多线程编译(webpack分支)
-
-* 最终打包后，会在/build文件夹下生成最终代码。
 
 ## 目录结构 Structure
 
@@ -128,9 +136,6 @@ yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.l
 
 ```
 
-## 预览地址 Demo
-
-http://isluo.com/work/react-luo/index.html
 
 ## 参阅资料 Consult
 React GitHub地址：https://github.com/facebook/react <br/>
