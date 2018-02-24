@@ -1,6 +1,10 @@
 /** MOCK 模拟数据拦截ajax请求（注：真实开发时需删掉此文件） **/
 
-const Mock = require("mockjs");
+import Mock from "mockjs";
+
+Mock.setup({
+  timeout: "200-600"
+});
 
 /** 数据模版 **/
 const ajaxTest = {
@@ -13,6 +17,4 @@ const ajaxTest = {
   ]
 };
 
-exports.mockApi = (url, params) => {
-  return Mock.mock(ajaxTest);
-};
+Mock.mock(/\.ajax/, ajaxTest);

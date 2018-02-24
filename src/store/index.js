@@ -12,11 +12,4 @@ middlewares.push(ReduxThunk);
 
 const store = createStore(RootReducer, applyMiddleware(...middlewares));
 
-// REDUX 2.x 中，HMR检测不到reducer的变化，所以在创建store的文件中加入下面代码
-if (module.hot) {
-  module.hot.accept("../a_reducer", () => {
-    const nextRootReducer = require("../a_reducer/index");
-    store.replaceReducer(nextRootReducer);
-  });
-}
 export default store;
