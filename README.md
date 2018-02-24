@@ -54,7 +54,12 @@ yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.l
 
 http://isluo.com/work/react-luo/index.html
 
-## 特性 Characteristic
+## 分支
+
+* 主分支：Parcel打包工具，自带HMR，react-loadable代码分割
+* react-luo-webpack分支：webpack打包工具，bundle-loader代码分割
+
+## 特性
 
 * HMR局部热替换
 
