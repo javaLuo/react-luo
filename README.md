@@ -11,31 +11,50 @@ react automaticaly<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
 
-## 构建 Start
+## NPM构建
 
 ```
 npm install       # 安装依赖模块
 ```
 
 ```
-npm run dev       # 运行开发环境，默认监听8888端口
+npm run start     # 运行开发环境，默认监听8888端口
 ```
 
 ```
 npm run build     # 正式打包，用于生产环境
 ```
 
-### 额外的命令
+```
+npm run dist     # 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
+```
 
 ```
 npm prettier       # 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
 ```
 
+
+## 也可以使用Yarn构建
+
 ```
-npm run dist     # 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
+npm install yarn -g	# 首先需要全局安装yarn
+
+yarn install		# 安装项目依赖模块
+
+yarn run start		# 运行开发环境，默认监听8888端口
+
+yarn run build		# 正式打包，在根目录下自动生成build文件夹
+
+yarn run dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
+
+yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
 ```
 
 ## 更新日志 Update log
+* 2018-02-24
+	<br/>1.使用了Parcel对项目进行打包，主分支移除了webpack及相关插件
+	<br/>2.建立了react-luo-webpack分支，沿用webpack
+	<br/>3.主分支代码分割有所变化，参见src/a_container/root/index.js
 * 2018-02-23
     <br/>1.增加了prettier自动代码格式化，npm run prettier 将自动按照prettier风格对{src,mock}/**/*.{js,css,scss,less}的文件进行格式化
     <br/>2.Eslint现在会根据pretter风格进行代码检测，不符合的会在控制台输出warning
@@ -74,21 +93,23 @@ npm run dist     # 运行正式打包后的最终文件（build目录下的文
 * 2017-09-07
 	<br/>1.使用react-hot-loader 3.0.0 配置了HMR热替换，不再需要以前的静态资源预编译了
 	<br/>2.配置了Antd自定义主题所需的代码，现在可以直接在package.json中的theme字段定义自己的Antd主题
+	
 ## 特性 Characteristic
 
 * HMR局部热替换
 
 * 代码分割按需加载
 
-* HappyPack多线程编译
+* HappyPack多线程编译(webpack分支)
 
-* 最终打包后，会在/build文件夹下生成 index.html 和 /dist文件夹，这两个东西是最终需要的。
+* 最终打包后，会在/build文件夹下生成最终代码。
 
 ## 目录结构 Structure
 
 ```
 .
 ├── build				# 正式打包后，会自动生成该文件夹，其中会包含最终用于生产环境的文件
+├── mock				# Mock.js模拟数据相关配置
 ├── src                                 # 项目代码目录
 │   ├── a_action                        # 所有的action
 │   ├── a_component                     # 所有的公共类UI组件
@@ -99,15 +120,12 @@ npm run dist     # 运行正式打包后的最终文件（build目录下的文
 │   ├── assets                          # 所有的图片、文件等静态资源
 │   ├── styles                          # 所有的样式文件
 │   ├── store                           # store数据中心
-│   ├── util                            # 自定义工具
-|   	├── tools.js			# 封装了一些工具函数，比如去掉两端空格之类的
-|	├── fetch-api.js		# 封装了2个异步请求，所有的action都调用的这个js中的方法
-|	└── mock-data.js		# mock模拟数据的模版，只在fetch-api.js中有用到
+│   ├── util                            # 自己封装的常用工具函数（字符串转换，API请求什么的）
 │   ├── index.js                        # 项目入口JS
-│   └── index.html                      # 主页html文件,开发环境和生产打包共用
-├── server.js				# 用于开发环境的服务部署
-├── webpack.dev.config.js		# 用于开发环境的webpack配置
-└── webpack.production.config.js	# 用于生产环境正式打包的webpack配置
+│   ├── index.html			# 主页html文件,生产环境打包使用
+│   └── index-mock.html                 # 主页html文件,开发环境使用（自带mock模拟数据）
+└── server.js				# 用于开发环境的服务部署
+
 ```
 
 ## 预览地址 Demo
@@ -121,3 +139,4 @@ React官方更新日志：https://github.com/facebook/react/releases <br/>
 React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768 <br/>
 mockjs官网：http://mockjs.com/ <br/>
 Eslint中文站：http://eslint.cn/ <br/>
+Parcel中文站：https://parceljs.org/ <br/>
