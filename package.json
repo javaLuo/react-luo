@@ -63,5 +63,10 @@
     "postcss-modules": "^1.1.0",
     "prettier": "1.10.2",
     "rimraf": "^2.6.2"
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
