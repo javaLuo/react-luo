@@ -14,28 +14,50 @@ react automaticaly<br/>
 ## 构建 Start
 
 ```
-npm install       # 安装依赖模块
+npm install		# 安装依赖模块
 ```
 
 ```
-npm run dev       # 运行开发环境，默认监听8888端口
+npm run dev		# 运行开发环境，默认监听8888端口
 ```
 
 ```
-npm run build     # 正式打包，用于生产环境
-```
-
-### 额外的命令
-
-```
-npm prettier       # 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
+npm run build		# 正式打包，用于生产环境
 ```
 
 ```
-npm run dist     # 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
+npm run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
+```
+
+```
+npm run dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
+```
+
+## Yarn构建
+
+```
+yarn install		# 安装依赖模块
+```
+
+```
+yarn run dev		# 运行开发环境，默认监听8888端口
+```
+
+```
+yarn run build		# 正式打包，用于生产环境
+```
+
+```
+yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
+```
+
+```
+yarn run dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
 ```
 
 ## 更新日志 Update log
+* 2018-03-04
+	<br/>1.webpack升级到4.0，相关配置和插件修改
 * 2018-02-23
     <br/>1.增加了prettier自动代码格式化，npm run prettier 将自动按照prettier风格对{src,mock}/**/*.{js,css,scss,less}的文件进行格式化
     <br/>2.Eslint现在会根据pretter风格进行代码检测，不符合的会在控制台输出warning
