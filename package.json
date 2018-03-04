@@ -63,8 +63,6 @@
     "postcss-modules": "^1.1.0",
     "prettier": "1.11.1",
     "rimraf": "^2.6.2",
-    "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.10"
   },
   "browserslist": [
     "> 1%",
