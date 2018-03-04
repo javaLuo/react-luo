@@ -4,6 +4,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单�
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清楚旧的build文件夹
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
 module.exports = {
   mode: "production",
   entry: path.resolve(__dirname, "src", "index"),
