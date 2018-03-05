@@ -4,7 +4,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-## what fuck this?
+## what is this?
 react automaticaly<br/>
 这是一个React脚手架，没有使用create-react-app<br/>
 标准的React+Redux分层结构<br/>
