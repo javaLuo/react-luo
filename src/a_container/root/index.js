@@ -80,6 +80,12 @@ export default class RootContainer extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    // 可以手动在此进行模块预加载：
+    Features.preload(); // 预加载Features页面
+    Test.preload(); // 预加载Test页面
+  }
+
   /** 权限控制 **/
   onEnter(Component, props) {
     console.log("权限控制：", props);
