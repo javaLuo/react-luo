@@ -8,6 +8,7 @@
     "transform-decorators-legacy",
     "transform-class-properties",
     "syntax-dynamic-import",
+    "react-loadable/babel",
     [
       "import",
       {
