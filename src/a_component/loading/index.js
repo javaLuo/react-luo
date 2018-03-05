@@ -3,19 +3,19 @@ import React from "react";
 import css from "./index.scss";
 import ImgLoading from "../../assets/loading.gif";
 export default class Footer extends React.PureComponent {
-    static propTypes = {};
+  static propTypes = {};
 
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-    render() {
-        return (
-            <div className={css.loading}>
-                <img src={ImgLoading} />
-                <div>Loading...</div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className={css.loading}>
+        <img src={ImgLoading} />
+        <div>Loading...</div>
+      </div>
+    );
+  }
 }

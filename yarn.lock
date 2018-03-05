@@ -8100,7 +8100,7 @@ warning@^3.0.0, warning@~3.0.0:
   dependencies:
     loose-envify "^1.0.0"
 
-watchpack@^1.4.0:
+watchpack@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/watchpack/-/watchpack-1.5.0.tgz#231e783af830a22f8966f65c4c4bacc814072eed"
   dependencies:
@@ -8164,9 +8164,9 @@ webpack-dev-middleware@^3.0.0:
     url-join "^4.0.0"
     webpack-log "^1.0.1"
 
-webpack-hot-middleware@^2.21.1:
-  version "2.21.1"
-  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.21.1.tgz#1b03b20a1a65a2e2ea0ea987476a5d23370ff176"
+webpack-hot-middleware@^2.21.2:
+  version "2.21.2"
+  resolved "https://registry.yarnpkg.com/webpack-hot-middleware/-/webpack-hot-middleware-2.21.2.tgz#2e2aa65563b8b32546b67e53b5a9667dcd80f327"
   dependencies:
     ansi-html "0.0.7"
     html-entities "^1.2.0"
@@ -8189,9 +8189,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.0.1.tgz#768d708beeca4c5f77f6c2d38a240fb6ff50ba5d"
+webpack@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.1.0.tgz#91b6862e56eb3b18b79bb10b51866987ff10d2d6"
   dependencies:
     acorn "^5.0.0"
     acorn-dynamic-import "^3.0.0"
@@ -8210,7 +8210,7 @@ webpack@^4.0.1:
     schema-utils "^0.4.2"
     tapable "^1.0.0"
     uglifyjs-webpack-plugin "^1.1.1"
-    watchpack "^1.4.0"
+    watchpack "^1.5.0"
     webpack-sources "^1.0.1"
 
 whatwg-encoding@^1.0.1, whatwg-encoding@^1.0.3:
