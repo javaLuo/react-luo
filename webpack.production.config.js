@@ -128,7 +128,7 @@ module.exports = {
     new UglifyJsPlugin({
       uglifyOptions: {
         output: {
-          // comments: true // 删除代码中所有注释
+          comments: true // 是否保留代码中所有注释
         },
         compress: {
           warnings: false, // 删除没有用的代码时是否发出警告
