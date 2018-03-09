@@ -45,7 +45,7 @@ export default class FeaturesPageContainer extends React.Component {
           </div>
           <div className={css.list}>
             <h2>启动开发环境</h2>
-            <p>npm run dev</p>
+            <p>npm run start</p>
             <div>代码打包编译，默认监听8888端口</div>
             <div>访问http://localhost:8888 即可查看</div>
           </div>
@@ -64,6 +64,11 @@ export default class FeaturesPageContainer extends React.Component {
             <div>运行build文件夹下生成好的最终代码</div>
           </div>
           <div className={css.list}>
+            <h2>代码自动格式化</h2>
+            <p>npm run prettier</p>
+            <div>自动美化js/css/scss/less等文件</div>
+          </div>
+          <div className={css.list}>
             <h2>HMR局部热更新</h2>
             <div>
               使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新
@@ -71,12 +76,12 @@ export default class FeaturesPageContainer extends React.Component {
           </div>
           <div className={css.list}>
             <h2>代码分割</h2>
-            <div>bundle-loader实现的代码分割</div>
+            <div>react-loadable实现的代码分割</div>
             <div>src/a_container/root/index.js中能查看例子</div>
           </div>
           <div className={css.list}>
-            <h2>HappyPack多线程编译</h2>
-            <div>使用了HappyPack插件，使编译速度更快</div>
+            <h2>webpack4.0</h2>
+            <div>使用了最新版本的webpack，编译速度更快</div>
           </div>
         </div>
       </div>
