@@ -1,9 +1,7 @@
 const path = require("path");
-const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单独打包css
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
-const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清楚旧的build文件夹
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
 
 module.exports = {
   mode: "production",
@@ -124,17 +122,6 @@ module.exports = {
     new ExtractTextPlugin({
       filename: "[name].[hash:6].css", // 生成的文件名
       allChunks: true // 从所有chunk中提取
-    }),
-    new UglifyJsPlugin({
-      uglifyOptions: {
-        output: {
-          comments: true // 是否保留代码中所有注释
-        },
-        compress: {
-          warnings: false, // 删除没有用的代码时是否发出警告
-          drop_console: true // 是否删除所有的console
-        }
-      }
     }),
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
