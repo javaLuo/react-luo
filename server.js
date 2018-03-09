@@ -62,5 +62,5 @@ app.post("*", (req, res, next) => {
 
 /** 启动服务 **/
 app.listen(PORT, () => {
-  console.log("本地服务启动地址222: http://localhost:%s", PORT);
+  console.log("本地服务启动地址: http://localhost:%s", PORT);
 });
