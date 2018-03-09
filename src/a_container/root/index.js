@@ -38,7 +38,8 @@ import Loading from "../../a_component/loading"; // loading动画，用于动态
 // );
 const Home = Loadable({
   loader: () => import("../home"),
-  loading: Loading
+  loading: Loading, // 自定义的Loading动画组件
+  timeout: 10000 // 你可以设置一个超时时间来应对网络慢的情况（在Loading动画组件中可以配置error信息）
 });
 const Features = Loadable({
   loader: () => import("../features"),
@@ -81,9 +82,11 @@ export default class RootContainer extends React.Component {
   }
 
   componentDidMount() {
-    // 可以手动在此进行模块预加载：
-    Features.preload(); // 预加载Features页面
-    Test.preload(); // 预加载Test页面
+    // 可以手动在此预加载指定的模块：
+    //Features.preload(); // 预加载Features页面
+    //Test.preload(); // 预加载Test页面
+    // 也可以直接预加载所有的异步模块
+    Loadable.preloadAll();
   }
 
   /** 权限控制 **/

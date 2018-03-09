@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "build": "webpack -p --config webpack.production.config.js --progress --profile --colors --display errors-only",
-    "dist": "set NODE_ENV=production && node server.js",
+    "dist": "set NODE_ENV=production&& node server.js",
     "prettier": "prettier --write \"{src,mock}/**/*.{js,css,scss,less}\"",
     "cover": "./node_modules/.bin/istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
