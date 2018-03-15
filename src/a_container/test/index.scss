@@ -8,6 +8,13 @@
     margin-top: 40px;
     .list {
       margin-bottom: 20px;
+      .backImage {
+        display: block;
+        background-image: url(../../assets/test.jpg);
+        margin-top: 8px;
+        width: 326px;
+        height: 150px;
+      }
       p {
         font-size: 14px;
         padding: 5px 10px;

@@ -120,6 +120,24 @@ export default class TestPageContainer extends React.Component {
             <h2>引入图片</h2>
             <p>
               <img src={ImgTest} style={{ height: "150px" }} />
+              <span className={css.backImage} />
+              <span>上方图片，一张是img,一张是background</span>
+              <br />
+              <span>
+                {
+                  '请特别注意，现在webpack.production.config.js中的publicPath配置为"/dist/"，'
+                }
+              </span>
+              <br />
+              <span>
+                如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
+              </span>
+              <br />
+              <span>
+                {
+                  '如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/dist/"'
+                }
+              </span>
             </p>
           </div>
           <div className={css.list}>

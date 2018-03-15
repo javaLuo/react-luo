@@ -10,11 +10,23 @@ export default class Footer extends React.PureComponent {
     this.state = {};
   }
 
+  makeType(p) {
+    let msg;
+    if (p.error) {
+      msg = "加载出错，请刷新页面";
+    } else if (p.timedOut) {
+      msg = "加载超时";
+    } else if (p.pastDelay) {
+      msg = "加载中…";
+    }
+    return msg;
+  }
+
   render() {
     return (
       <div className={css.loading}>
         <img src={ImgLoading} />
-        <div>Loading...</div>
+        <div>{this.makeType(this.props)}</div>
       </div>
     );
   }

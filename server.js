@@ -2,8 +2,8 @@
 const path = require("path"); // 获取绝对路径有用
 const express = require("express"); // express服务器端框架
 const bodyParser = require("body-parser");
-const webpack = require("webpack"); // webpack核心
 const env = process.env.NODE_ENV; // 模式（dev开发环境，production生产环境）
+const webpack = require("webpack"); // webpack核心
 const webpackDevMiddleware = require("webpack-dev-middleware"); // webpack服务器
 const webpackHotMiddleware = require("webpack-hot-middleware"); // HMR热更新中间件
 const webpackConfig = require("./webpack.dev.config.js"); // webpack开发环境的配置文件
@@ -13,7 +13,6 @@ const mock = require("./mock/mock-data"); // mock模拟数据，模拟后台业�
 const app = express(); // 实例化express服务
 const DIST_DIR = webpackConfig.output.path; // webpack配置中设置的文件输出路径，所有文件存放在内存中
 const PORT = 8888; // 服务启动端口号
-const compiler = webpack(webpackConfig); // 实例化webpack
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -25,6 +24,7 @@ if (env === "production") {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   });
 } else {
+  const compiler = webpack(webpackConfig); // 实例化webpack
   app.use(
     webpackDevMiddleware(compiler, {
       // 挂载webpack小型服务器

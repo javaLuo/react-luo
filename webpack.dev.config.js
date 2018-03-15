@@ -130,8 +130,7 @@ module.exports = {
       template: "./src/index.html", //html模板路径
       inject: true // 是否将js放在body的末尾
     }),
-    new webpack.HotModuleReplacementPlugin(), // 热更新插件
-    new webpack.NoEmitOnErrorsPlugin() // 在编译出现错误时，自动跳过输出阶段。这样可以确保编译出的资源中不会包含错误。
+    new webpack.HotModuleReplacementPlugin() // 热更新插件
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css", ".scss"] //后缀名自动补全
