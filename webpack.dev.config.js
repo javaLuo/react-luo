@@ -26,19 +26,19 @@ module.exports = {
         // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
         test: /\.js?$/,
         enforce: "pre",
-        loader: "eslint-loader",
+        use: ["eslint-loader"],
         include: path.resolve(__dirname, "src")
       },
       {
         // .js .jsx用babel解析
         test: /\.js?$/,
-        include: path.resolve(__dirname, "src"),
-        loader: "babel-loader"
+        use: ["babel-loader"],
+        include: path.resolve(__dirname, "src")
       },
       {
         // .css 解析
         test: /\.css$/,
-        loaders: [
+        use: [
           "style-loader",
           {
             loader: "css-loader",
@@ -53,7 +53,7 @@ module.exports = {
       {
         // .less 解析 (用于解析antd的LESS文件)
         test: /\.less$/,
-        loaders: [
+        use: [
           "style-loader",
           "css-loader",
           "postcss-loader",
@@ -64,7 +64,7 @@ module.exports = {
       {
         // .less 解析
         test: /\.less$/,
-        loaders: [
+        use: [
           "style-loader",
           {
             loader: "css-loader",
@@ -81,7 +81,7 @@ module.exports = {
       {
         // .scss 解析
         test: /\.scss$/,
-        loaders: [
+        use: [
           "style-loader",
           {
             loader: "css-loader",
@@ -98,13 +98,17 @@ module.exports = {
         // 文件解析
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        loader: "file-loader?name=assets/[name].[ext]"
+          use: [
+              "file-loader?name=assets/[name].[ext]"
+          ]
       },
       {
         // 图片解析
         test: /\.(png|jpg|gif)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        loader: "url-loader?limit=8192&name=assets/[name].[ext]"
+          use: [
+              "url-loader?limit=8192&name=assets/[name].[ext]"
+          ]
       },
       {
         // CSV/TSV文件解析

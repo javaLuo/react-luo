@@ -19,7 +19,9 @@ module.exports = {
         // .js .jsx用babel解析
         test: /\.js?$/,
         include: path.resolve(__dirname, "src"),
-        loader: "babel-loader"
+          use: [
+              "babel-loader"
+          ]
       },
       {
         // .css 解析
@@ -92,13 +94,17 @@ module.exports = {
         // 文件解析
         test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        loader: "file-loader?name=assets/[name].[ext]"
+          use: [
+              "file-loader?name=assets/[name].[ext]"
+          ]
       },
       {
         // 图片解析
         test: /\.(png|jpg|gif)$/,
         include: path.resolve(__dirname, "src"),
-        loader: "url-loader?limit=8192&name=assets/[name].[ext]"
+        use: [
+            "url-loader?limit=8192&name=assets/[name].[ext]",
+        ]
       },
       {
         // CSV/TSV文件解析
