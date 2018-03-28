@@ -1,4 +1,4 @@
-/** MOCK 模拟数据拦截ajax请求（注：真实开发时需删掉此文件） **/
+/** MOCK 模拟数据拦截ajax请求 **/
 
 const Mock = require("mockjs");
 

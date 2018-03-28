@@ -17,9 +17,6 @@ module.exports = {
   },
   devtool: "inline-source-map", // 报错的时候在控制台输出哪一行报错
   context: __dirname, // entry 和 module.rules.loader 选项相对于此目录开始解析
-  watchOptions: {
-    ignored: /node_modules/
-  },
   module: {
     rules: [
       {
@@ -130,8 +127,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
       filename: "index.html", //生成的html存放路径，相对于 output.path
-      favicon: "favicon.ico", // 自动把根目录下的favicon.ico图片加入html
-      template: "./src/index.html", //html模板路径
+      favicon: "./public/favicon.ico", // 自动把根目录下的favicon.ico图片加入html
+      template: "./public/index.html", //html模板路径
       inject: true // 是否将js放在body的末尾
     }),
     new webpack.HotModuleReplacementPlugin() // 热更新插件

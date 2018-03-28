@@ -74,7 +74,6 @@ const packageJson = {
     express: "^4.16.2", // Node.js框架 - 用于server.js中提供开发环境的服务
     "extract-text-webpack-plugin": "^3.0.2", // Webpack插件 - 用于提取项目中的所有CSS，生成单独的.css文件（webpack.production.config.js中有配置）
     "file-loader": "^1.1.6", // Webpack解析器 - 解析各类文件时有用，图片、音频、视频等,处理它们的相对路径问题
-    happypack: "^4.0.0", // Webpack插件 - 可使用多线程来编译打包，增加编译速度
     "html-webpack-plugin": "^2.30.1", // Webpack插件 - 最终打包时自动生成index.html，并自动配置index.html中的类容
     less: "^2.7.3", // Less 核心
     "less-loader": "^4.0.5", // Webpack解析器 - 解析Less,主要是解析antd的样式文件

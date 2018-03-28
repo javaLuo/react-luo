@@ -44,7 +44,13 @@ export default class TestPageContainer extends React.Component {
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
     actions: P.any, // connect高阶函数注入的actions，见本页面最下面的actions
-    form: P.any
+    form: P.any,
+    names: P.any
+  };
+
+  // 此方法为props元素添加默认值
+  static defaultProps = {
+    names: "我在这里"
   };
 
   constructor(props) {

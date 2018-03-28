@@ -6,7 +6,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Link, hashHistory } from "react-router";
 import classNames from "classnames";
 import P from "prop-types";
 
