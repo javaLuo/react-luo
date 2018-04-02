@@ -2,6 +2,7 @@ const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单独打包css
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
+const PreloadWebpackPlugin = require("preload-webpack-plugin"); // 预加载所有chunk
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包分析插件，打包后会自动弹出tree图
 module.exports = {
   mode: "production",
@@ -136,6 +137,7 @@ module.exports = {
       favicon: "./public/favicon.ico", // 自动把根目录下的favicon.ico图片加入html
       inject: true // 是否将js放在body的末尾
     }),
+      new PreloadWebpackPlugin(),
     // new BundleAnalyzerPlugin() // 打包分析插件，打包后会自动弹出tree图：127.0.0.1:8888
   ],
   // 解析器， webpack提供的各种方便的工具函数
