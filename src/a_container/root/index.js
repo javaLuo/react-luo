@@ -19,23 +19,6 @@ import css from "./index.scss";
 import Loading from "../../a_component/loading"; // loading动画，用于动态加载模块进行中时显示
 
 /** 下面是代码分割异步加载的方式引入各页面 **/
-// import Bundle from "../../a_component/bundle"; // 异步加载高阶组件
-// import lazeHome from "bundle-loader?lazy&name=home!../home"; // 首页
-// import lazeFeatures from "bundle-loader?lazy&name=features!../features"; // 说明页
-// import lazeTest from "bundle-loader?lazy&name=test!../test"; // 功能测试页
-// import lazeNotFound from "bundle-loader?lazy&name=notfound!../notfound"; // 404页
-// const Home = props => (
-//   <Bundle load={lazeHome}>{Home => <Home {...props} />}</Bundle>
-// );
-// const Features = props => (
-//   <Bundle load={lazeFeatures}>{Features => <Features {...props} />}</Bundle>
-// );
-// const Test = props => (
-//   <Bundle load={lazeTest}>{Test => <Test {...props} />}</Bundle>
-// );
-// const NotFound = props => (
-//   <Bundle load={lazeNotFound}>{NotFound => <NotFound {...props} />}</Bundle>
-// );
 const Home = Loadable({
   loader: () => import("../home"),
   loading: Loading, // 自定义的Loading动画组件
