@@ -3,6 +3,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单�
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
 const PreloadWebpackPlugin = require("preload-webpack-plugin"); // 预加载所有chunk
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 代码压缩插件，webpack本身自带了，引入这个是为了配置参数
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包分析插件，打包后会自动弹出tree图
 module.exports = {
   mode: "production",
@@ -20,9 +21,9 @@ module.exports = {
         // .js .jsx用babel解析
         test: /\.js?$/,
         include: path.resolve(__dirname, "src"),
-          use: [
-              "babel-loader"
-          ]
+        use: [
+            "babel-loader"
+        ]
       },
       {
         // .css 解析
@@ -95,9 +96,9 @@ module.exports = {
         // 文件解析
         test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-          use: [
-              "file-loader?name=assets/[name].[ext]"
-          ]
+        use: [
+            "file-loader?name=assets/[name].[ext]"
+        ]
       },
       {
         // 图片解析
@@ -118,13 +119,20 @@ module.exports = {
         // xml文件解析
         test: /\.xml$/,
         use: [
-            'xml-loader'
+          'xml-loader'
         ]
       }
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(["build"]),
+    new CleanWebpackPlugin(["build"]), // 打包前删除上一次打包留下的旧代码
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          drop_console: true // 是否删除代码中所有的console
+        }
+      }
+    }),
     // 配置了这个插件，再配合上面loader中的配置，将所有样式文件打包为一个单独的css文件
     new ExtractTextPlugin({
       filename: "[name].[hash:6].css", // 生成的文件名
@@ -137,8 +145,8 @@ module.exports = {
       favicon: "./public/favicon.ico", // 自动把根目录下的favicon.ico图片加入html
       inject: true // 是否将js放在body的末尾
     }),
-      new PreloadWebpackPlugin(),
-    // new BundleAnalyzerPlugin() // 打包分析插件，打包后会自动弹出tree图：127.0.0.1:8888
+    new PreloadWebpackPlugin() // 预加载插件，在index.html中加入chunk预加载link标签（可用可不用）
+    // new BundleAnalyzerPlugin() // 打包分析插件，打包后会自动弹出tree图：127.0.0.1:8888（测试性能时可用）
   ],
   // 解析器， webpack提供的各种方便的工具函数
   resolve: {
