@@ -143,6 +143,7 @@ module.exports = {
       filename: "../index.html", //生成的html存放路径，相对于 output.path
       template: "./public/index.html", //html模板路径
       favicon: "./public/favicon.ico", // 自动把根目录下的favicon.ico图片加入html
+      hash: true, // 防止缓存，在引入的文件后面加hash
       inject: true // 是否将js放在body的末尾
     }),
     new PreloadWebpackPlugin() // 预加载插件，在index.html中加入chunk预加载link标签（可用可不用）
