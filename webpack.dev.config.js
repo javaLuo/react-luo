@@ -3,6 +3,7 @@
 const path = require("path"); // 获取绝对路径用
 const webpack = require("webpack"); // webpack核心
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
+const HappyPack = require("happypack"); // 多线程编译
 
 module.exports = {
   mode: "development",
@@ -29,7 +30,7 @@ module.exports = {
       {
         // .js .jsx用babel解析
         test: /\.js?$/,
-        use: ["babel-loader"],
+        use: ["happypack/loader"],
         include: path.resolve(__dirname, "src")
       },
       {
@@ -124,6 +125,9 @@ module.exports = {
     ]
   },
   plugins: [
+      new HappyPack({
+          loaders: ['babel-loader'],
+      }),
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
       filename: "index.html", //生成的html存放路径，相对于 output.path

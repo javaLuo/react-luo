@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
 const PreloadWebpackPlugin = require("preload-webpack-plugin"); // 预加载所有chunk
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 代码压缩插件，webpack本身自带了，引入这个是为了配置参数
+
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 打包分析插件，打包后会自动弹出tree图
 module.exports = {
   mode: "production",
@@ -126,6 +127,7 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(["build"]), // 打包前删除上一次打包留下的旧代码
+    // https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options 英文文档
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
