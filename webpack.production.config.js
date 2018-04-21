@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack"); // webpack核心
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单独打包css
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
@@ -129,12 +130,20 @@ module.exports = {
     ]
   },
   plugins: [
+      new webpack.DefinePlugin({
+          "process.env": JSON.stringify({
+              PUBLIC_URL: '',
+          })
+      }),
+      new InterpolateHtmlPlugin({
+          PUBLIC_URL: '',
+      }),
     new CleanWebpackPlugin(["build"]), // 打包前删除上一次打包留下的旧代码
     // https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options 英文文档
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
-          drop_console: true // 是否删除代码中所有的console
+          drop_console: false // 是否删除代码中所有的console
         }
       }
     }),
@@ -169,10 +178,12 @@ module.exports = {
           navigateFallbackWhitelist: [/^(?!\/__).*/],   // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],   // 不缓存sourcemaps,它们太大了
       }),
+      new
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
       filename: "index.html", //生成的html存放路径，相对于 output.path
       template: "./public/index.html", //html模板路径
+        templateParameters: true,
       favicon: "./public/favicon.ico", // 自动把根目录下的favicon.ico图片加入html
       hash: true, // 防止缓存，在引入的文件后面加hash
       inject: true // 是否将js放在body的末尾
