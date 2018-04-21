@@ -71,14 +71,17 @@
     "postcss-loader": "^2.1.4",
     "preload-webpack-plugin": "^3.0.0-alpha.1",
     "prettier": "1.12.1",
+    "react-dev-utils": "^5.0.1",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.20.3",
+    "sw-precache-webpack-plugin": "^0.11.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.14",
     "webpack-dev-middleware": "^3.1.2",
     "webpack-hot-middleware": "^2.22.0",
+    "webpack-manifest-plugin": "^2.0.1",
     "xml-loader": "^1.2.1"
   }
 }
