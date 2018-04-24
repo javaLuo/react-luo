@@ -16,8 +16,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build" ), // 将文件打包到此目录下
     publicPath: "/", // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
-    filename: "dist/[name].[chunkhash:8].js",
-    chunkFilename: "dist/[name].[chunkhash:8].chunk.js"
+    filename: "dist/[name].[hash:8].js",
+    chunkFilename: "dist/[name].[hash:8].chunk.js"
   },
   context: __dirname,
   module: {
@@ -135,9 +135,9 @@ module.exports = {
               PUBLIC_URL: '',
           })
       }),
-      new InterpolateHtmlPlugin({
-          PUBLIC_URL: '',
-      }),
+      // new InterpolateHtmlPlugin({
+      //     PUBLIC_URL: '',
+      // }),
     new CleanWebpackPlugin(["build"]), // 打包前删除上一次打包留下的旧代码
     // https://github.com/mishoo/UglifyJS2/tree/harmony#compress-options 英文文档
     new UglifyJsPlugin({
@@ -178,7 +178,6 @@ module.exports = {
           navigateFallbackWhitelist: [/^(?!\/__).*/],   // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],   // 不缓存sourcemaps,它们太大了
       }),
-      new
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
       filename: "index.html", //生成的html存放路径，相对于 output.path
