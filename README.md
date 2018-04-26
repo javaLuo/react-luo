@@ -162,7 +162,7 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 
 ## 预览地址 Demo
 
-http://isluo.com/work/react-luo/index.html
+http://isluo.com/work/pwa (线上没有mock环境)
 
 ## 参阅资料 Consult
 React GitHub地址：https://github.com/facebook/react <br/>
