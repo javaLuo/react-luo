@@ -25,6 +25,7 @@ if (env === "production") {
   });
 } else {
   const compiler = webpack(webpackConfig); // 实例化webpack
+  app.use(express.static("dll"));
   app.use(
     webpackDevMiddleware(compiler, {
       // 挂载webpack小型服务器

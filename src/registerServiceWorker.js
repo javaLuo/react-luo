@@ -1,4 +1,4 @@
-// In production, we register a service worker to serve assets from local cache.
+// 这是配置PWA功能的一部分，从create-react-app复制过来的
 
 // This lets the app load faster on subsequent visits in production, and gives
 // it offline capabilities. However, it also means that developers (and users)
