@@ -131,7 +131,7 @@ module.exports = {
   plugins: [
       new webpack.DefinePlugin({
           "process.env": JSON.stringify({
-              PUBLIC_URL: PUBLIC_PATH,
+              PUBLIC_URL: PUBLIC_PATH.replace(/\/$/,''),
           })
       }),
     new CleanWebpackPlugin(["build"]), // 打包前删除上一次打包留下的旧代码
@@ -169,7 +169,7 @@ module.exports = {
               console.log(message);
           },
           minify: false,
-          navigateFallback: "/work/pwa/",    // 遇到不存在的URL时，跳转到主页
+          navigateFallback: "/work/pwa",    // 遇到不存在的URL时，跳转到主页
           navigateFallbackWhitelist: [/^(?!\/__).*/],   // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.cache$/], // 不缓存sourcemaps,它们太大了
       }),
