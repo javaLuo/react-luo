@@ -10,11 +10,25 @@ react automaticaly<br/>
 标准的React+Redux分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
+## 最近更新 需要注意
+* 加入了dllPlugin静态资源预编译（仅开发环境生效）, 所以需要手动先**npm run dll**，再**npm run start**
+autodll-webpack-plugin目前webpack4+还不能用，否则就能全自动了
+
+* 内置了PWA（仅生产环境生效），正式打包后，是带有PWA功能的，所以注意需要手动配置以下2个地方：
+	1. webpack.production.config.js 中的PUBLIC_PATH，可以配置为项目上线后的访问网址
+	2. public/manifest.json 中的start_url也需要配置为这个
+	（不过你也可以先不用管，不会有任何影响，默认配置的'/'）
+	
+* 因为有node-sass这个东西的存在，yarn引入node-sass可能因为各种原因会报错，建议还是使用npm吧。所以推荐用less比较好
 
 ## 构建 Start
 
 ```
 npm install		# 安装依赖模块
+```
+
+```
+npm run dll		* 静态资源预编译
 ```
 
 ```
@@ -38,6 +52,9 @@ npm run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 yarn install		# 安装依赖模块
 ```
+```
+yarn run dll		# 运行开发环境，默认监听8888端口
+```
 
 ```
 yarn run start		# 运行开发环境，默认监听8888端口
@@ -56,6 +73,9 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 
 ## 更新日志 Update log
+* 2018-04-26
+	<br/>1.增加了DllPlugin 和 DllReferencePlugin 静态资源预编译插件
+	<br/>2.内置了PWA功能
 * 2018-04-18
 	<br/>1.redux 4.0
 	<br/>2.开发环境加入了最新的HappyPack插件
