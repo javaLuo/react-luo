@@ -10,16 +10,6 @@ react automaticaly<br/>
 标准的React+Redux分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
-## 最近更新 需要注意
-* 加入了dllPlugin静态资源预编译（仅开发环境生效）, 所以需要手动先**npm run dll**，再**npm run start**
-autodll-webpack-plugin目前webpack4+还不能用，否则就能全自动了
-
-* 内置了PWA（仅生产环境生效），正式打包后，是带有PWA功能的，所以注意需要手动配置以下2个地方：
-	1. webpack.production.config.js 中的PUBLIC_PATH，可以配置为项目上线后的访问网址
-	2. public/manifest.json 中的start_url也需要配置为这个
-	（不过你也可以先不用管，不会有任何影响，默认配置的'/'）
-	
-* 因为有node-sass这个东西的存在，yarn引入node-sass可能因为各种原因会报错，建议还是使用npm吧。所以推荐用less比较好
 
 ## 构建 Start
 
@@ -74,8 +64,8 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 
 ## 更新日志 Update log
 * 2018-04-26
-	<br/>1.增加了DllPlugin 和 DllReferencePlugin 静态资源预编译插件
-	<br/>2.内置了PWA功能
+	<br/>1.加入了dllPlugin静态资源预编译（仅开发环境生效）, 所以需要手动先 **npm run dll**，再 **npm run start**
+	<br/>2.内置了PWA功能, webpack.production.config.js中的PUBLIC_PATH 和 public/manifest.json中的start_url 需保持一致
 * 2018-04-18
 	<br/>1.redux 4.0
 	<br/>2.开发环境加入了最新的HappyPack插件
@@ -139,6 +129,9 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 .
 ├── build				# 正式打包后，会自动生成该文件夹，其中会包含最终用于生产环境的文件
+├── dll					# 静态资源预编译插件生成的dll文件
+├── mock				# mock测试数据
+├── public				# 静态文件，index.html等
 ├── src                                 # 项目代码目录
 │   ├── a_action                        # 所有的action
 │   ├── a_component                     # 所有的公共类UI组件
@@ -150,13 +143,11 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 │   ├── styles                          # 所有的样式文件
 │   ├── store                           # store数据中心
 │   ├── util                            # 自定义工具
-|   	├── tools.js			# 封装了一些工具函数，比如去掉两端空格之类的
-|	├── fetch-api.js		# 封装了2个异步请求，所有的action都调用的这个js中的方法
-|	└── mock-data.js		# mock模拟数据的模版，只在fetch-api.js中有用到
 │   ├── index.js                        # 项目入口JS
 │   └── index.html                      # 主页html文件,开发环境和生产打包共用
 ├── server.js				# 用于开发环境的服务部署
 ├── webpack.dev.config.js		# 用于开发环境的webpack配置
+├── webpack.dll.config.js		# 静态资源预编译所需webpack配置
 └── webpack.production.config.js	# 用于生产环境正式打包的webpack配置
 ```
 
@@ -164,7 +155,10 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 
 http://isluo.com/work/pwa (线上没有mock环境)
 
-## 参阅资料 Consult
+## 常见问题
+* yarn install 失败：项目中配置了SASS，如果你仅需要使用LESS，可以把SASS的配置删除。因为部分地区的联通网络下载node-sass时会失败，导致yarn install失败
+
+## 参阅资料
 React GitHub地址：https://github.com/facebook/react <br/>
 react-router GitHub地址：https://github.com/ReactTraining/react-router <br/>
 React官方更新日志：https://github.com/facebook/react/releases <br/>
