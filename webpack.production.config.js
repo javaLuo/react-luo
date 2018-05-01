@@ -33,9 +33,7 @@ module.exports = {
         // .js .jsx用babel解析
         test: /\.js?$/,
         include: path.resolve(__dirname, "src"),
-        use: [
-            "babel-loader"
-        ]
+        use: ["babel-loader"]
       },
       {
         // .css 解析
@@ -78,11 +76,7 @@ module.exports = {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: [
-            "css-loader",
-            "postcss-loader",
-            "less-loader"
-          ]
+          use: ["css-loader", "postcss-loader", "less-loader"]
         }),
         include: path.resolve(__dirname, "node_modules")
       },
@@ -102,53 +96,45 @@ module.exports = {
             "postcss-loader",
             "sass-loader"
           ]
-        }),
+        })
       },
       {
         // 文件解析
         test: /\.(eot|woff|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        use: [
-            "file-loader?name=dist/assets/[name].[ext]"
-        ]
+        use: ["file-loader?name=dist/assets/[name].[ext]"]
       },
       {
         // 图片解析
         test: /\.(png|jpg|gif)$/,
         include: path.resolve(__dirname, "src"),
-        use: [
-            "url-loader?limit=8192&name=dist/assets/[name].[ext]",
-        ]
+        use: ["url-loader?limit=8192&name=dist/assets/[name].[ext]"]
       },
       {
         // CSV/TSV文件解析
         test: /\.(csv|tsv)$/,
-        use: [
-            'csv-loader'
-        ]
+        use: ["csv-loader"]
       },
       {
         // xml文件解析
         test: /\.xml$/,
-        use: [
-          'xml-loader'
-        ]
+        use: ["xml-loader"]
       }
     ]
   },
   plugins: [
-      /**
-       * 在window环境中注入全局变量
-       * 这里这么做是因为src/registerServiceWorker.js中有用到，为了配置PWA
-       * **/
-      new webpack.DefinePlugin({
-          "process.env": JSON.stringify({
-              PUBLIC_URL: PUBLIC_PATH.replace(/\/$/,''),
-          })
-      }),
-  /**
-   * 打包前删除上一次打包留下的旧代码
-   * **/
+    /**
+     * 在window环境中注入全局变量
+     * 这里这么做是因为src/registerServiceWorker.js中有用到，为了配置PWA
+     * **/
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify({
+        PUBLIC_URL: PUBLIC_PATH.replace(/\/$/, "")
+      })
+    }),
+    /**
+     * 打包前删除上一次打包留下的旧代码
+     * **/
     new CleanWebpackPlugin(["build"]),
     /**
      * 压缩代码
@@ -161,73 +147,78 @@ module.exports = {
         }
       }
     }),
-      /**
-       * 提取CSS等样式生成单独的CSS文件
-       * **/
+    /**
+     * 提取CSS等样式生成单独的CSS文件
+     * **/
     new ExtractTextPlugin({
       filename: "dist/[name].[hash:8].css", // 生成的文件名
       allChunks: true // 从所有chunk中提取
     }),
-      /**
-       * 在根目录生成一个asset-manifest.json,记录需要缓存的资源清单
-       * **/
+    /**
+     * 在根目录生成一个asset-manifest.json,记录需要缓存的资源清单
+     * **/
     new ManifestPlugin({
       fileName: "asset-manifest.json"
     }),
-      /**
-       * 文件复制
-       * 这里是用于把manifest.json打包时复制到/build下 （PWA）
-       * **/
-      new CopyWebpackPlugin([
-          { from: './public/manifest.json', to: './manifest.json' }
-      ]),
-      /**
-       * 生成一个server-work用于缓存资源（PWA）
-       * */
-      new SWPrecacheWebpackPlugin({
-          dontCacheBustUrlsMatching: /\.\w{8}\./,
-          filename: 'service-worker.js',
-          logger(message) {
-              if (message.indexOf('Total precache size is') === 0) {
-                  return;
-              }
-              if (message.indexOf('Skipping static resource') === 0) {
-                  return;
-              }
-              console.log(message);
-          },
-          minify: false,
-          navigateFallback: PUBLIC_PATH,    // 遇到不存在的URL时，跳转到主页
-          navigateFallbackWhitelist: [/^(?!\/__).*/],   // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
-          staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.cache$/], // 不缓存sourcemaps,它们太大了
-      }),
-      /**
-       * 自动生成HTML，并注入各参数
-       * **/
+    /**
+     * 文件复制
+     * 这里是用于把manifest.json打包时复制到/build下 （PWA）
+     * **/
+    new CopyWebpackPlugin([
+      { from: "./public/manifest.json", to: "./manifest.json" }
+    ]),
+    /**
+     * 生成一个server-work用于缓存资源（PWA）
+     * */
+    new SWPrecacheWebpackPlugin({
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: "service-worker.js",
+      logger(message) {
+        if (message.indexOf("Total precache size is") === 0) {
+          return;
+        }
+        if (message.indexOf("Skipping static resource") === 0) {
+          return;
+        }
+        console.log(message);
+      },
+      minify: false,
+      navigateFallback: PUBLIC_PATH, // 遇到不存在的URL时，跳转到主页
+      navigateFallbackWhitelist: [/^(?!\/__).*/], // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
+      staticFileGlobsIgnorePatterns: [
+        /\.map$/,
+        /asset-manifest\.json$/,
+        /\.cache$/
+      ] // 不缓存sourcemaps,它们太大了
+    }),
+    /**
+     * 自动生成HTML，并注入各参数
+     * **/
     new HtmlWebpackPlugin({
       filename: "index.html", //生成的html存放路径，相对于 output.path
       template: "./public/index.ejs", //html模板路径
-      templateParameters: { // 自动替换index.ejs中的参数
-          'dll': '',
-          'manifest' : "<link rel='manifest' href='manifest.json'>"
+      templateParameters: {
+        // 自动替换index.ejs中的参数
+        dll: "",
+        manifest: "<link rel='manifest' href='manifest.json'>"
       },
       hash: true, // 防止缓存，在引入的文件后面加hash
       inject: true // 是否将js放在body的末尾
     }),
-      /**
-       * 自动生成各种类型的favicon
-       * 这么做是为了以后各种设备上的扩展功能，比如PWA桌面图标
-       * **/
-      new FaviconsWebpackPlugin({
-          logo: './public/favicon.png',
-          prefix: 'icons/',
-          icons: {
-              appleIcon: true,  // 目前只生成苹果的，其他平台都用苹果的图标
-              android: false,
-              firefox: false,
-              appleStartup: false,
-          }
-      }),
+    /**
+     * 自动生成各种类型的favicon
+     * 这么做是为了以后各种设备上的扩展功能，比如PWA桌面图标
+     * **/
+    new FaviconsWebpackPlugin({
+      logo: "./public/favicon.png",
+      prefix: "icons/",
+      icons: {
+        appleIcon: true, // 目前只生成苹果的，其他平台都用苹果的图标
+        android: false,
+        firefox: false,
+        appleStartup: false
+      }
+    })
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css", ".scss"] //后缀名自动补全

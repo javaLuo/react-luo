@@ -37,6 +37,7 @@ node_modules
 jspm_packages
 build
 .happypack
+dll
 
 # Optional npm cache directory
 .npm
