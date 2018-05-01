@@ -18,7 +18,7 @@ npm install		# 安装依赖模块
 ```
 
 ```
-npm run dll		* 静态资源预编译
+npm run dll		# 静态资源预编译
 ```
 
 ```
@@ -42,8 +42,9 @@ npm run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 yarn install		# 安装依赖模块
 ```
+
 ```
-yarn run dll		# 运行开发环境，默认监听8888端口
+yarn run dll		# 静态资源预编译
 ```
 
 ```
@@ -129,6 +130,12 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 .
 ├── build				# 正式打包后，会自动生成该文件夹，其中会包含最终用于生产环境的文件
+│   ├── dist				# 编译后的资源文件
+│   ├── icons				# 编译后自动生成的各尺寸favicon图标，有的会用于PWA配置
+│   ├── asset-manifets.json		# 记录了将会被缓存的资源
+│   ├── index.html			# 编译后的主页html
+│   ├── manifest.json			# PWA配置文件，配置了桌面图标，以APP方式启动时的启动页面相关参数
+│   ├── service-worker.js		# PWA核心worker, 用于离线访问，缓存不变的资源文件
 ├── dll					# 静态资源预编译插件生成的dll文件
 ├── mock				# mock测试数据
 ├── public				# 静态文件，index.html等
