@@ -128,7 +128,7 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 │   ├── asset-manifets.json		# 记录了将会被缓存的资源
 │   ├── index.html			# 编译后的主页html
 │   ├── manifest.json			# PWA配置文件，配置了桌面图标，以APP方式启动时的启动页面相关参数
-│   ├── service-worker.js		# PWA核心worker, 用于离线访问，缓存不变的资源文件
+│   └── service-worker.js		# PWA核心worker, 用于离线访问，缓存不变的资源文件
 ├── dll					# 静态资源预编译插件生成的dll文件
 ├── mock				# mock测试数据
 ├── public				# 静态文件，index.html等
@@ -156,7 +156,7 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 http://isluo.com/work/pwa (线上没有mock环境)
 
 ## 常见问题
-* yarn install 失败：项目中配置了SASS，如果你仅需要使用LESS，可以把SASS的配置删除。因为部分地区的网通网络下载node-sass时会失败，导致yarn install失败。 npm install正常
+* yarn install 失败：项目中配置了SASS，如果仅需要使用LESS，可以把SASS的配置删除。因为部分地区的网通网络下载node-sass时会失败，导致yarn install失败。 npm install正常
 
 ## 参阅资料
 React GitHub地址：https://github.com/facebook/react <br/>
