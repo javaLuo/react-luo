@@ -10,6 +10,7 @@ react automaticaly<br/>
 标准的React+Redux分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
+* PWA、代码分割、HMR热替换、dllPlugin静态资源预编译、HappyPack多线程构建、ES6+语法
 
 ## 构建 Start
 
@@ -115,15 +116,7 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 * 2017-09-07
 	<br/>1.使用react-hot-loader 3.0.0 配置了HMR热替换，不再需要以前的静态资源预编译了
 	<br/>2.配置了Antd自定义主题所需的代码，现在可以直接在package.json中的theme字段定义自己的Antd主题
-## 特性 Characteristic
 
-* HMR局部热替换
-
-* 代码分割按需加载
-
-* HappyPack多线程编译
-
-* 最终打包后，会在/build文件夹下生成 index.html 和 /dist文件夹，这两个东西是最终需要的。
 
 ## 目录结构 Structure
 
