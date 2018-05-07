@@ -4,7 +4,6 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单�
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const CleanWebpackPlugin = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 代码压缩插件，webpack本身自带了，引入这个是为了配置参数
-const ManifestPlugin = require("webpack-manifest-plugin"); // 生成一个manifest.json文件
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成一个server-worker用于缓存
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标
 const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制文件用
@@ -155,12 +154,6 @@ module.exports = {
       allChunks: true // 从所有chunk中提取
     }),
     /**
-     * 在根目录生成一个asset-manifest.json,记录需要缓存的资源清单
-     * **/
-    new ManifestPlugin({
-      fileName: "asset-manifest.json"
-    }),
-    /**
      * 文件复制
      * 这里是用于把manifest.json打包时复制到/build下 （PWA）
      * **/
@@ -182,7 +175,7 @@ module.exports = {
         }
         console.log(message);
       },
-      minify: false,
+      minify: true, // 压缩
       navigateFallback: PUBLIC_PATH, // 遇到不存在的URL时，跳转到主页
       navigateFallbackWhitelist: [/^(?!\/__).*/], // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
       staticFileGlobsIgnorePatterns: [
@@ -202,7 +195,7 @@ module.exports = {
         dll: "",
         manifest: "<link rel='manifest' href='manifest.json'>"
       },
-      hash: true, // 防止缓存，在引入的文件后面加hash
+      hash: false, // 防止缓存，在引入的文件后面加hash (PWA就是要缓存，这里设置为false)
       inject: true // 是否将js放在body的末尾
     }),
     /**
