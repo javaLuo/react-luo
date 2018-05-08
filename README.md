@@ -68,7 +68,6 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 * 2018-04-26
 	<br/>1.加入了dllPlugin静态资源预编译（仅开发环境生效）, 所以需要手动先 **npm run dll**，再 **npm run start**
 	<br/>2.内置了PWA功能, webpack.production.config.js中的PUBLIC_PATH 和 public/manifest.json中的start_url 需保持一致
-	<be/>PWA需要利用缓存，所以不要在引用的js和css后面加随机参数，就像这样：```<script src="xxx.js?aba235agjlf"></script>```
 * 2018-04-18
 	<br/>1.redux 4.0
 	<br/>2.开发环境加入了最新的HappyPack插件
