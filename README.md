@@ -65,6 +65,8 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 
 ## 更新日志 Update log
+* 2018-05-24
+	<br/>1.完全拷贝了create-react-app的registerServiceWorker.js, 那个写得比较好。处理了开发环境和生产环境的差异。
 * 2018-04-26
 	<br/>1.加入了dllPlugin静态资源预编译（仅开发环境生效）, 所以需要手动先 **npm run dll**，再 **npm run start**
 	<br/>2.内置了PWA功能, webpack.production.config.js中的PUBLIC_PATH 和 public/manifest.json中的start_url 需保持一致
