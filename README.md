@@ -65,6 +65,8 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 
 ## 更新日志 Update log
+* 2018-05-31
+	<br/>1.React16.4，正式废弃了旧的几个生命周期，项目中用static getDerivedStateFromProps(nextP, nowState)替代了componentWillReceiveProps
 * 2018-05-24
 	<br/>1.完全拷贝了create-react-app的registerServiceWorker.js, 那个写得比较好。处理了开发环境和生产环境的差异。
 * 2018-04-26
