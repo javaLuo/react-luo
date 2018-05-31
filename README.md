@@ -161,9 +161,10 @@ http://isluo.com/work/pwa (线上没有mock环境)
 * yarn install 失败：项目中配置了SASS，如果仅需要使用LESS，可以把SASS的配置删除。因为部分地区的网通网络下载node-sass时会失败，导致yarn install失败。 npm install正常
 
 ## 参阅资料
+React英文官网：https://reactjs.org <br/>
+React中文文档：https://doc.react-china.org <br/>
 React GitHub地址：https://github.com/facebook/react <br/>
-react-router GitHub地址：https://github.com/ReactTraining/react-router <br/>
 React官方更新日志：https://github.com/facebook/react/releases <br/>
-React16更新内容：http://blog.csdn.net/lx376693576/article/details/78192768 <br/>
+
 mockjs官网：http://mockjs.com/ <br/>
 Eslint中文站：http://eslint.cn/ <br/>
