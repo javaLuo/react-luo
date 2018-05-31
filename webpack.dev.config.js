@@ -135,7 +135,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       //根据模板插入css/js等生成最终HTML
       filename: "index.html", //生成的html存放路径，相对于 output.path
-      // favicon: "./public/favicon.ico", // 自动把根目录下的favicon.ico图片加入html
+      favicon: "./public/favicon.png", // 自动把根目录下的favicon.ico图片加入html
       template: "./public/index.ejs", //html模板路径
       inject: true, // 是否将js放在body的末尾
       templateParameters: {

@@ -74,7 +74,6 @@ export default class RootContainer extends React.Component {
 
   /** 权限控制 **/
   onEnter(Component, props) {
-    console.log("权限控制：", props);
     // 例子：如果没有登录，直接跳转至login页
     // if (sessionStorage.getItem('userInfo')) {
     //   return <Component {...props} />;

@@ -45,12 +45,6 @@ export default class TestPageContainer extends React.Component {
     history: P.any, // 自动注入的history对象
     actions: P.any, // connect高阶函数注入的actions，见本页面最下面的actions
     form: P.any,
-    names: P.any
-  };
-
-  // 此方法为props元素添加默认值
-  static defaultProps = {
-    names: "我在这里"
   };
 
   constructor(props) {
@@ -58,8 +52,43 @@ export default class TestPageContainer extends React.Component {
     this.state = {
       visible: false, // 模态框隐藏和显示
       mokeFetch: [], // 用于测试fetch请求
-      mokeAjax: [] // 用于测试ajax请求
+      mokeAjax: [], // 用于测试ajax请求
+      num: 0 // 数字
     };
+  }
+
+  // react生命周期 - 组件加载完毕时触发一次
+  componentDidMount() {
+    console.log(
+      "所有页面默认拥有的3个对象：",
+      this.props.location,
+      this.props.match,
+      this.props.history
+    );
+    const set = new Set([1, 2, 3]);
+    const map = new Map();
+    console.log("Set 和 Map 测试:", set, map);
+  }
+
+  /** react生命周期
+   * 在下一轮render即将被开始时触发，比componentWillUpdate后执行
+   * 即合并了所有的操作，最后真正要开始渲染时触发
+   * 不应该在这里调用this.setState，会进入死循环
+   * **/
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+
+  }
+
+  /** react生命周期
+   * 原componentWillReceiveProps方法被此方法代替
+   * 组件挂载完毕和每次props有改变时触发一次
+   * **/
+  static getDerivedStateFromProps(nextP, prevState) {
+    if (nextP.num !== prevState.num) {
+      return {
+        num: nextP.num
+      };
+    }
   }
 
   // 打开模态框按钮被点击时触发
@@ -101,18 +130,6 @@ export default class TestPageContainer extends React.Component {
         message.error("获取数据失败");
       }
     });
-  }
-
-  componentDidMount() {
-    console.log(
-      "所有页面默认拥有的3个对象：",
-      this.props.location,
-      this.props.match,
-      this.props.history
-    );
-    const set = new Set([1, 2, 3]);
-    const map = new Map();
-    console.log("Set 和 Map 测试:", set, map);
   }
 
   render() {
@@ -195,7 +212,7 @@ export default class TestPageContainer extends React.Component {
               >
                 通过action改变数据num
               </Button>&nbsp;<br />
-              store中数据num：{this.props.num}
+              store中数据num：{this.state.num}
             </p>
           </div>
           <div className={css.list}>
