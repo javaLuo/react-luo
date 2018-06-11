@@ -10,7 +10,7 @@ import { bindActionCreators } from "redux";
 // ==================
 // 所需的所有资源
 // ==================
-import css from "./index.scss";
+import css from "./index.less";
 
 // ==================
 // 组件

@@ -11,7 +11,6 @@ import store from "./store";
 /** 公共样式 **/
 import "./styles/css.css";
 import "./styles/less.less";
-import "./styles/scss.scss";
 
 const rootDom = document.getElementById("app-root");
 

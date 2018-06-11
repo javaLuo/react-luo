@@ -12,7 +12,7 @@ import P from "prop-types";
 // ==================
 // 所需的所有资源
 // ==================
-import css from "./index.scss";
+import css from "./index.less";
 import ImgLogo from "../../assets/react-logo.jpg";
 
 // ==================

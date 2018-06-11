@@ -11,7 +11,7 @@ import P from "prop-types";
 // ==================
 // 所需的所有资源
 // ==================
-import css from "./index.scss";
+import css from "./index.less";
 
 // ==================
 // 组件
@@ -66,7 +66,7 @@ export default class FeaturesPageContainer extends React.Component {
           <div className={css.list}>
             <h2>代码自动格式化</h2>
             <p>npm run prettier</p>
-            <div>自动美化js/css/scss/less等文件</div>
+            <div>自动美化js/css/less等文件</div>
           </div>
           <div className={css.list}>
             <h2>HMR局部热更新</h2>

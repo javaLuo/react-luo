@@ -1,6 +1,6 @@
 /** Loading组件 用于按需加载时过渡显示等 **/
 import React from "react";
-import css from "./index.scss";
+import css from "./index.less";
 import ImgLoading from "../../assets/loading.gif";
 export default class Footer extends React.PureComponent {
   static propTypes = {};

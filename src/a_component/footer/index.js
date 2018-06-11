@@ -1,6 +1,6 @@
 /** Footer 页面底部 **/
 import React from "react";
-import css from "./index.scss";
+import css from "./index.less";
 
 export default class Footer extends React.PureComponent {
   static propTypes = {};

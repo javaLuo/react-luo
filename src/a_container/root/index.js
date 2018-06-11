@@ -15,7 +15,7 @@ import Loadable from "react-loadable"; // 用于代码分割时动态加载模�
 /** 普通组件 **/
 import Menu from "../../a_component/menu";
 import Footer from "../../a_component/footer";
-import css from "./index.scss";
+import css from "./index.less";
 import Loading from "../../a_component/loading"; // loading动画，用于动态加载模块进行中时显示
 
 /** 下面是代码分割异步加载的方式引入各页面 **/

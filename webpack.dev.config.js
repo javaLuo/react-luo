@@ -76,22 +76,6 @@ module.exports = {
         include: path.resolve(__dirname, "src")
       },
       {
-        // .scss 解析
-        test: /\.scss$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              localIdentName: "[local]_[hash:base64:5]"
-            }
-          },
-          "postcss-loader",
-          "sass-loader"
-        ]
-      },
-      {
         // 文件解析
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
@@ -156,6 +140,6 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin() // 热更新插件
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css", ".scss"] //后缀名自动补全
+    extensions: [".js", ".jsx", ".less", ".css"] //后缀名自动补全
   }
 };
