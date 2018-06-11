@@ -80,7 +80,7 @@ export default class FeaturesPageContainer extends React.Component {
             <div>src/a_container/root/index.js中能查看例子</div>
           </div>
           <div className={css.list}>
-            <h2>webpack4.0</h2>
+            <h2>webpack4.x</h2>
             <div>使用了最新版本的webpack，编译速度更快</div>
           </div>
         </div>
