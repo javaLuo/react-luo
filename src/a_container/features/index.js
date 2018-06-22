@@ -57,10 +57,6 @@ export default class FeaturesPageContainer extends React.Component {
             <h2>正式打包</h2>
             <p>npm run build</p>
             <div>会将最终代码打包至/build文件夹中</div>
-            <div>
-              /build文件夹中的index.html 和 /build/dist文件夹
-              仅这两样东西是最终需要的
-            </div>
           </div>
           <div className={css.list}>
             <h2>运行生产环境的代码</h2>

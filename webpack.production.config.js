@@ -23,8 +23,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"), // 将文件打包到此目录下
     publicPath: PUBLIC_PATH, // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
-    filename: "dist/[name].[hash:8].js",
-    chunkFilename: "dist/[name].[hash:8].chunk.js"
+    filename: "dist/[name].[chunkhash:8].js",
+    chunkFilename: "dist/[name].[chunkhash:8].chunk.js"
   },
   context: __dirname,
   module: {
@@ -45,7 +45,7 @@ module.exports = {
               loader: "css-loader",
               options: {
                 modules: true,
-                localIdentName: "[local]_[hash:base64:8]"
+                localIdentName: "[local]_[chunkhash:base64:8]"
               }
             },
             "postcss-loader"
@@ -62,7 +62,7 @@ module.exports = {
               loader: "css-loader",
               options: {
                 modules: true,
-                localIdentName: "[local]_[hash:base64:8]"
+                localIdentName: "[local]_[chunkhash:base64:8]"
               }
             },
             "postcss-loader",
@@ -133,7 +133,7 @@ module.exports = {
      * 提取CSS等样式生成单独的CSS文件
      * **/
     new ExtractTextPlugin({
-      filename: "dist/[name].[hash:8].css", // 生成的文件名
+      filename: "dist/[name].[chunkhash:8].css", // 生成的文件名
       allChunks: true // 从所有chunk中提取
     }),
     /**
