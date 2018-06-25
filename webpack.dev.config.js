@@ -140,6 +140,9 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin() // 热更新插件
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css"] //后缀名自动补全
+    extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全
+      alias: {
+          '@': path.resolve(__dirname, "src"),
+      }
   }
 };

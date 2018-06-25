@@ -23,7 +23,7 @@ import Page3 from "./container/page3"; // 子页面3
 // ==================
 // 本页面所需actions
 // ==================
-import { onTestAdd, fetchApi, fetchTest } from "../../a_action/app-action";
+import { onTestAdd, fetchApi, fetchTest } from "@/a_action/app-action"; // webpack配置文件中配置了"@"为"src"根路径
 
 // ==================
 // 组件
