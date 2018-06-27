@@ -3,5 +3,6 @@ node_js:
   - "8"
   - "7"
   - "6"
-script: 
+script:
+  - npm run dll
   - npm run build
