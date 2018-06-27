@@ -4,5 +4,5 @@ node_js:
   - "7"
   - "6"
 script:
-  - npm run dll
-  - npm run build
+  - yarn run dll
+  - yarn run build
