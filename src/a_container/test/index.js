@@ -44,7 +44,7 @@ export default class TestPageContainer extends React.Component {
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
     actions: P.any, // connect高阶函数注入的actions，见本页面最下面的actions
-    form: P.any,
+    form: P.any
   };
 
   constructor(props) {
@@ -75,9 +75,7 @@ export default class TestPageContainer extends React.Component {
    * 即合并了所有的操作，最后真正要开始渲染时触发
    * 不应该在这里调用this.setState，会进入死循环
    * **/
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-
-  }
+  getSnapshotBeforeUpdate(prevProps, prevState) {}
 
   /** react生命周期
    * 原componentWillReceiveProps方法被此方法代替

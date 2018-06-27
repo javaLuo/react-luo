@@ -45,7 +45,7 @@ module.exports = {
               loader: "css-loader",
               options: {
                 modules: true,
-                localIdentName: "[local]_[chunkhash:base64:8]"
+                localIdentName: "[local]_[hash:base64:8]"
               }
             },
             "postcss-loader"
@@ -62,7 +62,7 @@ module.exports = {
               loader: "css-loader",
               options: {
                 modules: true,
-                localIdentName: "[local]_[chunkhash:base64:8]"
+                localIdentName: "[local]_[hash:base64:8]"
               }
             },
             "postcss-loader",
@@ -76,7 +76,7 @@ module.exports = {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", "postcss-loader", "less-loader"]
+          use: ["css-loader", "postcss-loader", {loader: "less-loader", options:{javascriptEnabled: true}}]
         }),
         include: path.resolve(__dirname, "node_modules")
       },

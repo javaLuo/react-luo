@@ -43,10 +43,10 @@ export default class FeaturesPageContainer extends React.Component {
             <h2>安装依赖文件</h2>
             <p>npm install</p>
           </div>
-            <div className={css.list}>
-                <h2>静态资源预编译</h2>
-                <p>npm run dll</p>
-            </div>
+          <div className={css.list}>
+            <h2>静态资源预编译</h2>
+            <p>npm run dll</p>
+          </div>
           <div className={css.list}>
             <h2>启动开发环境</h2>
             <p>npm run start</p>

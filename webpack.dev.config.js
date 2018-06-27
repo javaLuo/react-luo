@@ -55,7 +55,7 @@ module.exports = {
       {
         // .less 解析 (用于解析antd的LESS文件)
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "postcss-loader", `less-loader`],
+        use: ["style-loader", "css-loader", "postcss-loader", {loader: "less-loader", options:{javascriptEnabled: true}}],
         include: path.resolve(__dirname, "node_modules")
       },
       {
