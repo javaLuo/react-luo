@@ -68,6 +68,10 @@ export default class TestPageContainer extends React.Component {
     const set = new Set([1, 2, 3]);
     const map = new Map();
     console.log("Set 和 Map 测试:", set, map);
+
+    const a = { a: 1, b: 2, c: 3 };
+    const b = { d: 4, ...a };
+    console.log("obj的解构赋值测试：", b);
   }
 
   /** react生命周期
