@@ -5,7 +5,6 @@
 // ==================
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import P from "prop-types";
 
 // ==================
@@ -18,8 +17,8 @@ import css from "./index.less";
 // ==================
 @connect(
   state => ({}),
-  dispatch => ({
-    actions: bindActionCreators({}, dispatch)
+  model => ({
+    actions: {}
   })
 )
 export default class FeaturesPageContainer extends React.Component {
@@ -77,7 +76,7 @@ export default class FeaturesPageContainer extends React.Component {
           <div className={css.list}>
             <h2>代码分割</h2>
             <div>react-loadable实现的代码分割</div>
-            <div>src/a_container/root/index.js中能查看例子</div>
+            <div>src/container/root/index.js中能查看例子</div>
           </div>
           <div className={css.list}>
             <h2>webpack4.x</h2>

@@ -5,7 +5,6 @@
 // ==================
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { Route, Switch, Link } from "react-router-dom";
 import P from "prop-types";
 
@@ -23,7 +22,6 @@ import Page3 from "./container/page3"; // 子页面3
 // ==================
 // 本页面所需actions
 // ==================
-import { onTestAdd, fetchApi, fetchTest } from "@/a_action/app-action"; // webpack配置文件中配置了"@"为"src"根路径
 
 // ==================
 // 组件
@@ -32,8 +30,12 @@ import { onTestAdd, fetchApi, fetchTest } from "@/a_action/app-action"; // webpa
   state => ({
     num: state.app.num
   }),
-  dispatch => ({
-    actions: bindActionCreators({ onTestAdd, fetchApi, fetchTest }, dispatch)
+  model => ({
+    actions: {
+      onTestAdd: model.app.onTestAdd,
+      serverAjax: model.app.serverAjax,
+      serverFetch: model.app.serverFetch
+    }
   })
 )
 @Form.create()
@@ -43,7 +45,7 @@ export default class TestPageContainer extends React.Component {
     location: P.any, // 自动注入的location对象
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
-    actions: P.any, // connect高阶函数注入的actions，见本页面最下面的actions
+    actions: P.object, // connect高阶函数注入的actions，见本页面最下面的actions
     form: P.any
   };
 
@@ -74,12 +76,16 @@ export default class TestPageContainer extends React.Component {
     console.log("obj的解构赋值测试：", b);
   }
 
+  componentDidUpdate(prevProps, prevState) {}
+
   /** react生命周期
    * 在下一轮render即将被开始时触发，比componentWillUpdate后执行
    * 即合并了所有的操作，最后真正要开始渲染时触发
    * 不应该在这里调用this.setState，会进入死循环
    * **/
-  getSnapshotBeforeUpdate(prevProps, prevState) {}
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    return null;
+  }
 
   /** react生命周期
    * 原componentWillReceiveProps方法被此方法代替
@@ -91,6 +97,7 @@ export default class TestPageContainer extends React.Component {
         num: nextP.num
       };
     }
+    return null;
   }
 
   // 打开模态框按钮被点击时触发
@@ -109,8 +116,8 @@ export default class TestPageContainer extends React.Component {
 
   // Ajax测试按钮被点击时触发
   onAjaxClick = () => {
-    this.props.actions.fetchApi().then(res => {
-      if (res.code === "success") {
+    this.props.actions.serverAjax().then(res => {
+      if (res.status === 200) {
         this.setState({
           mokeAjax: res.data
         });
@@ -122,9 +129,9 @@ export default class TestPageContainer extends React.Component {
 
   // Fetch测试按钮点击时触发
   onFetchClick() {
-    this.props.actions.fetchTest().then(res => {
-      console.log(res);
-      if (res.code === "success") {
+    this.props.actions.serverFetch().then(res => {
+      console.log("前台得到数据：", res);
+      if (res.status === 200) {
         this.setState({
           mokeFetch: res.data
         });

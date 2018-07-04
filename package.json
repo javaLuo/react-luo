@@ -35,9 +35,8 @@
     "react-router-dom": "^4.3.1",
     "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "reqwest": "^2.0.5"
+    "reqwest": "^2.0.5",
+    "retalk": "^1.0.8"
   },
   "devDependencies": {
     "autoprefixer": "^8.6.4",

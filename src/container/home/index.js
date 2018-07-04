@@ -5,7 +5,6 @@
 // ==================
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import classNames from "classnames";
 import P from "prop-types";
 
@@ -20,8 +19,8 @@ import ImgLogo from "../../assets/react-logo.jpg";
 // ==================
 @connect(
   state => ({}),
-  dispatch => ({
-    actions: bindActionCreators({}, dispatch)
+  model => ({
+    actions: {}
   })
 )
 export default class HomePageContainer extends React.Component {

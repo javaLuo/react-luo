@@ -5,18 +5,18 @@
 // ==================
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { withStore } from "retalk";
 import P from "prop-types";
 // import createHistory from 'history/createBrowserHistory';   // URL模式的history
 import createHistory from "history/createHashHistory"; // 锚点模式的history
 import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
 
 /** 普通组件 **/
-import Menu from "../../a_component/menu";
-import Footer from "../../a_component/footer";
+import Menu from "../../component/menu";
+import Footer from "../../component/footer";
 import css from "./index.less";
-import Loading from "../../a_component/loading"; // loading动画，用于动态加载模块进行中时显示
+import Loading from "../../component/loading"; // loading动画，用于动态加载模块进行中时显示
 
 /** 下面是代码分割异步加载的方式引入各页面 **/
 const Home = Loadable({
@@ -50,8 +50,8 @@ const history = createHistory();
 // ==================
 @connect(
   state => ({}),
-  dispatch => ({
-    actions: bindActionCreators({}, dispatch)
+  model => ({
+    actions: {}
   })
 )
 export default class RootContainer extends React.Component {
@@ -69,7 +69,7 @@ export default class RootContainer extends React.Component {
     //Features.preload(); // 预加载Features页面
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
-    Loadable.preloadAll();
+    // Loadable.preloadAll();
   }
 
   /** 权限控制 **/

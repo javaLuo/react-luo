@@ -5,7 +5,6 @@
 // ==================
 import React from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 // ==================
 // 所需的所有资源
@@ -17,8 +16,8 @@ import css from "./index.less";
 // ==================
 @connect(
   state => ({}),
-  dispatch => ({
-    actions: bindActionCreators({}, dispatch)
+  model => ({
+    actions: {}
   })
 )
 export default class HomePageContainer extends React.Component {
