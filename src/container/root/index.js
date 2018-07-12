@@ -1,12 +1,9 @@
 /** 根页 - 包含了根级路由 **/
 
-// ==================
-// 所需的各种插件
-// ==================
+/** 所需的各种插件 **/
 import React from "react";
 import { connect } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { withStore } from "retalk";
 import P from "prop-types";
 // import createHistory from 'history/createBrowserHistory';   // URL模式的history
 import createHistory from "history/createHashHistory"; // 锚点模式的history
@@ -22,7 +19,7 @@ import Loading from "../../component/loading"; // loading动画，用于动态�
 const Home = Loadable({
   loader: () => import("../home"),
   loading: Loading, // 自定义的Loading动画组件
-  timeout: 10000 // 你可以设置一个超时时间来应对网络慢的情况（在Loading动画组件中可以配置error信息）
+  timeout: 10000 // 可以设置一个超时时间(s)来应对网络慢的情况（在Loading动画组件中可以配置error信息）
 });
 const Features = Loadable({
   loader: () => import("../features"),
@@ -43,11 +40,8 @@ const NotFound = Loadable({
 // import Test from '../test';
 // import NotFound from '../notfound';
 
-const history = createHistory();
+const history = createHistory(); // 实例化history对象
 
-// ==================
-// 组件
-// ==================
 @connect(
   state => ({}),
   model => ({
@@ -56,8 +50,6 @@ const history = createHistory();
 )
 export default class RootContainer extends React.Component {
   static propTypes = {
-    dispatch: P.func,
-    children: P.any
   };
 
   constructor(props) {
@@ -69,10 +61,10 @@ export default class RootContainer extends React.Component {
     //Features.preload(); // 预加载Features页面
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
-    // Loadable.preloadAll();
+    Loadable.preloadAll();
   }
 
-  /** 权限控制 **/
+  /** 简单权限控制 **/
   onEnter(Component, props) {
     // 例子：如果没有登录，直接跳转至login页
     // if (sessionStorage.getItem('userInfo')) {

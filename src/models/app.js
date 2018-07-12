@@ -1,46 +1,29 @@
-/** 一个Model 命名为app **/
+/**
+ * 基本Model app.js, 在src/store/index.js中被挂载到store上，命名为app
+ * 可用于存放通用信息，比如用户数据、角色、权限、省市区等通用数据
+ * **/
 import { message } from "antd";
 import Server from "../util/fetch-api";
 
 const model = {
+  /** store数据 **/
   state: {
-    num: 0,
-    fetchvalue: [] // 异步测试数据
+    userinfo: null // 用户信息
   },
+  /** reducers **/
   reducers: {
-    add(state, payload) {
-      console.log(state, payload);
-      return { ...state, num: payload };
-    },
-    updateFetchApi(state, payload) {
-      return { ...state, fetchvalue: payload };
+    // reducer - 更新用户信息
+    upadteUserinfo(state, payload) {
+      return { ...state, userinfo: payload };
     }
   },
+  /** actions **/
   actions: {
-    onTestAdd(params) {
-      this.add(params + 1);
-    },
-    async serverAjax(params = {}) {
-      try {
-        const res = await Server.newPost("url.ajax", params);
-        if (res.status === "success") {
-          this.updateFetchApi(res.data);
-        }
-        return res;
-      } catch (e) {
-        message.error("网络错误", 1);
-      }
-    },
-    async serverFetch(params = {}) {
-      try {
-        const res = await Server.newPost("url.ajax", params);
-        if (res.status === "success") {
-          this.updateFetchApi(res.data);
-        }
-        return res;
-      } catch (e) {
-        message.error("网络错误", 1);
-      }
+    // 模拟获取用户信息
+    async getUserinfo(params = {}) {
+      const user = { id: params.id, username: "admin" };
+      this.upadteUserinfo(user);
+      return user;
     }
   }
 };

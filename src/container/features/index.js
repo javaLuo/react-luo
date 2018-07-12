@@ -1,20 +1,13 @@
 /** 构建与特性页 **/
 
-// ==================
-// 所需的各种插件
-// ==================
+/** 所需的各种插件 **/
 import React from "react";
 import { connect } from "react-redux";
 import P from "prop-types";
 
-// ==================
-// 所需的所有资源
-// ==================
+/** 所需的所有资源 **/
 import css from "./index.less";
 
-// ==================
-// 组件
-// ==================
 @connect(
   state => ({}),
   model => ({

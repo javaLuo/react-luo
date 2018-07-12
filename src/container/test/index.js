@@ -1,16 +1,12 @@
 /** 测试页 **/
 
-// ==================
-// 所需的各种插件
-// ==================
+/** 所需的各种插件 **/
 import React from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Link } from "react-router-dom";
 import P from "prop-types";
 
-// ==================
-// 所需的所有资源
-// ==================
+/** 所需的所有资源 **/
 import { Button, Modal, message, Form } from "antd";
 import css from "./index.less";
 import ImgTest from "../../assets/test.jpg";
@@ -19,47 +15,47 @@ import Page1 from "./container/page1"; // 子页面1
 import Page2 from "./container/page2"; // 子页面2
 import Page3 from "./container/page3"; // 子页面3
 
-// ==================
-// 本页面所需actions
-// ==================
-
-// ==================
-// 组件
-// ==================
+/** 组件 **/
 @connect(
   state => ({
-    num: state.app.num
+    userinfo: state.app.userinfo, // 引入app model中的userinfo数据
+    count: state.test.count // 引入test model中的count数据
   }),
   model => ({
     actions: {
-      onTestAdd: model.app.onTestAdd,
-      serverAjax: model.app.serverAjax,
-      serverFetch: model.app.serverFetch
+      getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
+      onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
+      serverAjax: model.test.serverAjax, // 引入test model中的ajax异步请求action
+      serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
     }
   })
 )
 @Form.create()
 export default class TestPageContainer extends React.Component {
   static propTypes = {
-    num: P.number, // 测试： 来自store的全局变量num
+    count: P.number, // 来自store - test model中的全局变量count
     location: P.any, // 自动注入的location对象
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
-    actions: P.object, // connect高阶函数注入的actions，见本页面最下面的actions
-    form: P.any
+    actions: P.object, // 上面model中定义的actions对象，自动成为this.props.actions变量
+    form: P.any // antd的form表单高阶组件自动注入的form对象
   };
 
+  /** react生命周期 - 构造函数 **/
   constructor(props) {
     super(props);
     this.state = {
       visible: false, // 模态框隐藏和显示
       mokeFetch: [], // 用于测试fetch请求
       mokeAjax: [], // 用于测试ajax请求
-      num: 0 // 数字
+      count: 0 // 数字
     };
   }
 
-  // react生命周期 - 组件加载完毕时触发一次
+  /** react生命周期 - 废弃 - 组件初始化完毕DOM挂载之前 触发1次 **/
+  UNSAFE_componentWillMount() {}
+
+  /** react生命周期 - 组件初始化完毕DOM挂载完毕后 触发1次 **/
   componentDidMount() {
     console.log(
       "所有页面默认拥有的3个对象：",
@@ -73,32 +69,84 @@ export default class TestPageContainer extends React.Component {
 
     const a = { a: 1, b: 2, c: 3 };
     const b = { d: 4, ...a };
-    console.log("obj的解构赋值测试：", b);
+    console.log("obj的扩展运算符测试：", b);
+
+    // 获取用户信息测试
+    this.props.actions.getUserinfo({id:1}).then((res)=>{
+      console.log("获取用户信息测试：", res);
+    });
   }
 
-  componentDidUpdate(prevProps, prevState) {}
+  /**
+   * react生命周期 - 是否执行下一次render
+   * 当有props或state改变时，可手动决定是否更新
+   * @param nextProps 下一轮最新的props对象
+   * @param nextState 下一轮最新的state对象
+   * @returns {boolean} 返回true表示更新，返回false表示跳过本次render
+   */
+  shoudComponentUpdate(nextProps, nextState) {
+    return true;
+  }
+
+  /**
+   * react生命周期 - 废弃 - 是否执行下一次render
+   * props对象有变化时触发
+   * @param nextProps 变化后的最新的props
+   */
+  UNSAFE_componentWillReceiveProps(nextProps) {}
+
+  /**
+   * react生命周期 - props改变时触发
+   * @param nextProps 下一轮最新的props对象
+   * @param prevState 当前的state对象
+   * @returns {object} 返回一个对象或null，如果返回对象将自动覆盖this.state中对应的值
+   */
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.count !== prevState.count) {
+      return {
+        count: nextProps.count
+      };
+    }
+    return null;
+  }
+
+  /**
+   * react生命周期 - 废弃 - 每次组件的props和state有变动时，触发1次
+   * @param nextProps 下一轮最新的props
+   * @param nextStates 下一轮最新的state
+   */
+  UNSAFE_componentWillUpdate(nextProps, nextStates) {}
 
   /** react生命周期
-   * 在下一轮render即将被开始时触发，比componentWillUpdate后执行
-   * 即合并了所有的操作，最后真正要开始渲染时触发
+   * 在下一轮render即将开始时触发，比componentWillUpdate后执行
+   * 即合并了所有的this.setState操作，最后真正要开始render时触发
    * 不应该在这里调用this.setState，会进入死循环
+   * @param prevProps 当前的this.props对象
+   * @param prevState 当前的this.state对象
+   * @returns {any} 返回值将作为componentDidUpdate的第3个参数传入
    * **/
   getSnapshotBeforeUpdate(prevProps, prevState) {
     return null;
   }
 
-  /** react生命周期
-   * 原componentWillReceiveProps方法被此方法代替
-   * 组件挂载完毕和每次props有改变时触发一次
+  /**
+   * react生命周期 - 每次组件的props参数或state参数改变引起重新render完成后，触发1次
+   * @param prevProps render完成后当前的this.props对象
+   * @param prevState render完成后当前的this.state对象
+   */
+  componentDidUpdate(prevProps, prevState) {}
+
+  /**
+   * react生命周期 - 每次当前组件下的子组件中有任何报错时，触发1次
+   * @param error 报的是什么错
+   * @param info 错误的触发记录，会显示代码哪一行报的错
+   */
+  componentDidCatch(error, info) {}
+
+  /**
+   * react生命周期 - 组件即将被卸载时触发
    * **/
-  static getDerivedStateFromProps(nextP, prevState) {
-    if (nextP.num !== prevState.num) {
-      return {
-        num: nextP.num
-      };
-    }
-    return null;
-  }
+  componentWillUnmount() {}
 
   // 打开模态框按钮被点击时触发
   onBtnClick() {
@@ -130,7 +178,6 @@ export default class TestPageContainer extends React.Component {
   // Fetch测试按钮点击时触发
   onFetchClick() {
     this.props.actions.serverFetch().then(res => {
-      console.log("前台得到数据：", res);
       if (res.status === 200) {
         this.setState({
           mokeFetch: res.data
@@ -143,7 +190,7 @@ export default class TestPageContainer extends React.Component {
 
   render() {
     const { form } = this.props;
-    console.log("通过修饰器注入的form对象：", form);
+
     return (
       <div className={css.page}>
         <h1 className={css.title}>功能测试</h1>
@@ -216,11 +263,11 @@ export default class TestPageContainer extends React.Component {
             <p>
               <Button
                 type="primary"
-                onClick={() => this.props.actions.onTestAdd(this.props.num)}
+                onClick={() => this.props.actions.onTestAdd(this.props.count)}
               >
                 通过action改变数据num
-              </Button>&nbsp;<br />
-              store中数据num：{this.state.num}
+              </Button><br />
+              store中数据num：{this.state.count}
             </p>
           </div>
           <div className={css.list}>
