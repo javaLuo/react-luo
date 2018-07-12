@@ -65,6 +65,8 @@ yarn run dist		# 运行正式打包后的最终文件（build目录下的文件�
 ```
 
 ## 更新日志 Update log
+* 2018-07-12
+	<br/>1.引入了retalk,轻度封装了store,可以分model构建
 * 2018-05-31
 	<br/>1.React16.4，正式废弃了旧的几个生命周期，项目中用static getDerivedStateFromProps(nextP, nowState)替代了componentWillReceiveProps
 * 2018-05-24
