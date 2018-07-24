@@ -84,5 +84,12 @@
     "webpack-hot-middleware": "^2.22.3",
     "webpack-manifest-plugin": "^2.0.3",
     "xml-loader": "^1.2.1"
-  }
+  },
+  "browserslist": [
+    "iOS >= 8",
+    "Android > 4.1",
+    "last 1 versions",
+    "> 1%",
+    "not dead"
+  ]
 }
