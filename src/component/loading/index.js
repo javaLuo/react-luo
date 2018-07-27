@@ -2,7 +2,7 @@
 import React from "react";
 import css from "./index.less";
 import ImgLoading from "../../assets/loading.gif";
-export default class Footer extends React.PureComponent {
+export default class LoadingComponent extends React.PureComponent {
   static propTypes = {};
 
   constructor(props) {
