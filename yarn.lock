@@ -327,9 +327,9 @@ ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
-antd@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-3.7.1.tgz#e18fee3f54fe1c499cc848223fd3bd581d87ed00"
+antd@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-3.7.2.tgz#175c92eebe86fe89465d549bfad6b305c57abb32"
   dependencies:
     array-tree-filter "^2.0.0"
     babel-runtime "6.x"
@@ -351,7 +351,7 @@ antd@^3.7.1:
     rc-checkbox "~2.1.5"
     rc-collapse "~1.9.0"
     rc-dialog "~7.1.0"
-    rc-drawer "~1.5.9"
+    rc-drawer "~1.6.2"
     rc-dropdown "~2.2.0"
     rc-editor-mention "^1.0.2"
     rc-form "^2.1.0"
@@ -5302,9 +5302,9 @@ rc-dialog@~7.1.0:
     rc-animate "2.x"
     rc-util "^4.4.0"
 
-rc-drawer@~1.5.9:
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-1.5.9.tgz#e75662b2e27211d1401055fb97280591a7668d2d"
+rc-drawer@~1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/rc-drawer/-/rc-drawer-1.6.2.tgz#588e819406698c26769bddf271e7de6a2bc3b4e7"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
@@ -7015,9 +7015,9 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
 
-webpack@^4.16.1:
-  version "4.16.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.16.1.tgz#2c4b89ea648125c3e67bcca6adf49ce2c14b2d31"
+webpack@^4.16.3:
+  version "4.16.3"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.16.3.tgz#861be3176d81e7e3d71c66c8acc9bba35588b525"
   dependencies:
     "@webassemblyjs/ast" "1.5.13"
     "@webassemblyjs/helper-module-context" "1.5.13"

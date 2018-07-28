@@ -49,8 +49,7 @@ const history = createHistory(); // 实例化history对象
   })
 )
 export default class RootContainer extends React.Component {
-  static propTypes = {
-  };
+  static propTypes = {};
 
   constructor(props) {
     super(props);

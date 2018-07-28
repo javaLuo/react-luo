@@ -72,7 +72,7 @@ export default class TestPageContainer extends React.Component {
     console.log("obj的扩展运算符测试：", b);
 
     // 获取用户信息测试
-    this.props.actions.getUserinfo({id:1}).then((res)=>{
+    this.props.actions.getUserinfo({ id: 1 }).then(res => {
       console.log("获取用户信息测试：", res);
     });
   }
@@ -266,7 +266,8 @@ export default class TestPageContainer extends React.Component {
                 onClick={() => this.props.actions.onTestAdd(this.props.count)}
               >
                 通过action改变数据num
-              </Button><br />
+              </Button>
+              <br />
               store中数据num：{this.state.count}
             </p>
           </div>
