@@ -34,7 +34,7 @@ export default class HomePageContainer extends React.Component {
           <img src={ImgLogo} />
           <div className={css.title}>React-Luo</div>
           <div className={css.info}>
-            react16、redux、webpack4、eslint、babel6、antd
+            react161、redux、webpack4、eslint、babel6、antd
           </div>
         </div>
       </div>

@@ -100,6 +100,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(), // 热更新插件
     new webpack.DefinePlugin({
       "process.env": JSON.stringify({
         PUBLIC_URL: PUBLIC_PATH
@@ -136,8 +137,7 @@ module.exports = {
         firefox: false,
         appleStartup: false
       }
-    }),
-    new webpack.HotModuleReplacementPlugin() // 热更新插件
+    })
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全

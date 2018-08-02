@@ -1,10 +1,11 @@
 /** 根页 - 包含了根级路由 **/
 
 /** 所需的各种插件 **/
-import React from "react";
-import { connect } from "react-redux";
+import React, { Fragment } from "react";
+import { Provider } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import P from "prop-types";
+import store from "../../store";
+
 // import createHistory from 'history/createBrowserHistory';   // URL模式的history
 import createHistory from "history/createHashHistory"; // 锚点模式的history
 import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
@@ -42,12 +43,6 @@ const NotFound = Loadable({
 
 const history = createHistory(); // 实例化history对象
 
-@connect(
-  state => ({}),
-  model => ({
-    actions: {}
-  })
-)
 export default class RootContainer extends React.Component {
   static propTypes = {};
 
@@ -75,35 +70,39 @@ export default class RootContainer extends React.Component {
   }
 
   render() {
-    return [
-      <Router history={history} key="history">
-        <Route
-          render={() => {
-            return (
-              <div className={css.boss}>
-                <Switch>
-                  <Redirect exact from="/" to="/home" />
-                  <Route
-                    path="/home"
-                    render={props => this.onEnter(Home, props)}
-                  />
-                  <Route
-                    path="/features"
-                    render={props => this.onEnter(Features, props)}
-                  />
-                  <Route
-                    path="/test"
-                    render={props => this.onEnter(Test, props)}
-                  />
-                  <Route component={NotFound} />
-                </Switch>
-                <Menu />
-              </div>
-            );
-          }}
-        />
-      </Router>,
-      <Footer key="footer" />
-    ];
+    return (
+      <Provider store={store}>
+        <Fragment>
+          <Router history={history}>
+            <Route
+              render={() => {
+                return (
+                  <div className={css.boss}>
+                    <Switch>
+                      <Redirect exact from="/" to="/home" />
+                      <Route
+                        path="/home"
+                        render={props => this.onEnter(Home, props)}
+                      />
+                      <Route
+                        path="/features"
+                        render={props => this.onEnter(Features, props)}
+                      />
+                      <Route
+                        path="/test"
+                        render={props => this.onEnter(Test, props)}
+                      />
+                      <Route component={NotFound} />
+                    </Switch>
+                    <Menu />
+                  </div>
+                );
+              }}
+            />
+          </Router>
+          <Footer />
+        </Fragment>
+      </Provider>
+    );
   }
 }
