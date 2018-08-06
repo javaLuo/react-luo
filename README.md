@@ -45,23 +45,23 @@ yarn install		# 安装依赖模块
 ```
 
 ```
-yarn run dll		# 静态资源预编译
+yarn dll		# 静态资源预编译
 ```
 
 ```
-yarn run start		# 运行开发环境，默认监听8888端口
+yarn start		# 运行开发环境，默认监听8888端口
 ```
 
 ```
-yarn run build		# 正式打包，用于生产环境
+yarn build		# 正式打包，用于生产环境
 ```
 
 ```
-yarn run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
+yarn prettier		# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
 ```
 
 ```
-yarn run dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
+yarn dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
 ```
 
 ## 更新日志 Update log
