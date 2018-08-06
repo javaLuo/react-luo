@@ -16,7 +16,8 @@ export default class Footer extends React.PureComponent {
         © 2018{" "}
         <a href="http://isluo.com" target="_blank" rel="noopener noreferrer">
           isluo.com
-        </a>, Inc.
+        </a>
+        , Inc.
       </div>
     );
   }

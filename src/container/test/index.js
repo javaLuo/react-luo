@@ -234,23 +234,29 @@ export default class TestPageContainer extends React.Component {
           <div className={css.list}>
             <h2>Antd组件测试</h2>
             <p>
-              <Button type="primary">普通按钮</Button>&nbsp;
+              <Button type="primary">普通按钮</Button>
+              &nbsp;
               <Button type="primary" loading>
                 加载中
-              </Button>&nbsp;
+              </Button>
+              &nbsp;
               <Button type="primary" onClick={() => this.onBtnClick()}>
                 打开模态框
-              </Button>&nbsp;
+              </Button>
+              &nbsp;
             </p>
           </div>
           <div className={css.list}>
             <h2>location对象测试</h2>
             <p>
-              当前路由：{this.props.location.pathname}
+              当前路由：
+              {this.props.location.pathname}
               <br />
-              search参数：{this.props.location.search}
+              search参数：
+              {this.props.location.search}
               <br />
-              state参数：{this.props.location.state
+              state参数：
+              {this.props.location.state
                 ? Object.entries(this.props.location.state)
                     .map(v => `${v[0]}=${v[1]}`)
                     .join("，")
@@ -268,7 +274,8 @@ export default class TestPageContainer extends React.Component {
                 通过action改变数据num
               </Button>
               <br />
-              store中数据num：{this.state.count}
+              store中数据num：
+              {this.state.count}
             </p>
           </div>
           <div className={css.list}>
