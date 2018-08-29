@@ -1,20 +1,17 @@
 {
-  "presets": [
-    "babel-preset-env",
-    "babel-preset-react"
-  ],
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
   "plugins": [
-	"transform-runtime",
-    "transform-decorators-legacy",
-    "transform-class-properties",
-    "transform-object-rest-spread",
-    "syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
     "react-loadable/babel",
     [
       "import",
       {
-	      "libraryName": "antd",
-	      "style": true
+        "libraryName": "antd",
+        "style": true
       }
     ]
   ]

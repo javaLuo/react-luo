@@ -19,7 +19,7 @@ const PUBLIC_PATH = "/";
 
 module.exports = {
   mode: "production",
-  entry: ["babel-polyfill", path.resolve(__dirname, "src", "index")],
+  entry: ["@babel/polyfill", path.resolve(__dirname, "src", "index")],
   output: {
     path: path.resolve(__dirname, "build"), // 将文件打包到此目录下
     publicPath: PUBLIC_PATH, // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
@@ -76,7 +76,11 @@ module.exports = {
         test: /\.less$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: ["css-loader", "postcss-loader", {loader: "less-loader", options:{javascriptEnabled: true}}]
+          use: [
+            "css-loader",
+            "postcss-loader",
+            { loader: "less-loader", options: { javascriptEnabled: true } }
+          ]
         }),
         include: path.resolve(__dirname, "node_modules")
       },
@@ -91,11 +95,6 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         include: path.resolve(__dirname, "src"),
         use: ["url-loader?limit=8192&name=dist/assets/[name].[ext]"]
-      },
-      {
-        // CSV/TSV文件解析
-        test: /\.(csv|tsv)$/,
-        use: ["csv-loader"]
       },
       {
         // xml文件解析
@@ -198,8 +197,8 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全
-      alias: {
-          '@': path.resolve(__dirname, "src")
-      }
+    alias: {
+      "@": path.resolve(__dirname, "src")
+    }
   }
 };

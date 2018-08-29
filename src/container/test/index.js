@@ -162,7 +162,7 @@ export default class TestPageContainer extends React.Component {
     });
   }
 
-  // Ajax测试按钮被点击时触发
+  // Ajax测试按钮被点击时触发（这里是直接在类中定义箭头函数的语法）
   onAjaxClick = () => {
     this.props.actions.serverAjax().then(res => {
       if (res.status === 200) {

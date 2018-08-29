@@ -11,7 +11,7 @@ module.exports = {
   mode: "development",
   entry: [
     "webpack-hot-middleware/client?reload=true&path=/__webpack_hmr", // webpack热更新插件，就这么写
-    "babel-polyfill",
+    "@babel/polyfill",
     "./src/index.js", // 项目入口
     "./dll/vendor.dll.js"
   ],
@@ -55,7 +55,12 @@ module.exports = {
       {
         // .less 解析 (用于解析antd的LESS文件)
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "postcss-loader", {loader: "less-loader", options:{javascriptEnabled: true}}],
+        use: [
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+          { loader: "less-loader", options: { javascriptEnabled: true } }
+        ],
         include: path.resolve(__dirname, "node_modules")
       },
       {
@@ -86,11 +91,6 @@ module.exports = {
         test: /\.(png|jpg|gif)(\?|$)/,
         include: path.resolve(__dirname, "src"),
         use: ["url-loader?limit=8192&name=assets/[name].[ext]"]
-      },
-      {
-        // CSV/TSV文件解析
-        test: /\.(csv|tsv)$/,
-        use: ["csv-loader"]
       },
       {
         // xml文件解析
@@ -141,8 +141,8 @@ module.exports = {
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全
-      alias: {
-          '@': path.resolve(__dirname, "src"),
-      }
+    alias: {
+      "@": path.resolve(__dirname, "src")
+    }
   }
 };
