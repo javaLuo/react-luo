@@ -5,6 +5,8 @@ const webpack = require("webpack"); // webpack核心
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
 const HappyPack = require("happypack"); // 多线程编译
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
+const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin")
+  .default; // 深度检测没用到的代码
 
 const PUBLIC_PATH = "/"; // 基础路径
 module.exports = {
@@ -137,7 +139,8 @@ module.exports = {
         firefox: false,
         appleStartup: false
       }
-    })
+    }),
+    new WebpackDeepScopeAnalysisPlugin()
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全

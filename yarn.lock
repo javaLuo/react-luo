@@ -2525,13 +2525,13 @@ esquery@^1.0.1:
   dependencies:
     estraverse "^4.0.0"
 
-esrecurse@^4.1.0:
+esrecurse@^4.1.0, esrecurse@^4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.2.1.tgz#007a3b9fdbc2b3bb87e4879ea19c92fdbd3942cf"
   dependencies:
     estraverse "^4.1.0"
 
-estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1:
+estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
 
@@ -6995,6 +6995,19 @@ webpack-cli@^3.1.0:
     supports-color "^5.4.0"
     v8-compile-cache "^2.0.0"
     yargs "^12.0.1"
+
+webpack-deep-scope-analysis@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/webpack-deep-scope-analysis/-/webpack-deep-scope-analysis-1.5.2.tgz#a272e3f16c6e9f36fc3aa5e327a9987e5018ea94"
+  dependencies:
+    esrecurse "^4.2.1"
+    estraverse "^4.2.0"
+
+webpack-deep-scope-plugin@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/webpack-deep-scope-plugin/-/webpack-deep-scope-plugin-1.5.3.tgz#d15fe91c632fdb5d54df38c15503592b9b82b473"
+  dependencies:
+    webpack-deep-scope-analysis "^1.5.2"
 
 webpack-dev-middleware@^3.2.0:
   version "3.2.0"

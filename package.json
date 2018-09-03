@@ -79,6 +79,7 @@
     "webpack": "^4.17.1",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
+    "webpack-deep-scope-plugin": "^1.5.3",
     "webpack-dev-middleware": "^3.2.0",
     "webpack-hot-middleware": "^2.22.3",
     "webpack-manifest-plugin": "^2.0.3",
