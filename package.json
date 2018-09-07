@@ -28,8 +28,8 @@
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
@@ -50,7 +50,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "autoprefixer": "^9.1.5",
-    "babel-eslint": "8.x",
+    "babel-eslint": "9.x",
     "babel-loader": "^8.0.2",
     "babel-plugin-import": "^1.8.0",
     "body-parser": "^1.18.3",
@@ -79,7 +79,7 @@
     "webpack": "^4.17.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
-    "webpack-deep-scope-plugin": "^1.5.4",
+    "webpack-deep-scope-plugin": "^1.6.0",
     "webpack-dev-middleware": "^3.2.0",
     "webpack-hot-middleware": "^2.23.1",
     "webpack-manifest-plugin": "^2.0.3",
@@ -89,7 +89,7 @@
     "iOS >= 8",
     "Android > 4.1",
     "last 1 versions",
-    "> 1%",
+    "> 2%",
     "not dead"
   ]
 }
