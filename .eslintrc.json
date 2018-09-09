@@ -25,6 +25,7 @@
   },
   "rules": {
     "semi": "warn",
+    "no-unused-vars": "warn",
     "no-cond-assign": "error",
     "no-debugger": "error",
     "no-dupe-args": "error",

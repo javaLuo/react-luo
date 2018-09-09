@@ -50,7 +50,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "autoprefixer": "^9.1.5",
-    "babel-eslint": "9.x",
+    "babel-eslint": "8.x",
     "babel-loader": "^8.0.2",
     "babel-plugin-import": "^1.8.0",
     "body-parser": "^1.18.3",
