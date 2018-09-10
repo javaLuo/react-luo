@@ -12,6 +12,9 @@ react automaticaly<br/>
 
 * PWA、代码分割、HMR热替换、dllPlugin静态资源预编译、HappyPack多线程构建、ES6+语法
 
+## 注意的地方
+* antd3.8.4以后，Icon的使用方式发生了变化，以前的使用方式会打包进所有的Icon，导致打包体积过大，参见<br/>https://github.com/ant-design/ant-design/issues/12011
+
 ## 构建 Start
 
 ```
