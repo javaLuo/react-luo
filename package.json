@@ -78,16 +78,16 @@
     "url-loader": "^1.1.1",
     "webpack": "^4.19.1",
     "webpack-bundle-analyzer": "^3.0.2",
-    "webpack-cli": "^3.1.0",
+    "webpack-cli": "^3.1.1",
     "webpack-deep-scope-plugin": "^1.6.0",
-    "webpack-dev-middleware": "^3.3.0",
-    "webpack-hot-middleware": "^2.24.0",
+    "webpack-dev-middleware": "^3.4.0",
+    "webpack-hot-middleware": "^2.24.2",
     "webpack-manifest-plugin": "^2.0.4",
     "xml-loader": "^1.2.1"
   },
   "browserslist": [
     "iOS >= 8",
-    "Android > 4.1",
+    "Android > 4.6",
     "last 1 versions",
     "> 2%",
     "not dead"
