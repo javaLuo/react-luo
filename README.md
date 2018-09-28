@@ -17,7 +17,7 @@ react automaticaly<br/>
 ## 注意的地方
 
 - antd3.8.4 以后，Icon 的使用方式发生了变化，以前的使用方式会打包进所有的 Icon 导致打包体积过大，参见<br/>https://github.com/ant-design/ant-design/issues/12011 (目前只使用 3.8.2)
-- babel-eslint9.0 对修饰器对格式化检测与 prettier 不符（目前只使用 8.x）
+- babel-eslint9.0 对修饰器的格式化检测与 prettier 不符（目前只使用 8.x）
 
 ## 构建 Start
 
