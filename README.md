@@ -43,7 +43,7 @@ npm run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.le
 
 ```
 npm run dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端
-npm run distmac # MAC下运行最终文件
+npm run distmac	# MAC下运行最终文件
 ```
 
 ## Yarn 构建
@@ -70,7 +70,7 @@ yarn prettier		# 自动格式化src、mock目录下的所有.js/.css/.scss/.less
 
 ```
 yarn dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
-yarn distmac # MAC下运行最终文件
+yarn distmac	# MAC下运行最终文件
 ```
 
 ## 更新日志 Update log
