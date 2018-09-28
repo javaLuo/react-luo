@@ -7,8 +7,6 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 代码压缩插件
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成一个server-worker用于缓存
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标
 const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制文件用
-const WebpackDeepScopeAnalysisPlugin = require("webpack-deep-scope-plugin")
-  .default; // 深度检测没用到的代码
 
 /**
  * 基础路径
@@ -195,8 +193,7 @@ module.exports = {
         firefox: false,
         appleStartup: false
       }
-    }),
-    new WebpackDeepScopeAnalysisPlugin()
+    })
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全
