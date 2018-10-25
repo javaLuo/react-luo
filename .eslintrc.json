@@ -33,6 +33,7 @@
     "no-unmodified-loop-condition": "error",
     "no-with": "error",
     "no-catch-shadow": "error",
+    "react/no-unescaped-entities": "off",
     "prettier/prettier": "warn"
   }
 }
