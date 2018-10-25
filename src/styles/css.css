@@ -16,6 +16,7 @@ body {
   -webkit-text-size-adjust: 100%; /* 关闭IOS横屏时，自动调整字体大小的功能 */
   font-family: "Segoe UI", "Lucida Grande", "Microsoft YaHei", sans-serif;
   font-size: 14px;
+  scroll-behavior: smooth; /* 平滑滚动 */
 }
 ul {
   position: relative;
