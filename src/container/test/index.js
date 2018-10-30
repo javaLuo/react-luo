@@ -146,6 +146,14 @@ export default class TestPageContainer extends React.Component {
 
   /**
    * react生命周期 - 每次当前组件下的子组件中有任何报错时，触发1次
+   * 这个方法比componentDidCatch先调用，在state更新之前调用
+   * 所以可以在这个方法里改变state值，以显示给用户错误的提示而不会有空窗期
+   * @param error 报的是什么错
+   */
+  static getDerivedStateFromError(error, info) {}
+
+  /**
+   * react生命周期 - 每次当前组件下的子组件中有任何报错时，触发1次
    * @param error 报的是什么错
    * @param info 错误的触发记录，会显示代码哪一行报的错
    */
