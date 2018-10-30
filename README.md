@@ -22,11 +22,11 @@ react automaticaly<br/>
 ## 构建 Start
 
 ```
-npm install		# 安装依赖模块
+npm install		# 安装依赖模块 | 1⃣️首先运行这个
 ```
 
 ```
-npm run dll		# 静态资源预编译
+npm run dll		# 静态资源预编译 | 2⃣️接着必须运行这个
 ```
 
 ```
@@ -38,7 +38,7 @@ npm run build		# 正式打包，用于生产环境
 ```
 
 ```
-npm run prettier	# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
+npm run prettier	# 一键格式化src、mock目录下的所有.js/.css/.less文件
 ```
 
 ```
