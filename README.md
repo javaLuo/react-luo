@@ -75,6 +75,9 @@ yarn distmac	        # MAC下运行最终文件
 
 ## 更新日志 Update log
 
+- 2018-10-30
+  <br/>1.React16.6 增加了一个新的生命周期函数
+  <br/>2.React16.6 更新内容：https://zhuanlan.zhihu.com/p/47680420
 - 2018-08-29
   <br/>1.babel 升级到 7, 相关插件也升级到最新版本
   <br/>2.babel-react eslint 插件目前使用 8.x 版本，9.0 与 prettier 格式化不符
