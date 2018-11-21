@@ -22,11 +22,11 @@ react automaticaly<br/>
 ## 构建 Start
 
 ```
-npm install		# 安装依赖模块 | 1⃣️首先运行这个
+npm install		# 安装依赖模块 | 1.首先运行这个
 ```
 
 ```
-npm run dll		# 静态资源预编译 | 2⃣️接着必须运行这个
+npm run dll		# 静态资源预编译 | 2.接着运行一次这个
 ```
 
 ```
