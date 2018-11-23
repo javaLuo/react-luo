@@ -26,7 +26,7 @@ export default class Menu extends React.PureComponent {
         >
           测试页面
         </NavLink>
-        |
+        |<NavLink to="/hooks">Hooks</NavLink>|
         <a
           href="https://github.com/javaLuo/react-luo"
           target="_blank"

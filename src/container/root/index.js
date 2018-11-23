@@ -1,7 +1,7 @@
 /** 根页 - 包含了根级路由 **/
 
 /** 所需的各种插件 **/
-import React, { Fragment } from "react";
+import React, { Fragment, lazy, Suspense } from "react";
 import { Provider } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import store from "../../store";
@@ -30,10 +30,21 @@ const Test = Loadable({
   loader: () => import("../test"),
   loading: Loading
 });
+const Hooks = Loadable({
+  loader: () => import("../hooks"),
+  loading: Loading
+});
 const NotFound = Loadable({
   loader: () => import("../notfound"),
   loading: Loading
 });
+
+// React原生lazy方式
+// const Home = lazy(() => import("../home"));
+// const Features = lazy(() => import("../features"));
+// const Test = lazy(() => import("../test"));
+// const Hooks = lazy(() => import("../hooks"));
+// const NotFound = lazy(() => import("../notfound"));
 
 /** 下面是代码不分割的方式引入各页面 **/
 // import Home from '../home';
@@ -55,7 +66,7 @@ export default class RootContainer extends React.Component {
     //Features.preload(); // 预加载Features页面
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
-    Loadable.preloadAll();
+    // Loadable.preloadAll();
   }
 
   /** 简单权限控制 **/
@@ -66,9 +77,13 @@ export default class RootContainer extends React.Component {
     // } else {
     //   return <Redirect to='/login' />;
     // }
+
     return <Component {...props} />;
   }
 
+  componentDidCatch(e) {
+    console.log("报错了：", e);
+  }
   render() {
     return (
       <Provider store={store}>
@@ -91,6 +106,10 @@ export default class RootContainer extends React.Component {
                       <Route
                         path="/test"
                         render={props => this.onEnter(Test, props)}
+                      />
+                      <Route
+                        path="/hooks"
+                        render={props => this.onEnter(Hooks, props)}
                       />
                       <Route component={NotFound} />
                     </Switch>
