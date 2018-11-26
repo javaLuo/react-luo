@@ -2,6 +2,7 @@
 
 /** 所需的各种插件 **/
 import React, { Fragment, lazy, Suspense } from "react";
+import { StoreProvider } from "redux-react-hook";
 import { Provider } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import store from "../../store";
@@ -86,7 +87,7 @@ export default class RootContainer extends React.Component {
   }
   render() {
     return (
-      <Provider store={store}>
+      <StoreProvider value={store}>
         <Fragment>
           <Router history={history}>
             <Route
@@ -121,7 +122,7 @@ export default class RootContainer extends React.Component {
           </Router>
           <Footer />
         </Fragment>
-      </Provider>
+      </StoreProvider>
     );
   }
 }
