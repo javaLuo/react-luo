@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import registerServiceWorker from "./registerServiceWorker";
-import Root from "./container/root";
+import Root from "./root";
 
 /** 公共样式 **/
 import "./styles/css.css";

@@ -1,37 +1,36 @@
-/** 根页 - 包含了根级路由 **/
+/** 路由页 - 真正意义上的根组件，已挂载到redux上，可获取store中的内容 **/
 
 /** 所需的各种插件 **/
 import React, { Fragment } from "react";
-import { Provider } from "react-redux";
+import { connect } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
-import store from "../../store";
 
 // antd的多语言
 import { LocaleProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 
-// import createHistory from 'history/createBrowserHistory';   // URL模式的history
+// import createHistory from "history/createBrowserHistory"; // URL模式的history
 import createHistory from "history/createHashHistory"; // 锚点模式的history
 import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
 
 /** 普通组件 **/
 import Menu from "../../component/menu";
 import Footer from "../../component/footer";
-import css from "./index.less";
 import Loading from "../../component/loading"; // loading动画，用于动态加载模块进行中时显示
 
+import css from "./index.less";
 /** 下面是代码分割异步加载的方式引入各页面 **/
 const Home = Loadable({
   loader: () => import("../home"),
   loading: Loading, // 自定义的Loading动画组件
   timeout: 10000 // 可以设置一个超时时间(s)来应对网络慢的情况（在Loading动画组件中可以配置error信息）
 });
-const Features = Loadable({
-  loader: () => import("../features"),
-  loading: Loading
-});
 const Test = Loadable({
   loader: () => import("../test"),
+  loading: Loading
+});
+const Features = Loadable({
+  loader: () => import("../features"),
   loading: Loading
 });
 const NotFound = Loadable({
@@ -39,29 +38,27 @@ const NotFound = Loadable({
   loading: Loading
 });
 
-/** 下面是代码不分割的方式引入各页面 **/
-// import Home from '../home';
-// import Features from '../features';
-// import Test from '../test';
-// import NotFound from '../notfound';
-
 const history = createHistory(); // 实例化history对象
 
+@connect(
+  state => ({}),
+  model => ({
+    actions: {}
+  })
+)
 export default class RootContainer extends React.Component {
   static propTypes = {};
 
   constructor(props) {
     super(props);
-    this.state = {
-      locale: "zhCN"
-    };
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // 可以手动在此预加载指定的模块：
     //Features.preload(); // 预加载Features页面
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
+
     Loadable.preloadAll();
   }
 
@@ -78,40 +75,38 @@ export default class RootContainer extends React.Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <LocaleProvider locale={zhCN}>
-          <Fragment>
-            <Router history={history}>
-              <Route
-                render={() => {
-                  return (
-                    <div className={css.boss}>
-                      <Switch>
-                        <Redirect exact from="/" to="/home" />
-                        <Route
-                          path="/home"
-                          render={props => this.onEnter(Home, props)}
-                        />
-                        <Route
-                          path="/features"
-                          render={props => this.onEnter(Features, props)}
-                        />
-                        <Route
-                          path="/test"
-                          render={props => this.onEnter(Test, props)}
-                        />
-                        <Route component={NotFound} />
-                      </Switch>
-                      <Menu />
-                    </div>
-                  );
-                }}
-              />
-            </Router>
-            <Footer />
-          </Fragment>
-        </LocaleProvider>
-      </Provider>
+      <LocaleProvider locale={zhCN}>
+        <Fragment>
+          <Router history={history}>
+            <Route
+              render={() => {
+                return (
+                  <div className={css.boss}>
+                    <Switch>
+                      <Redirect exact from="/" to="/home" />
+                      <Route
+                        path="/home"
+                        render={props => this.onEnter(Home, props)}
+                      />
+                      <Route
+                        path="/features"
+                        render={props => this.onEnter(Features, props)}
+                      />
+                      <Route
+                        path="/test"
+                        render={props => this.onEnter(Test, props)}
+                      />
+                      <Route component={NotFound} />
+                    </Switch>
+                    <Menu />
+                  </div>
+                );
+              }}
+            />
+          </Router>
+          <Footer />
+        </Fragment>
+      </LocaleProvider>
     );
   }
 }
