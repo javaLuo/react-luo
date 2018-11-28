@@ -155,12 +155,14 @@ yarn distmac	        # MAC下运行最终文件
 │   ├── component                     # 所有的公共类UI组件
 │   ├── container                     # 所有的页面级容器组件
 |	├── ...
-|   	└── root			# 根页，里面配置了顶级的路由
+|   	└── router			# 根组件，里面配置了顶级的路由
 |   ├── models				# 模块（包含store数据/reducers/actions）
 │   ├── assets                          # 所有的图片、文件等静态资源
 │   ├── styles                          # 所有的样式文件
 │   ├── store                           # store数据中心
-│   ├── util                            # 自定义工具
+│   ├── root                            # 根页
+│   ├── store                           # store数据中心
+│   ├── util                            # 自定义工具
 │   ├── index.js                        # 项目入口JS
 │   └── index.html                      # 主页html文件,开发环境和生产打包共用
 ├── server.js				# 用于开发环境的服务部署
