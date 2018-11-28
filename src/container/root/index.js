@@ -63,7 +63,6 @@ export default class RootContainer extends React.Component {
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
     Loadable.preloadAll();
-    console.log("props?", this.state.locale);
   }
 
   /** 简单权限控制 **/
@@ -84,7 +83,7 @@ export default class RootContainer extends React.Component {
           <Fragment>
             <Router history={history}>
               <Route
-                render={props => {
+                render={() => {
                   return (
                     <div className={css.boss}>
                       <Switch>
