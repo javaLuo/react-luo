@@ -6,6 +6,10 @@ import { Provider } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import store from "../../store";
 
+// antd的多语言
+import { LocaleProvider } from "antd";
+import zhCN from "antd/lib/locale-provider/zh_CN";
+
 // import createHistory from 'history/createBrowserHistory';   // URL模式的history
 import createHistory from "history/createHashHistory"; // 锚点模式的history
 import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
@@ -48,6 +52,9 @@ export default class RootContainer extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      locale: "zhCN"
+    };
   }
 
   componentDidMount() {
@@ -56,6 +63,7 @@ export default class RootContainer extends React.Component {
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
     Loadable.preloadAll();
+    console.log("props?", this.state.locale);
   }
 
   /** 简单权限控制 **/
@@ -72,36 +80,38 @@ export default class RootContainer extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Fragment>
-          <Router history={history}>
-            <Route
-              render={() => {
-                return (
-                  <div className={css.boss}>
-                    <Switch>
-                      <Redirect exact from="/" to="/home" />
-                      <Route
-                        path="/home"
-                        render={props => this.onEnter(Home, props)}
-                      />
-                      <Route
-                        path="/features"
-                        render={props => this.onEnter(Features, props)}
-                      />
-                      <Route
-                        path="/test"
-                        render={props => this.onEnter(Test, props)}
-                      />
-                      <Route component={NotFound} />
-                    </Switch>
-                    <Menu />
-                  </div>
-                );
-              }}
-            />
-          </Router>
-          <Footer />
-        </Fragment>
+        <LocaleProvider locale={zhCN}>
+          <Fragment>
+            <Router history={history}>
+              <Route
+                render={props => {
+                  return (
+                    <div className={css.boss}>
+                      <Switch>
+                        <Redirect exact from="/" to="/home" />
+                        <Route
+                          path="/home"
+                          render={props => this.onEnter(Home, props)}
+                        />
+                        <Route
+                          path="/features"
+                          render={props => this.onEnter(Features, props)}
+                        />
+                        <Route
+                          path="/test"
+                          render={props => this.onEnter(Test, props)}
+                        />
+                        <Route component={NotFound} />
+                      </Switch>
+                      <Menu />
+                    </div>
+                  );
+                }}
+              />
+            </Router>
+            <Footer />
+          </Fragment>
+        </LocaleProvider>
       </Provider>
     );
   }
