@@ -87,7 +87,7 @@ export default class RootContainer extends React.Component {
   }
   render() {
     return (
-      <StoreProvider value={store}>
+      <Provider store={store}>
         <Fragment>
           <Router history={history}>
             <Route
@@ -122,7 +122,7 @@ export default class RootContainer extends React.Component {
           </Router>
           <Footer />
         </Fragment>
-      </StoreProvider>
+      </Provider>
     );
   }
 }

@@ -11,7 +11,7 @@ import Page1 from "./container/page1"; // 子页面1
 import Page2 from "./container/page2"; // 子页面2
 import Page3 from "./container/page3"; // 子页面3
 
-function Hooks(props) {
+const Hooks = props => {
   // Declare a new state variable, which we'll call "count"
   console.log("props:", props);
   const [count, setCount] = useState(0);
@@ -151,6 +151,6 @@ function Hooks(props) {
       </Modal>
     </div>
   );
-}
+};
 
-export default Form.create({})(Hooks);
+export default Form.create()(Hooks);
