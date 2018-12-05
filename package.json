@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "antd": "3.8.2",
+    "apollo-boost": "^0.1.22",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "history": "^4.7.2",

@@ -5,6 +5,12 @@
 
 import reqwest from "reqwest"; // 封装了ajax请求的库
 import axios from "axios"; // 封装了fetch请求的库
+import ApolloClient from "apollo-boost";
+import gql from "graphql-tag";
+
+const client = new ApolloClient({
+  uri: "https://isluo.com/graphql"
+});
 
 export default class ApiService {
   /** ajax请求(用的reqwest.js) **/
@@ -31,5 +37,15 @@ export default class ApiService {
       withCredentials: true,
       data: JSON.stringify(bodyObj)
     });
+  }
+
+  static newGraphql(ql) {
+    client
+      .query({
+        query: gql`
+          ${ql}
+        `
+      })
+      .then(result => console.log(result));
   }
 }
