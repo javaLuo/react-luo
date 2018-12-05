@@ -81,6 +81,23 @@ module.exports = {
         include: path.resolve(__dirname, "src")
       },
       {
+        // .sass 解析
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              localIdentName: "[local]_[hash:base64:5]"
+            }
+          },
+          "postcss-loader",
+          "sass-loader"
+        ],
+        include: path.resolve(__dirname, "src")
+      },
+      {
         // 文件解析
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),

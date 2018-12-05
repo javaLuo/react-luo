@@ -9,6 +9,7 @@ import P from "prop-types";
 /** 所需的所有资源 **/
 import { Button, Modal, message, Form } from "antd";
 import css from "./index.less";
+
 import ImgTest from "../../assets/test.jpg";
 import Mp3 from "../../assets/starSky.mp3";
 import Page1 from "./container/page1"; // 子页面1
@@ -241,6 +242,7 @@ export default class TestPageContainer extends React.Component {
             <h2>LESS测试</h2>
             <p>
               <span className={"less_btn"}>来自LESS样式</span>
+              <span className={"scss_btn"}>来自SASS样式</span>
             </p>
           </div>
           <div className={css.list}>

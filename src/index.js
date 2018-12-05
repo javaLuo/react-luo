@@ -8,6 +8,7 @@ import Root from "./root";
 /** 公共样式 **/
 import "./styles/css.css";
 import "./styles/less.less";
+import "./styles/scss.scss";
 
 ReactDOM.render(<Root />, document.getElementById("app-root"));
 
