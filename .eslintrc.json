@@ -27,7 +27,7 @@
     "semi": "warn",
     "no-unused-vars": "off",
     "no-cond-assign": "error",
-    "no-debugger": "error",
+    "no-debugger": "warn",
     "no-dupe-args": "error",
     "no-caller": "error",
     "no-unmodified-loop-condition": "error",
