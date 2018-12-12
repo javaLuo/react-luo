@@ -12,27 +12,19 @@ const model = {
     count: 0, // 测试数字
     fetchvalue: [] // 异步请求的测试数据
   },
-  /** reducers **/
-  reducers: {
-    add(state, payload) {
-      return { ...state, count: payload };
-    },
-    updateFetchApi(state, payload) {
-      return { ...state, fetchvalue: payload };
-    }
-  },
+
   /** actions **/
   actions: {
     // 测试 - 数字加1
     onTestAdd(params) {
-      this.add(params + 1); // 调用上面reducers中的add方法
+      this.setState({ count: params + 1 });
     },
     // 测试 - ajax请求
     async serverAjax(params = {}) {
       try {
         const res = await Server.newPost("url.ajax", params);
         if (res.status === "success") {
-          this.updateFetchApi(res.data); // 异步请求成功后，可以把数据存入store，即走redux流程
+          this.setState({ fetchvalue: res.data }); // 异步请求成功后，可以把数据存入store，即走redux流程
         }
         return res; // 也可以直接返回给view层，在页面中直接处理
       } catch (e) {
@@ -44,7 +36,7 @@ const model = {
       try {
         const res = await Server.newPost("url.ajax", params);
         if (res.status === "success") {
-          this.updateFetchApi(res.data);
+          this.setState({ fetchvalue: res.data });
         }
         return res;
       } catch (e) {
