@@ -3,18 +3,17 @@
     "browser": true,
     "commonjs": true,
     "es6": true,
-    "mocha": true,
-    "jquery": true
+    "mocha": true
   },
-  "parser": "babel-eslint",
   "extends": "plugin:react/recommended",
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 8,
-    "ecmaFeatures": {
-      "impliedStrict": true,
-      "experimentalObjectRestSpread": true,
-      "jsx": true
-    },
+        "ecmaFeatures": {
+            "impliedStrict": true,
+            "jsx": true
+        },
+    "allowImportExportEverywhere": true,
     "sourceType": "module"
   },
   "plugins": ["react", "prettier"],
