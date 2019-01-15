@@ -18,7 +18,7 @@ import Menu from "../../component/menu";
 import Footer from "../../component/footer";
 import Loading from "../../component/loading"; // loading动画，用于动态加载模块进行中时显示
 
-import css from "./index.less";
+import "./index.less";
 /** 下面是代码分割异步加载的方式引入各页面 **/
 const Home = Loadable({
   loader: () => import("../home"),
@@ -81,7 +81,7 @@ export default class RootContainer extends React.Component {
             <Route
               render={() => {
                 return (
-                  <div className={css.boss}>
+                  <div className="boss">
                     <Switch>
                       <Redirect exact from="/" to="/home" />
                       <Route

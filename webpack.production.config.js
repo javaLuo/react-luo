@@ -39,49 +39,19 @@ module.exports = {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                modules: true,
-                localIdentName: "[local]_[hash:base64:8]"
-              }
-            },
-            "postcss-loader"
-          ]
+          use: ["css-loader", "postcss-loader"]
         })
       },
       {
         // .less 解析
         test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader",
-              options: {
-                modules: true,
-                localIdentName: "[local]_[hash:base64:8]"
-              }
-            },
-            "postcss-loader",
-            "less-loader"
-          ]
-        }),
-        include: path.resolve(__dirname, "src")
-      },
-      {
-        // .less 解析 (用于解析antd的LESS文件)
-        test: /\.less$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            "css-loader",
-            "postcss-loader",
-            { loader: "less-loader", options: { javascriptEnabled: true } }
-          ]
-        }),
-        include: path.resolve(__dirname, "node_modules")
+        use: [
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+          "less-loader",
+          { loader: "less-loader", options: { javascriptEnabled: true } }
+        ]
       },
       {
         // 文件解析
@@ -96,8 +66,15 @@ module.exports = {
         use: ["url-loader?limit=8192&name=dist/assets/[name].[ext]"]
       },
       {
+        // wasm文件解析
+        test: /\.wasm$/,
+        include: path.resolve(__dirname, "src"),
+        type: "webassembly/experimental"
+      },
+      {
         // xml文件解析
         test: /\.xml$/,
+        include: path.resolve(__dirname, "src"),
         use: ["xml-loader"]
       }
     ]
@@ -195,7 +172,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全
+    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], //后缀名自动补全
     alias: {
       "@": path.resolve(__dirname, "src")
     }

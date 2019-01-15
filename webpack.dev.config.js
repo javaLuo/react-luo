@@ -40,45 +40,18 @@ module.exports = {
       {
         // .css 解析
         test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              localIdentName: "[local]_[hash:base64:5]"
-            }
-          },
-          "postcss-loader"
-        ]
-      },
-      {
-        // .less 解析 (用于解析antd的LESS文件)
-        test: /\.less$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          { loader: "less-loader", options: { javascriptEnabled: true } }
-        ],
-        include: path.resolve(__dirname, "node_modules")
+        use: ["style-loader", "css-loader", "postcss-loader"]
       },
       {
         // .less 解析
         test: /\.less$/,
         use: [
           "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-              localIdentName: "[local]_[hash:base64:5]"
-            }
-          },
+          "css-loader",
           "postcss-loader",
-          "less-loader"
-        ],
-        include: path.resolve(__dirname, "src")
+          "less-loader",
+          { loader: "less-loader", options: { javascriptEnabled: true } }
+        ]
       },
       {
         // 文件解析
@@ -93,8 +66,15 @@ module.exports = {
         use: ["url-loader?limit=8192&name=assets/[name].[ext]"]
       },
       {
+        // wasm文件解析
+        test: /\.wasm$/,
+        include: path.resolve(__dirname, "src"),
+        type: "webassembly/experimental"
+      },
+      {
         // xml文件解析
         test: /\.xml$/,
+        include: path.resolve(__dirname, "src"),
         use: ["xml-loader"]
       }
     ]
@@ -118,7 +98,7 @@ module.exports = {
       loaders: ["babel-loader"]
     }),
     new HtmlWebpackPlugin({
-      //根据模板插入css/js等生成最终HTML
+      // 根据模板插入css/js等生成最终HTML
       filename: "index.html", //生成的html存放路径，相对于 output.path
       favicon: "./public/favicon.png", // 自动把根目录下的favicon.ico图片加入html
       template: "./public/index.ejs", //html模板路径
@@ -140,7 +120,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css"], //后缀名自动补全
+    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], //后缀名自动补全
     alias: {
       "@": path.resolve(__dirname, "src")
     }

@@ -5,7 +5,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 /** 所需的所有资源 **/
-import css from "./index.less";
+import "./index.less";
 
 @connect(
   state => ({}),
@@ -23,8 +23,8 @@ export default class HomePageContainer extends React.Component {
 
   render() {
     return (
-      <div className={css.page}>
-        <div className={css.box}>404 not found</div>
+      <div className="page-notfound">
+        <div className="box">404 not found</div>
       </div>
     );
   }

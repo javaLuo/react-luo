@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - "10"
-  - "8"
+  - '10'
+  - '8'
 script:
-  - yarn run dll
-  - yarn run build
+  - yarn dll
+  - yarn build

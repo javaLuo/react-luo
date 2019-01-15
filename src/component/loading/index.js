@@ -1,6 +1,6 @@
 /** Loading组件 用于按需加载时过渡显示等 **/
 import React from "react";
-import css from "./index.less";
+import "./index.less";
 import ImgLoading from "../../assets/loading.gif";
 export default class LoadingComponent extends React.PureComponent {
   static propTypes = {};
@@ -24,7 +24,7 @@ export default class LoadingComponent extends React.PureComponent {
 
   render() {
     return (
-      <div className={css.loading}>
+      <div className="loading">
         <img src={ImgLoading} />
         <div>{this.makeType(this.props)}</div>
       </div>

@@ -1,6 +1,6 @@
 /** Footer 页面底部 **/
 import React from "react";
-import css from "./index.less";
+import "./index.less";
 
 export default class Footer extends React.PureComponent {
   static propTypes = {};
@@ -12,7 +12,7 @@ export default class Footer extends React.PureComponent {
 
   render() {
     return (
-      <div className={css.footer}>
+      <div className="footer">
         © 2018-2019{" "}
         <a href="http://isluo.com" target="_blank" rel="noopener noreferrer">
           isluo.com

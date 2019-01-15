@@ -23,7 +23,6 @@
   "dependencies": {
     "antd": "3.8.2",
     "axios": "^0.18.0",
-    "classnames": "^2.2.6",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.11",
@@ -49,7 +48,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.2.0",
-    "autoprefixer": "^9.4.3",
+    "autoprefixer": "9.4.4",
     "babel-eslint": "8.x",
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0",

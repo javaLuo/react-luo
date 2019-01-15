@@ -1,8 +1,8 @@
 /** 导航 **/
 
 import React from "react";
-import { NavLink } from "react-router-dom";
-import css from "./index.less";
+import { Link } from "react-router-dom";
+import "./index.less";
 
 export default class Menu extends React.PureComponent {
   static propTypes = {};
@@ -14,10 +14,9 @@ export default class Menu extends React.PureComponent {
 
   render() {
     return (
-      <div className={css.menu}>
-        <NavLink to="/home">首页</NavLink>|
-        <NavLink to="/features">构建与特性</NavLink>|
-        <NavLink
+      <div className="menu">
+        <Link to="/home">首页</Link>|<Link to="/features">构建与特性</Link>|
+        <Link
           to={{
             pathname: "/test",
             search: "?a=123&b=abc",
@@ -25,7 +24,7 @@ export default class Menu extends React.PureComponent {
           }}
         >
           测试页面
-        </NavLink>
+        </Link>
         |
         <a
           href="https://github.com/javaLuo/react-luo"
