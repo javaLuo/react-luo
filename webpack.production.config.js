@@ -45,13 +45,15 @@ module.exports = {
       {
         // .less 解析
         test: /\.less$/,
-        use: [
-          "style-loader",
-          "css-loader",
-          "postcss-loader",
-          "less-loader",
-          { loader: "less-loader", options: { javascriptEnabled: true } }
-        ]
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            "css-loader",
+            "postcss-loader",
+            "less-loader",
+            { loader: "less-loader", options: { javascriptEnabled: true } }
+          ]
+        })
       },
       {
         // 文件解析
