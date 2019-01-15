@@ -16,8 +16,8 @@ react automaticaly<br/>
 
 ## 注意的地方
 
-- antd3.8.4以后Icon的使用方式发生了变化，以前的使用方式会打包进所有的Icon导致打包体积过大，参见<br/>https://github.com/ant-design/ant-design/issues/12011 (目前只使用 3.8.2)
-- babel-eslint9.0以后对修饰器的格式化判定（他们认为写在export后面更标准）与prettier(他们认为写在开头并折行更漂亮)官方不符（目前只使用 8.x）
+- antd3.8.4 以后 Icon 的使用方式发生了变化，以前的使用方式会打包进所有的 Icon 导致打包体积过大，参见<br/>https://github.com/ant-design/ant-design/issues/12011 (目前只使用 3.8.2)
+- babel-eslint9.0 以后对修饰器的格式化判定（他们认为写在 export 后面更标准）与 prettier(他们认为写在开头并折行更漂亮)官方不符（目前只使用 8.x）
 
 ## 构建 Start
 
@@ -75,6 +75,9 @@ yarn distmac	        # MAC下运行最终文件
 
 ## 更新日志 Update log
 
+- 2019-01-15
+  <br/>1.取消了 css-modules 的配置，因为用起来太麻烦了，给每个页面设置单独的复制一点的样式名就能够做到局部 CSS 的效果，不是很需要 css-modules 这样的工具
+  <br/>2.autoprefixer 使用了 9.4.4,不能升级到 9.4.5, 与 antd 冲突
 - 2018-10-30
   <br/>1.React16.6 增加了一个新的生命周期函数
   <br/>2.React16.6 更新内容：https://zhuanlan.zhihu.com/p/47680420
