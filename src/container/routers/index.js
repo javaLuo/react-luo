@@ -1,42 +1,42 @@
 /** 路由页 - 真正意义上的根组件，已挂载到redux上，可获取store中的内容 **/
 
 /** 所需的各种插件 **/
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 // antd的多语言
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
+import { LocaleProvider } from "antd";
+import zhCN from "antd/lib/locale-provider/zh_CN";
 
 // import createHistory from "history/createBrowserHistory"; // URL模式的history
-import createHistory from 'history/createHashHistory'; // 锚点模式的history
-import Loadable from 'react-loadable'; // 用于代码分割时动态加载模块
+import createHistory from "history/createHashHistory"; // 锚点模式的history
+import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
 
 /** 普通组件 **/
-import Menu from '../../component/menu';
-import Footer from '../../component/footer';
-import Loading from '../../component/loading'; // loading动画，用于动态加载模块进行中时显示
+import Menu from "../../component/menu";
+import Footer from "../../component/footer";
+import Loading from "../../component/loading"; // loading动画，用于动态加载模块进行中时显示
 
-import './index.less';
+import "./index.less";
 
 /** 下面是代码分割异步加载的方式引入各页面 webpackChunkName设置生成后的js名字 **/
 const Home = Loadable({
-  loader: () => import(/* webpackChunkName:'home' */ '../home'),
+  loader: () => import(/* webpackChunkName:'home' */ "../home"),
   loading: Loading, // 自定义的Loading动画组件
-  timeout: 10000, // 可以设置一个超时时间(s)来应对网络慢的情况（在Loading动画组件中可以配置error信息）
+  timeout: 10000 // 可以设置一个超时时间(s)来应对网络慢的情况（在Loading动画组件中可以配置error信息）
 });
 const Test = Loadable({
-  loader: () => import(/* webpackChunkName:'test' */ '../test'),
-  loading: Loading,
+  loader: () => import(/* webpackChunkName:'test' */ "../test"),
+  loading: Loading
 });
 const Features = Loadable({
-  loader: () => import(/* webpackChunkName:'features' */ '../features'),
-  loading: Loading,
+  loader: () => import(/* webpackChunkName:'features' */ "../features"),
+  loading: Loading
 });
 const NotFound = Loadable({
-  loader: () => import(/* webpackChunkName:'notfound' */ '../notfound'),
-  loading: Loading,
+  loader: () => import(/* webpackChunkName:'notfound' */ "../notfound"),
+  loading: Loading
 });
 
 const history = createHistory(); // 实例化history对象
@@ -44,8 +44,8 @@ const history = createHistory(); // 实例化history对象
 @connect(
   state => ({}),
   model => ({
-    actions: {},
-  }),
+    actions: {}
+  })
 )
 export default class RootContainer extends React.Component {
   static propTypes = {};
@@ -85,9 +85,18 @@ export default class RootContainer extends React.Component {
                   <div className="boss">
                     <Switch>
                       <Redirect exact from="/" to="/home" />
-                      <Route path="/home" render={props => this.onEnter(Home, props)} />
-                      <Route path="/features" render={props => this.onEnter(Features, props)} />
-                      <Route path="/test" render={props => this.onEnter(Test, props)} />
+                      <Route
+                        path="/home"
+                        render={props => this.onEnter(Home, props)}
+                      />
+                      <Route
+                        path="/features"
+                        render={props => this.onEnter(Features, props)}
+                      />
+                      <Route
+                        path="/test"
+                        render={props => this.onEnter(Test, props)}
+                      />
                       <Route component={NotFound} />
                     </Switch>
                     <Menu />
