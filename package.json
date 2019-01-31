@@ -21,7 +21,7 @@
     "url": "git+https://github.com/javaLuo/react-luo.git"
   },
   "dependencies": {
-    "antd": "^3.12.4",
+    "antd": "^3.13.0",
     "axios": "^0.18.0",
     "history": "^4.7.2",
     "immutable": "^4.0.0-rc.12",
@@ -35,7 +35,7 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "reqwest": "^2.0.5",
-    "retalk": "^1.2.3"
+    "retalk": "^2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -48,7 +48,7 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.3.1",
-    "autoprefixer": "9.4.6",
+    "autoprefixer": "9.4.7",
     "babel-eslint": "8.x",
     "babel-loader": "^8.0.5",
     "babel-plugin-import": "^1.11.0",
@@ -71,7 +71,7 @@
     "mockjs": "^1.0.1-beta3",
     "postcss-loader": "^3.0.0",
     "preload-webpack-plugin": "^3.0.0-alpha.1",
-    "prettier": "1.16.1",
+    "prettier": "1.16.2",
     "style-loader": "^0.23.1",
     "sw-precache-webpack-plugin": "^0.11.5",
     "uglifyjs-webpack-plugin": "^2.1.1",
