@@ -15,37 +15,10 @@ react automaticaly<br/>
 - PWA、代码分割、HMR 热替换、dllPlugin 静态资源预编译、HappyPack 多线程构建、ES6+语法
 
 ## 注意的地方
-- antd icon打包体积过大：<a href="https://github.com/ant-design/ant-design/issues/12011" target="_blank">https://github.com/ant-design/ant-design/issues/12011</a>
-- babel-eslint9.0 以后对修饰器的格式化判定（他们认为写在 export 后面更标准）与 prettier(他们认为写在开头并折行更漂亮)官方不符（目前只使用 8.x）
+
+- antd icon 打包体积过大：<a href="https://github.com/ant-design/ant-design/issues/12011" target="_blank">https://github.com/ant-design/ant-design/issues/12011</a>，现在真是越来越大了
 
 ## 构建 Start
-
-```
-npm install		# 安装依赖模块 | 1.首先运行这个
-```
-
-```
-npm run dll		# 静态资源预编译 | 2.接着运行一次这个
-```
-
-```
-npm run start		# 运行开发环境，默认监听8888端口
-```
-
-```
-npm run build		# 正式打包，用于生产环境
-```
-
-```
-npm run prettier	# 一键格式化src、mock目录下的所有.js/.css/.less文件
-```
-
-```
-npm run dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端
-npm run distmac	        # MAC下运行最终文件
-```
-
-## Yarn 构建
 
 ```
 yarn install		# 安装依赖模块
@@ -73,6 +46,7 @@ yarn distmac	        # MAC下运行最终文件
 ```
 
 ## 更新日志 Update log
+
 见<a href="https://github.com/javaLuo/react-luo/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97" target="_blank">Wiki</a>
 
 ## 目录结构 Structure
