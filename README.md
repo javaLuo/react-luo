@@ -16,7 +16,7 @@ react automaticaly<br/>
 
 ## 注意的地方
 
-- antd icon 打包体积过大：<a href="https://github.com/ant-design/ant-design/issues/12011" target="_blank">https://github.com/ant-design/ant-design/issues/12011</a>，现在真是越来越大了
+- antd icon 打包体积过大：<a href="https://github.com/ant-design/ant-design/issues/12011" target="_blank">https://github.com/ant-design/ant-design/issues/12011</a>，开了gzip之后还行
 
 ## 构建 Start
 
