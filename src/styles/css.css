@@ -59,35 +59,35 @@ sub {
 }
 
 /* 常用功能 */
-:global(.all_nowarp) {
+.all_nowarp {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 } /* 禁止换行,末尾省略 */
-:global(.all_nowarp2) {
+.all_nowarp2 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
 } /* 禁止换行，2行，末尾省略，div的高度需要正好是2行的高度 */
-:global(.all_nowarp3) {
+.all_nowarp3 {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
 } /* 禁止换行，3行，末尾省略，div的高度需要正好是2行的高度 */
-:global(.all_warp) {
+.all_warp {
   word-break: break-all;
   word-wrap: break-word;
 } /* 强制换行 */
-:global(.all_b) {
+.all_b {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 } /* 内框模式 */
-:global(.all_clear:after) {
+.all_clear:after {
   content: ".";
   height: 0;
   overflow: hidden;
@@ -95,7 +95,7 @@ sub {
   display: block;
   clear: both;
 } /* 清楚浮动 */
-:global(.all_trans) {
+.all_trans {
   transition: all 200ms;
   -webkit-transition: all 200ms;
 } /* 过渡效果 */
