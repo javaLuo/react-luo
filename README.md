@@ -12,7 +12,7 @@ react automaticaly<br/>
 标准的 React+Redux 分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
-- PWA、代码分割、HMR 热替换、dllPlugin 静态资源预编译、HappyPack 多线程构建、ES6+语法
+- PWA、Hooks、代码分割、热替换、dllPlugin 静态资源预编译、HappyPack 多线程构建、ES6+语法
 
 ## 注意的地方
 
