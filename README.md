@@ -85,7 +85,7 @@ yarn distmac	        # MAC下运行最终文件
 
 ## 预览地址 Demo
 
-http://isluo.com/work/pwa (线上没有 mock 环境)
+https://isluo.com/work/pwa (线上没有 mock 环境)
 
 ## 参阅资料
 
