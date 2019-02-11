@@ -2,15 +2,8 @@
 import React from "react";
 import "./index.less";
 import ImgLoading from "../../assets/loading.gif";
-export default class LoadingComponent extends React.PureComponent {
-  static propTypes = {};
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  makeType(p) {
+export default function LoadingComponent(props) {
+  function makeType(p) {
     let msg;
     if (p.error) {
       msg = "加载出错，请刷新页面";
@@ -22,12 +15,10 @@ export default class LoadingComponent extends React.PureComponent {
     return msg;
   }
 
-  render() {
-    return (
-      <div className="loading">
-        <img src={ImgLoading} />
-        <div>{this.makeType(this.props)}</div>
-      </div>
-    );
-  }
+  return (
+    <div className="loading">
+      <img src={ImgLoading} />
+      <div>{makeType(props)}</div>
+    </div>
+  );
 }

@@ -1,7 +1,7 @@
 /** 路由页 - 真正意义上的根组件，已挂载到redux上，可获取store中的内容 **/
 
 /** 所需的各种插件 **/
-import React, { Fragment } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
@@ -41,30 +41,19 @@ const NotFound = Loadable({
 
 const history = createHistory(); // 实例化history对象
 
-@connect(
-  state => ({}),
-  model => ({
-    actions: {}
-  })
-)
-export default class RootContainer extends React.Component {
-  static propTypes = {};
-
-  constructor(props) {
-    super(props);
-  }
-
-  async componentDidMount() {
+/** 组件 **/
+function RootContainer(props) {
+  // 在组件加载完毕后触发
+  useEffect(() => {
     // 可以手动在此预加载指定的模块：
     //Features.preload(); // 预加载Features页面
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
-
     Loadable.preloadAll();
-  }
+  }, []);
 
   /** 简单权限控制 **/
-  onEnter(Component, props) {
+  function onEnter(Component, props) {
     // 例子：如果没有登录，直接跳转至login页
     // if (sessionStorage.getItem('userInfo')) {
     //   return <Component {...props} />;
@@ -74,40 +63,45 @@ export default class RootContainer extends React.Component {
     return <Component {...props} />;
   }
 
-  render() {
-    return (
-      <LocaleProvider locale={zhCN}>
-        <Fragment>
-          <Router history={history}>
-            <Route
-              render={() => {
-                return (
-                  <div className="boss">
-                    <Switch>
-                      <Redirect exact from="/" to="/home" />
-                      <Route
-                        path="/home"
-                        render={props => this.onEnter(Home, props)}
-                      />
-                      <Route
-                        path="/features"
-                        render={props => this.onEnter(Features, props)}
-                      />
-                      <Route
-                        path="/test"
-                        render={props => this.onEnter(Test, props)}
-                      />
-                      <Route component={NotFound} />
-                    </Switch>
-                    <Menu />
-                  </div>
-                );
-              }}
-            />
-          </Router>
-          <Footer />
-        </Fragment>
-      </LocaleProvider>
-    );
-  }
+  return (
+    <LocaleProvider locale={zhCN}>
+      <>
+        <Router history={history}>
+          <Route
+            render={() => {
+              return (
+                <div className="boss">
+                  <Switch>
+                    <Redirect exact from="/" to="/home" />
+                    <Route
+                      path="/home"
+                      render={props => onEnter(Home, props)}
+                    />
+                    <Route
+                      path="/features"
+                      render={props => onEnter(Features, props)}
+                    />
+                    <Route
+                      path="/test"
+                      render={props => onEnter(Test, props)}
+                    />
+                    <Route component={NotFound} />
+                  </Switch>
+                  <Menu />
+                </div>
+              );
+            }}
+          />
+        </Router>
+        <Footer />
+      </>
+    </LocaleProvider>
+  );
 }
+
+export default connect(
+  state => ({}),
+  model => ({
+    actions: {}
+  })
+)(RootContainer);

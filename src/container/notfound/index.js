@@ -7,25 +7,17 @@ import { connect } from "react-redux";
 /** 所需的所有资源 **/
 import "./index.less";
 
-@connect(
+function HomePageContainer() {
+  return (
+    <div className="page-notfound">
+      <div className="box">404 not found</div>
+    </div>
+  );
+}
+
+export default connect(
   state => ({}),
   model => ({
     actions: {}
   })
-)
-export default class HomePageContainer extends React.Component {
-  static propTypes = {};
-
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div className="page-notfound">
-        <div className="box">404 not found</div>
-      </div>
-    );
-  }
-}
+)(HomePageContainer);

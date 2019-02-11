@@ -10,18 +10,10 @@ import { Provider } from "react-redux";
 import store from "../store";
 import Routers from "../container/routers";
 
-export default class RootContainer extends React.Component {
-  static propTypes = {};
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Provider store={store}>
-        <Routers />
-      </Provider>
-    );
-  }
+export default function RootContainer() {
+  return (
+    <Provider store={store}>
+      <Routers />
+    </Provider>
+  );
 }
