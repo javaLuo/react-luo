@@ -6,25 +6,38 @@
 import { message } from "antd";
 import Server from "../util/fetch-api"; // 自己封装的异步请求方法
 
-const model = {
+export default {
   /** store数据 **/
   state: {
     count: 0, // 测试数字
     fetchvalue: [] // 异步请求的测试数据
   },
 
+  /** reducers **/
+  reducers: {
+    setCount(state, payload) {
+      return Object.assign({}, state, {
+        count: payload
+      });
+    },
+    setFetchValue(state, payload) {
+      return Object.assign({}, state, {
+        fetchvalue: payload
+      });
+    }
+  },
   /** actions **/
-  actions: {
+  effects: dispatch => ({
     // 测试 - 数字加1
     onTestAdd(params) {
-      this.setState({ count: params + 1 });
+      this.setCount(params + 1); // 这里会指向上面reducers中的setCount
     },
     // 测试 - ajax请求
-    async serverAjax(params = {}) {
+    async serverAjax(params = {}, rootState) {
       try {
         const res = await Server.newPost("url.ajax", params);
         if (res.status === "success") {
-          this.setState({ fetchvalue: res.data }); // 异步请求成功后，可以把数据存入store，即走redux流程
+          this.setFetchValue(res.data); // 异步请求成功后，可以把数据存入store，即走redux流程
         }
         return res; // 也可以直接返回给view层，在页面中直接处理
       } catch (e) {
@@ -36,14 +49,12 @@ const model = {
       try {
         const res = await Server.newPost("url.ajax", params);
         if (res.status === "success") {
-          this.setState({ fetchvalue: res.data });
+          dispatch({ type: "test/setFetchValue", payload: res.data }); // dispatch是全局根dispatch,也能这么用
         }
         return res;
       } catch (e) {
         message.error("网络错误", 1);
       }
     }
-  }
+  })
 };
-
-export default model;

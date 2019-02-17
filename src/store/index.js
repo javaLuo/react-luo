@@ -1,11 +1,12 @@
 /** 全局唯一数据中心 **/
-import { createStore } from "retalk";
+import { init } from "@rematch/core";
 
-import ModelApp from "../models/app";
-import ModelTest from "../models/test";
-const store = createStore({
-  app: ModelApp,
-  test: ModelTest
+import app from "../models/app";
+import test from "../models/test";
+
+export default init({
+  models: {
+    app, // 这里的命名很重要，即这个模块的名字
+    test
+  }
 });
-
-export default store;

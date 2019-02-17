@@ -263,12 +263,12 @@ export default connect(
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
     count: state.test.count // 引入test model中的count数据
   }),
-  model => ({
+  dispatch => ({
     actions: {
-      getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
-      onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
-      serverAjax: model.test.serverAjax, // 引入test model中的ajax异步请求action
-      serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
+      getUserinfo: dispatch.app.getUserinfo, // 引入app model中的获取用户信息action
+      onTestAdd: dispatch.test.onTestAdd, // 引入test model中的数字+1 action
+      serverAjax: dispatch.test.serverAjax, // 引入test model中的ajax异步请求action
+      serverFetch: dispatch.test.serverFetch // 引入test model中的fetch异步请求action
     }
   })
 )(FormContainer);

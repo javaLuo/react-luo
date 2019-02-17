@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 /** 所需的所有资源 **/
 import "./index.less";
 
-function HomePageContainer() {
+function NotFoundPageContainer() {
   return (
     <div className="page-notfound">
       <div className="box">404 not found</div>
@@ -17,7 +17,7 @@ function HomePageContainer() {
 
 export default connect(
   state => ({}),
-  model => ({
+  dispatch => ({
     actions: {}
   })
-)(HomePageContainer);
+)(NotFoundPageContainer);

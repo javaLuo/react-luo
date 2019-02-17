@@ -42,7 +42,7 @@ const NotFound = Loadable({
 const history = createHistory(); // 实例化history对象
 
 /** 组件 **/
-function RootContainer(props) {
+function RootRouterContainer(props) {
   // 在组件加载完毕后触发
   useEffect(() => {
     // 可以手动在此预加载指定的模块：
@@ -101,7 +101,7 @@ function RootContainer(props) {
 
 export default connect(
   state => ({}),
-  model => ({
+  dispatch => ({
     actions: {}
   })
-)(RootContainer);
+)(RootRouterContainer);
