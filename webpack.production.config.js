@@ -1,3 +1,5 @@
+/** 这是用于生产环境的webpack配置文件 **/
+
 const path = require("path");
 const webpack = require("webpack"); // webpack核心
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); // 为了单独打包css
