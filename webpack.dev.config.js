@@ -56,13 +56,13 @@ module.exports = {
         // 文件解析
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        use: ["file-loader?name=assets/[name].[ext]"]
+        use: ["file-loader?name=assets/[name].[hash:4].[ext]"]
       },
       {
         // 图片解析
         test: /\.(png|jpg|gif)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        use: ["url-loader?limit=8192&name=assets/[name].[ext]"]
+        use: ["url-loader?limit=8192&name=assets/[name].[hash:4].[ext]"]
       },
       {
         // wasm文件解析
