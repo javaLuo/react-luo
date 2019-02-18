@@ -1,3 +1,5 @@
+/** 这是用于把第三方依赖打包成dll文件的webpack配置文件 **/
+
 const path = require("path");
 const webpack = require("webpack");
 const { dependencies } = require("./package.json");
