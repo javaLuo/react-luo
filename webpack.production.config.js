@@ -183,7 +183,7 @@ module.exports = {
       icons: {
         appleIcon: true, // 目前只生成苹果的，其他平台都用苹果的图标
         android: false,
-        firefox: false,
+        firefox: true,
         appleStartup: false
       }
     })
