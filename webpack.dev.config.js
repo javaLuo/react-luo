@@ -20,7 +20,7 @@ module.exports = {
     publicPath: PUBLIC_PATH, // 文件解析路径，index.html中引用的路径会被设置为相对于此路径
     filename: "bundle.js" // 编译后的文件名字
   },
-  devtool: "inline-source-map", // 报错的时候在控制台输出哪一行报错
+  devtool: "source-map", // 报错的时候在控制台输出哪一行报错
   context: __dirname, // entry 和 module.rules.loader 选项相对于此目录开始解析
   module: {
     rules: [
@@ -33,8 +33,8 @@ module.exports = {
       },
       {
         // .js .jsx用babel解析
-        test: /\.js?$/,
-        use: ["happypack/loader"],
+        test: /\.tsx?$/,
+        use: ["awesome-typescript-loader"],
         include: path.resolve(__dirname, "src")
       },
       {
@@ -119,7 +119,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], //后缀名自动补全
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".less", ".css", ".wasm"], //后缀名自动补全
     alias: {
       "@": path.resolve(__dirname, "src")
     }
