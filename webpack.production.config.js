@@ -9,6 +9,7 @@ const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标
 const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制文件用
 const TerserPlugin = require("terser-webpack-plugin"); // 优化js
+const webpackbar = require("webpackbar");
 /**
  * 基础路径
  * 比如我上传到自己的服务器填写的是："/work/pwa/"，最终访问为"https://isluo.com/work/pwa/#/"
@@ -93,6 +94,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpackbar(),
     /**
      * 在window环境中注入全局变量
      * 这里这么做是因为src/registerServiceWorker.js中有用到，为了配置PWA
@@ -103,9 +105,9 @@ module.exports = {
       })
     }),
     /**
-     * 打包前删除上一次打包留下的旧代码
+     * 打包前删除上一次打包留下的旧代码（根据output.path）
      * **/
-    new CleanWebpackPlugin(["build"]),
+    new CleanWebpackPlugin(),
 
     // new WebpackParallelUglifyPlugin({
     //   uglifyJS: {

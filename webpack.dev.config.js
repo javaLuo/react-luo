@@ -5,7 +5,7 @@ const webpack = require("webpack"); // webpack核心
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
 const HappyPack = require("happypack"); // 多线程编译
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-
+const webpackbar = require("webpackbar");
 const PUBLIC_PATH = "/"; // 基础路径
 module.exports = {
   mode: "development",
@@ -79,6 +79,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpackbar(),
     new webpack.HotModuleReplacementPlugin(), // 热更新插件
     new webpack.DefinePlugin({
       "process.env": JSON.stringify({
