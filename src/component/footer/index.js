@@ -6,7 +6,11 @@ export default function Footer(props) {
   return (
     <div className="footer">
       © 2018-2019{" "}
-      <a href="http://isluo.com" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://blog.isluo.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         isluo.com
       </a>
       , Inc.

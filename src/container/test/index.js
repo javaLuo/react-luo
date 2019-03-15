@@ -58,7 +58,7 @@ function TestPageContainer({
     setLocalCount(count);
   }, [count]);
 
-  // Ajax测试按钮被点击时触发（这里是直接在类中定义箭头函数的语法）
+  // Ajax测试按钮被点击时触发
   function onAjaxClick() {
     actions.serverAjax().then(res => {
       if (res.status === 200) {

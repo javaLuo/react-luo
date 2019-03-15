@@ -109,20 +109,6 @@ module.exports = {
      * **/
     new CleanWebpackPlugin(),
 
-    // new WebpackParallelUglifyPlugin({
-    //   uglifyJS: {
-    //     output: {
-    //       beautify: false, // 是否需要格式化
-    //       comments: false // 是否需要保留注释
-    //     },
-    //     compress: {
-    //       warnings: false, // 删除无用代码时是否给出警告
-    //       drop_console: true, // 是否删除所有console
-    //       collapse_vars: true, // 只用到一次的变量直接内嵌
-    //       reduce_vars: true // 提取出现多次但没有定义成变量的静态值
-    //     }
-    //   }
-    // }),
     /**
      * 提取CSS等样式生成单独的CSS文件
      * **/
@@ -185,7 +171,7 @@ module.exports = {
       icons: {
         appleIcon: true, // 目前只生成苹果的，其他平台都用苹果的图标
         android: false,
-        firefox: true,
+        firefox: false,
         appleStartup: false
       }
     })

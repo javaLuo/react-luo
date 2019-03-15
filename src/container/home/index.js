@@ -24,7 +24,6 @@ function HomePageContainer(props) {
 
 export default connect(
   state => {
-    console.log("事什么：", state);
     return {};
   },
   dispatch => ({
