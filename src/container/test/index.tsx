@@ -1,72 +1,66 @@
 /** 测试页 **/
 
 /** 所需的各种插件 **/
-import * as React from "react";
-import { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { Route, Switch, Link } from "react-router-dom";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, Link } from 'react-router-dom';
 
 /** 所需的所有资源 **/
-import { Button, Modal, message, Form, Input, Icon } from "antd";
-import Page1 from "./container/page1"; // 子页面1
-import Page2 from "./container/page2"; // 子页面2
-import Page3 from "./container/page3"; // 子页面3
-import "./index.less";
-import * as ImgTest from "../../assets/test.jpg";
-import * as Mp3 from "@/assets/starSky.mp3"; // @ 指向src目录
-interface Props{
-  count: number, // 来自store - test model中的全局变量count
-  location: any, // 自动注入的location对象
-  match: any, // 自动注入的match对象
-  history: any, // 自动注入的history对象
-  actions: {  // 上面model中定义的actions对象，自动成为this.props.actions变量
-      getUserinfo: Function,
-      serverAjax: Function,
-      serverFetch: Function,
-      onTestAdd: Function,
-  },
-  form: any, // antd的form表单高阶组件自动注入的form对象
+import { Button, Modal, message, Form, Input, Icon } from 'antd';
+import Page1 from './container/page1'; // 子页面1
+import Page2 from './container/page2'; // 子页面2
+import Page3 from './container/page3'; // 子页面3
+import './index.less';
+import * as ImgTest from '../../assets/test.jpg';
+import * as Mp3 from '@/assets/starSky.mp3'; // @ 指向src目录
+interface Props {
+  count: number; // 来自store - test model中的全局变量count
+  location: any; // 自动注入的location对象
+  match: any; // 自动注入的match对象
+  history: any; // 自动注入的history对象
+  actions: {
+    // 上面model中定义的actions对象，自动成为this.props.actions变量
+    getUserinfo: Function;
+    serverAjax: Function;
+    serverFetch: Function;
+    onTestAdd: Function;
+  };
+  form: any; // antd的form表单高阶组件自动注入的form对象
 }
-interface Res{
-  data: any,
-  status: any,
+interface Res {
+  data: any;
+  status: any;
 }
 /** 组件 **/
-function TestPageContainer({
-  count, 
-  location, 
-  match, 
-  history, 
-  actions,
-  form 
-}: Props) {
+function TestPageContainer({ count, location, match, history, actions, form }: Props) {
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
   const [mokeFetch, setMokeFetch] = useState([]); // 用于测试fetch请求
   const [mokeAjax, setMokeAjax] = useState([]); // 用于测试ajax请求
   const [localCount, setLocalCount] = useState(0); // 数字
-
+  let a: string = '5';
   // 仅组件加载完毕时触发一次
   useEffect(() => {
-    console.log("所有页面默认拥有的3个对象：", location, match, history);
+    console.log('所有页面默认拥有的3个对象：', location, match, history);
     const set = new Set([1, 2, 3]);
     const map = new Map();
-    console.log("Set 和 Map 测试:", set, map);
+    console.log('Set 和 Map 测试:', set, map);
 
     const a = { a: 1, b: 2, c: 3 };
     const b = { d: 4, ...a };
-    console.log("obj的扩展运算符测试：", b);
+    console.log('obj的扩展运算符测试：', b);
 
     // 获取用户信息测试
     actions
       .getUserinfo({ id: 1 })
-      .then((res:Res) => {
-        console.log("获取用户信息测试：", res);
+      .then((res: Res) => {
+        console.log('获取用户信息测试：', res);
       })
       .catch(() => {
-        console.log("Promise catch");
+        console.log('Promise catch');
       })
       .finally(() => {
-        console.log("Promise finally");
+        console.log('Promise finally');
       });
   }, []);
 
@@ -77,32 +71,32 @@ function TestPageContainer({
 
   // Ajax测试按钮被点击时触发（这里是直接在类中定义箭头函数的语法）
   function onAjaxClick() {
-    actions.serverAjax().then((res:Res) => {
+    actions.serverAjax().then((res: Res) => {
       if (res.status === 200) {
         setMokeAjax(res.data);
       } else {
-        message.error("获取数据失败");
+        message.error('获取数据失败');
       }
     });
   }
 
   // Fetch测试按钮点击时触发
   function onFetchClick() {
-    actions.serverFetch().then((res:Res) => {
+    actions.serverFetch().then((res: Res) => {
       if (res.status === 200) {
         setMokeFetch(res.data);
       } else {
-        message.error("获取数据失败");
+        message.error('获取数据失败');
       }
     });
   }
 
   // 表单提交登录
-  function handleSubmit(e:React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    form.validateFields((err:boolean) => {
+    form.validateFields((err: boolean) => {
       if (!err) {
-        message.success("执行了登录操作");
+        message.success('执行了登录操作');
       }
     });
   }
@@ -116,21 +110,15 @@ function TestPageContainer({
         <div className="list">
           <h2>引入图片</h2>
           <p>
-            <img src={ImgTest} style={{ height: "150px" }} />
+            <img src={ImgTest} style={{ height: '150px' }} />
             <span className="backImage" />
             <span>上方图片，一张是img,一张是background</span>
             <br />
-            <span>
-              请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
-            </span>
+            <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
             <br />
-            <span>
-              如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
-            </span>
+            <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
             <br />
-            <span>
-              如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
-            </span>
+            <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
           </p>
         </div>
         <div className="list">
@@ -142,7 +130,7 @@ function TestPageContainer({
         <div className="list">
           <h2>LESS测试</h2>
           <p>
-            <span className={"less_btn"}>来自LESS样式</span>
+            <span className={'less_btn'}>来自LESS样式</span>
           </p>
         </div>
         <div className="list">
@@ -162,25 +150,17 @@ function TestPageContainer({
         </div>
         <div className="list">
           <h2>Antd表单</h2>
-          <p style={{ maxWidth: "400px" }}>
+          <p style={{ maxWidth: '400px' }}>
             <Form onSubmit={handleSubmit}>
               <Form.Item>
-                {getFieldDecorator("username", {
-                  rules: [{ required: true, message: "请输入用户名" }]
-                })(
-                  <Input prefix={<Icon type="user" />} placeholder="用户名" />
-                )}
+                {getFieldDecorator('username', {
+                  rules: [{ required: true, message: '请输入用户名' }],
+                })(<Input prefix={<Icon type="user" />} placeholder="用户名" />)}
               </Form.Item>
               <Form.Item>
-                {getFieldDecorator("password", {
-                  rules: [{ required: true, message: "请输入密码" }]
-                })(
-                  <Input
-                    type="password"
-                    prefix={<Icon type="lock" />}
-                    placeholder="密码"
-                  />
-                )}
+                {getFieldDecorator('password', {
+                  rules: [{ required: true, message: '请输入密码' }],
+                })(<Input type="password" prefix={<Icon type="lock" />} placeholder="密码" />)}
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -203,8 +183,8 @@ function TestPageContainer({
             {location.state
               ? Object.entries(location.state)
                   .map(v => `${v[0]}=${v[1]}`)
-                  .join("，")
-              : ""}
+                  .join('，')
+              : ''}
           </p>
           <p>所有页面都自动被注入location、match、history对象</p>
         </div>
@@ -261,12 +241,7 @@ function TestPageContainer({
           </div>
         </div>
       </div>
-      <Modal
-        title="模态框"
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
-      >
+      <Modal title="模态框" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
         <p>内容...</p>
       </Modal>
     </div>
@@ -276,16 +251,16 @@ function TestPageContainer({
 const FormContainer = Form.create({})(TestPageContainer);
 
 export default connect(
-  (state:any) => ({
+  (state: any) => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count // 引入test model中的count数据
+    count: state.test.count, // 引入test model中的count数据
   }),
-  (model:any) => ({
+  (model: any) => ({
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
       serverAjax: model.test.serverAjax, // 引入test model中的ajax异步请求action
-      serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
-    }
-  })
+      serverFetch: model.test.serverFetch, // 引入test model中的fetch异步请求action
+    },
+  }),
 )(FormContainer);

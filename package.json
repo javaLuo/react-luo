@@ -34,8 +34,7 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
-    "reqwest": "^2.0.5",
-    "retalk": "^2.1.0"
+    "reqwest": "^2.0.5"
   },
   "devDependencies": {
     "@types/node": "^11.11.6",

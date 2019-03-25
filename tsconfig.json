@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": { "*": ["types/*"] },
     "outDir": "./build/",
@@ -11,5 +10,5 @@
     "target": "es5",
     "jsx": "react"
   },
-  "include": ["./src/**/*","./index.d.ts"]
+  "include": ["./src/**/*", "./index.d.ts"]
 }
