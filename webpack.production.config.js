@@ -9,6 +9,7 @@ const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标
 const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制文件用
 const TerserPlugin = require("terser-webpack-plugin"); // 优化js
+const tsImportPluginFactory = require("ts-import-plugin");
 /**
  * 基础路径
  * 比如我上传到自己的服务器填写的是："/work/pwa/"，最终访问为"https://isluo.com/work/pwa/"
@@ -19,7 +20,7 @@ const PUBLIC_PATH = "/";
 
 module.exports = {
   mode: "production",
-  entry: ["@babel/polyfill", path.resolve(__dirname, "src", "index")],
+  entry: [path.resolve(__dirname, "src", "index")],
   output: {
     path: path.resolve(__dirname, "build"), // 将文件打包到此目录下
     publicPath: PUBLIC_PATH, // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址
@@ -41,10 +42,24 @@ module.exports = {
   module: {
     rules: [
       {
-        // .js .jsx用babel解析
-        test: /\.js?$/,
-        include: path.resolve(__dirname, "src"),
-        use: ["babel-loader"]
+        // .ts、.tsx解析
+        test: /\.(ts|tsx)?$/,
+        use: [
+          {
+            loader: "awesome-typescript-loader",
+            options: {
+              getCustomTransformers: () => ({
+                before: [
+                  tsImportPluginFactory({
+                    libraryName: "antd",
+                    style: true
+                  })
+                ]
+              })
+            }
+          }
+        ],
+        include: path.resolve(__dirname, "src")
       },
       {
         // .css 解析
@@ -105,22 +120,8 @@ module.exports = {
     /**
      * 打包前删除上一次打包留下的旧代码
      * **/
-    new CleanWebpackPlugin(["build"]),
+    new CleanWebpackPlugin(),
 
-    // new WebpackParallelUglifyPlugin({
-    //   uglifyJS: {
-    //     output: {
-    //       beautify: false, // 是否需要格式化
-    //       comments: false // 是否需要保留注释
-    //     },
-    //     compress: {
-    //       warnings: false, // 删除无用代码时是否给出警告
-    //       drop_console: true, // 是否删除所有console
-    //       collapse_vars: true, // 只用到一次的变量直接内嵌
-    //       reduce_vars: true // 提取出现多次但没有定义成变量的静态值
-    //     }
-    //   }
-    // }),
     /**
      * 提取CSS等样式生成单独的CSS文件
      * **/
@@ -189,7 +190,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], //后缀名自动补全
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".less", ".css", ".wasm"], //后缀名自动补全
     alias: {
       "@": path.resolve(__dirname, "src")
     }

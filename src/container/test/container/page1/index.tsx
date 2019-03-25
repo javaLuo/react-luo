@@ -1,12 +1,12 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 // ==================
 // 组件
 // ==================
-function Page3(props) {
-  return <div className="son">C 子container 3</div>;
+function Page1() {
+  return <div className="son">A 子container 1</div>;
 }
 
 export default connect(
@@ -14,4 +14,4 @@ export default connect(
   dispatch => ({
     actions: bindActionCreators({}, dispatch)
   })
-)(Page3);
+)(Page1);

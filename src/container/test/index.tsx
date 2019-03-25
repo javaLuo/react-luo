@@ -1,28 +1,45 @@
 /** 测试页 **/
 
 /** 所需的各种插件 **/
-import React, { useState, useEffect } from "react";
+import * as React from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Route, Switch, Link } from "react-router-dom";
 
 /** 所需的所有资源 **/
 import { Button, Modal, message, Form, Input, Icon } from "antd";
-import ImgTest from "../../assets/test.jpg";
-import Mp3 from "../../assets/starSky.mp3";
 import Page1 from "./container/page1"; // 子页面1
 import Page2 from "./container/page2"; // 子页面2
 import Page3 from "./container/page3"; // 子页面3
 import "./index.less";
-
+import * as ImgTest from "../../assets/test.jpg";
+import * as Mp3 from "@/assets/starSky.mp3"; // @ 指向src目录
+interface Props{
+  count: number, // 来自store - test model中的全局变量count
+  location: any, // 自动注入的location对象
+  match: any, // 自动注入的match对象
+  history: any, // 自动注入的history对象
+  actions: {  // 上面model中定义的actions对象，自动成为this.props.actions变量
+      getUserinfo: Function,
+      serverAjax: Function,
+      serverFetch: Function,
+      onTestAdd: Function,
+  },
+  form: any, // antd的form表单高阶组件自动注入的form对象
+}
+interface Res{
+  data: any,
+  status: any,
+}
 /** 组件 **/
 function TestPageContainer({
-  count, // 来自store - test model中的全局变量count
-  location, // 自动注入的location对象
-  match, // 自动注入的match对象
-  history, // 自动注入的history对象
-  actions, // 上面model中定义的actions对象，自动成为this.props.actions变量
-  form // antd的form表单高阶组件自动注入的form对象
-}) {
+  count, 
+  location, 
+  match, 
+  history, 
+  actions,
+  form 
+}: Props) {
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
   const [mokeFetch, setMokeFetch] = useState([]); // 用于测试fetch请求
   const [mokeAjax, setMokeAjax] = useState([]); // 用于测试ajax请求
@@ -42,7 +59,7 @@ function TestPageContainer({
     // 获取用户信息测试
     actions
       .getUserinfo({ id: 1 })
-      .then(res => {
+      .then((res:Res) => {
         console.log("获取用户信息测试：", res);
       })
       .catch(() => {
@@ -60,7 +77,7 @@ function TestPageContainer({
 
   // Ajax测试按钮被点击时触发（这里是直接在类中定义箭头函数的语法）
   function onAjaxClick() {
-    actions.serverAjax().then(res => {
+    actions.serverAjax().then((res:Res) => {
       if (res.status === 200) {
         setMokeAjax(res.data);
       } else {
@@ -71,7 +88,7 @@ function TestPageContainer({
 
   // Fetch测试按钮点击时触发
   function onFetchClick() {
-    actions.serverFetch().then(res => {
+    actions.serverFetch().then((res:Res) => {
       if (res.status === 200) {
         setMokeFetch(res.data);
       } else {
@@ -81,9 +98,9 @@ function TestPageContainer({
   }
 
   // 表单提交登录
-  function handleSubmit(e) {
+  function handleSubmit(e:React.FormEvent) {
     e.preventDefault();
-    form.validateFields((err, values) => {
+    form.validateFields((err:boolean) => {
       if (!err) {
         message.success("执行了登录操作");
       }
@@ -259,11 +276,11 @@ function TestPageContainer({
 const FormContainer = Form.create({})(TestPageContainer);
 
 export default connect(
-  state => ({
+  (state:any) => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
     count: state.test.count // 引入test model中的count数据
   }),
-  model => ({
+  (model:any) => ({
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action

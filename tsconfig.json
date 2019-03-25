@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": { "*": ["types/*"] },
     "outDir": "./build/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "commonjs",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "target": "es5",
     "jsx": "react"
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*","./index.d.ts"]
 }

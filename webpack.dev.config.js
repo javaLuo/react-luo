@@ -3,16 +3,14 @@
 const path = require("path"); // 获取绝对路径用
 const webpack = require("webpack"); // webpack核心
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
-const HappyPack = require("happypack"); // 多线程编译
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
-
+const tsImportPluginFactory = require("ts-import-plugin");
 const PUBLIC_PATH = "/"; // 基础路径
 module.exports = {
   mode: "development",
   entry: [
     "webpack-hot-middleware/client?reload=true&path=/__webpack_hmr", // webpack热更新插件，就这么写
-    "@babel/polyfill",
-    "./src/index.js", // 项目入口
+    "./src/index.tsx", // 项目入口
     "./dll/vendor.dll.js"
   ],
   output: {
@@ -25,16 +23,23 @@ module.exports = {
   module: {
     rules: [
       {
-        // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
-        test: /\.js?$/,
-        enforce: "pre",
-        use: ["eslint-loader"],
-        include: path.resolve(__dirname, "src")
-      },
-      {
-        // .js .jsx用babel解析
-        test: /\.tsx?$/,
-        use: ["awesome-typescript-loader"],
+        // .ts、.tsx解析
+        test: /\.(ts|tsx)?$/,
+        use: [
+          {
+            loader: "awesome-typescript-loader",
+            options: {
+              getCustomTransformers: () => ({
+                before: [
+                  tsImportPluginFactory({
+                    libraryName: "antd",
+                    style: true
+                  })
+                ]
+              })
+            }
+          }
+        ],
         include: path.resolve(__dirname, "src")
       },
       {
@@ -54,13 +59,13 @@ module.exports = {
       },
       {
         // 文件解析
-        test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
+        test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)?$/,
         include: path.resolve(__dirname, "src"),
         use: ["file-loader?name=assets/[name].[ext]"]
       },
       {
         // 图片解析
-        test: /\.(png|jpg|gif)(\?|$)/,
+        test: /\.(png|jpg|jpeg|gif)?$/,
         include: path.resolve(__dirname, "src"),
         use: ["url-loader?limit=8192&name=assets/[name].[ext]"]
       },
@@ -92,9 +97,6 @@ module.exports = {
            这样webpack打包时，就先直接去这个json文件中把那些预编译的资源弄进来
            **/
       manifest: require("./dll/vendor-manifest.json")
-    }),
-    new HappyPack({
-      loaders: ["babel-loader"]
     }),
     new HtmlWebpackPlugin({
       // 根据模板插入css/js等生成最终HTML

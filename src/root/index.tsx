@@ -5,7 +5,7 @@
  * */
 
 /** 所需的各种插件 **/
-import React from "react";
+import * as React from "react";
 import { Provider } from "react-redux";
 import store from "../store";
 import Routers from "../container/routers";
