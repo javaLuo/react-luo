@@ -30,6 +30,10 @@ const Test = Loadable({
   loader: () => import(/* webpackChunkName:'test' */ "../test"),
   loading: Loading
 });
+const TestClass = Loadable({
+  loader: () => import(/* webpackChunkName:'testclass' */ "../testclass"),
+  loading: Loading
+});
 const Features = Loadable({
   loader: () => import(/* webpackChunkName:'features' */ "../features"),
   loading: Loading
@@ -84,6 +88,10 @@ function RootRouterContainer(props) {
                     <Route
                       path="/test"
                       render={props => onEnter(Test, props)}
+                    />
+                    <Route
+                      path="/testclass"
+                      render={props => onEnter(TestClass, props)}
                     />
                     <Route component={NotFound} />
                   </Switch>
