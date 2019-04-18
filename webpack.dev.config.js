@@ -20,7 +20,7 @@ module.exports = {
     publicPath: PUBLIC_PATH, // 文件解析路径，index.html中引用的路径会被设置为相对于此路径
     filename: "bundle.js" // 编译后的文件名字
   },
-  devtool: "inline-source-map", // 报错的时候在控制台输出哪一行报错
+  devtool: "eval-source-map", // 报错的时候在控制台输出哪一行报错
   context: __dirname, // entry 和 module.rules.loader 选项相对于此目录开始解析
   module: {
     rules: [
