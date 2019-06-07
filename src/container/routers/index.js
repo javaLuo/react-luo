@@ -53,7 +53,7 @@ function RootRouterContainer(props) {
     //Features.preload(); // 预加载Features页面
     //Test.preload(); // 预加载Test页面
     // 也可以直接预加载所有的异步模块
-    Loadable.preloadAll();
+    // Loadable.preloadAll();
   }, []);
 
   /** 简单权限控制 **/
