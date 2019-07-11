@@ -21,7 +21,7 @@ const PUBLIC_PATH = '/';
 
 module.exports = {
   mode: 'production',
-  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'index')],
+  entry: path.resolve(__dirname, 'src', 'index'),
   output: {
     path: path.resolve(__dirname, 'build'), // 将文件打包到此目录下
     publicPath: PUBLIC_PATH, // 在生成的html中，文件的引入路径会相对于此地址，生成的css中，以及各类图片的URL都会相对于此地址

@@ -11,7 +11,6 @@ module.exports = {
   mode: 'development',
   entry: [
     'webpack-hot-middleware/client?reload=true&path=/__webpack_hmr', // webpack热更新插件，就这么写
-    '@babel/polyfill',
     './src/index.js', // 项目入口
     './dll/vendor.dll.js',
   ],
