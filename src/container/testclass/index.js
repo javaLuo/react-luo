@@ -163,19 +163,6 @@ class TestPageContainer extends React.Component {
     });
   }
 
-  // Ajax测试按钮被点击时触发（这里是直接在类中定义箭头函数的语法）
-  onAjaxClick = () => {
-    this.props.actions.serverAjax().then(res => {
-      if (res.status === 200) {
-        this.setState({
-          mokeAjax: res.data
-        });
-      } else {
-        message.error("获取数据失败");
-      }
-    });
-  };
-
   // Fetch测试按钮点击时触发
   onFetchClick() {
     this.props.actions.serverFetch().then(res => {
@@ -278,18 +265,6 @@ class TestPageContainer extends React.Component {
           <div className="list">
             <h2>异步请求测试（Mock模拟数据）</h2>
             <div className="pbox">
-              <Button type="primary" onClick={this.onAjaxClick}>
-                ajax请求测试(使用的reqwest库)
-              </Button>
-              <br />
-              数据：
-              <ul>
-                {this.state.mokeAjax.map((item, index) => (
-                  <li key={index}>{`id: ${item.id}, email: ${item.email}`}</li>
-                ))}
-              </ul>
-            </div>
-            <div className="pbox">
               <Button type="primary" onClick={() => this.onFetchClick()}>
                 fetch请求测试(使用的axios库)
               </Button>
@@ -356,7 +331,6 @@ export default connect(
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
-      serverAjax: model.test.serverAjax, // 引入test model中的ajax异步请求action
       serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
     }
   })
