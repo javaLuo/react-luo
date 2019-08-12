@@ -1,19 +1,19 @@
 /** 测试页 **/
 
 /** 所需的各种插件 **/
-import React from "react";
-import { connect } from "react-redux";
-import { Route, Switch, Link } from "react-router-dom";
-import P from "prop-types";
+import React from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch, Link } from 'react-router-dom';
+import P from 'prop-types';
 
 /** 所需的所有资源 **/
-import { Button, Modal, message, Form } from "antd";
-import "./index.less";
-import ImgTest from "../../assets/test.jpg";
-import Mp3 from "../../assets/starSky.mp3";
-import Page1 from "./container/page1"; // 子页面1
-import Page2 from "./container/page2"; // 子页面2
-import Page3 from "./container/page3"; // 子页面3
+import { Button, Modal, message, Form } from 'antd';
+import './index.less';
+import ImgTest from '../../assets/test.jpg';
+import Mp3 from '../../assets/starSky.mp3';
+import Page1 from './container/page1'; // 子页面1
+import Page2 from './container/page2'; // 子页面2
+import Page3 from './container/page3'; // 子页面3
 
 /** 组件 **/
 class TestPageContainer extends React.Component {
@@ -23,7 +23,7 @@ class TestPageContainer extends React.Component {
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
     actions: P.object, // 上面model中定义的actions对象，自动成为this.props.actions变量
-    form: P.any // antd的form表单高阶组件自动注入的form对象
+    form: P.any, // antd的form表单高阶组件自动注入的form对象
   };
 
   /** react生命周期 - 构造函数 **/
@@ -33,40 +33,32 @@ class TestPageContainer extends React.Component {
       visible: false, // 模态框隐藏和显示
       mokeFetch: [], // 用于测试fetch请求
       mokeAjax: [], // 用于测试ajax请求
-      count: 0 // 数字
+      count: 0, // 数字
     };
   }
 
-  /** react生命周期 - 废弃 - 组件初始化完毕DOM挂载之前 触发1次 **/
-  UNSAFE_componentWillMount() {}
-
   /** react生命周期 - 组件初始化完毕DOM挂载完毕后 触发1次 **/
   componentDidMount() {
-    console.log(
-      "所有页面默认拥有的3个对象：",
-      this.props.location,
-      this.props.match,
-      this.props.history
-    );
+    console.log('所有页面默认拥有的3个对象：', this.props.location, this.props.match, this.props.history);
     const set = new Set([1, 2, 3]);
     const map = new Map();
-    console.log("Set 和 Map 测试:", set, map);
+    console.log('Set 和 Map 测试:', set, map);
 
     const a = { a: 1, b: 2, c: 3 };
     const b = { d: 4, ...a };
-    console.log("obj的扩展运算符测试：", b);
+    console.log('obj的扩展运算符测试：', b);
 
     // 获取用户信息测试
     this.props.actions
       .getUserinfo({ id: 1 })
       .then(res => {
-        console.log("获取用户信息测试：", res);
+        console.log('获取用户信息测试：', res);
       })
       .catch(() => {
-        console.log("Promise catch");
+        console.log('Promise catch');
       })
       .finally(() => {
-        console.log("Promise finally");
+        console.log('Promise finally');
       });
   }
 
@@ -82,13 +74,6 @@ class TestPageContainer extends React.Component {
   }
 
   /**
-   * react生命周期 - 废弃 - 是否执行下一次render
-   * props对象有变化时触发
-   * @param nextProps 变化后的最新的props
-   */
-  UNSAFE_componentWillReceiveProps(nextProps) {}
-
-  /**
    * react生命周期 - props改变时触发
    * @param nextProps 下一轮最新的props对象
    * @param prevState 当前的state对象
@@ -97,18 +82,11 @@ class TestPageContainer extends React.Component {
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.count !== prevState.count) {
       return {
-        count: nextProps.count
+        count: nextProps.count,
       };
     }
     return null;
   }
-
-  /**
-   * react生命周期 - 废弃 - 每次组件的props和state有变动时，触发1次
-   * @param nextProps 下一轮最新的props
-   * @param nextStates 下一轮最新的state
-   */
-  UNSAFE_componentWillUpdate(nextProps, nextStates) {}
 
   /** react生命周期
    * 在下一轮render即将开始时触发，比componentWillUpdate后执行
@@ -152,14 +130,14 @@ class TestPageContainer extends React.Component {
   // 打开模态框按钮被点击时触发
   onBtnClick() {
     this.setState({
-      visible: true
+      visible: true,
     });
   }
 
   // 关闭模态框
   handleCancel() {
     this.setState({
-      visible: false
+      visible: false,
     });
   }
 
@@ -168,10 +146,10 @@ class TestPageContainer extends React.Component {
     this.props.actions.serverFetch().then(res => {
       if (res.status === 200) {
         this.setState({
-          mokeFetch: res.data
+          mokeFetch: res.data,
         });
       } else {
-        message.error("获取数据失败");
+        message.error('获取数据失败');
       }
     });
   }
@@ -186,21 +164,15 @@ class TestPageContainer extends React.Component {
           <div className="list">
             <h2>引入图片</h2>
             <p>
-              <img src={ImgTest} style={{ height: "150px" }} />
+              <img src={ImgTest} style={{ height: '150px' }} />
               <span className="backImage" />
               <span>上方图片，一张是img,一张是background</span>
               <br />
-              <span>
-                请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
-              </span>
+              <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
               <br />
-              <span>
-                如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
-              </span>
+              <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
               <br />
-              <span>
-                如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
-              </span>
+              <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
             </p>
           </div>
           <div className="list">
@@ -212,7 +184,7 @@ class TestPageContainer extends React.Component {
           <div className="list">
             <h2>LESS测试</h2>
             <p>
-              <span className={"less_btn"}>来自LESS样式</span>
+              <span className={'less_btn'}>来自LESS样式</span>
             </p>
           </div>
           <div className="list">
@@ -243,18 +215,15 @@ class TestPageContainer extends React.Component {
               {this.props.location.state
                 ? Object.entries(this.props.location.state)
                     .map(v => `${v[0]}=${v[1]}`)
-                    .join("，")
-                : ""}
+                    .join('，')
+                : ''}
             </p>
             <p>所有页面都自动被注入location、match、history对象</p>
           </div>
           <div className="list">
             <h2>action测试</h2>
             <p>
-              <Button
-                type="primary"
-                onClick={() => this.props.actions.onTestAdd(this.props.count)}
-              >
+              <Button type="primary" onClick={() => this.props.actions.onTestAdd(this.props.count)}>
                 通过action改变数据num
               </Button>
               <br />
@@ -284,36 +253,15 @@ class TestPageContainer extends React.Component {
               <Link to={`${this.props.match.url}/Page2`}>子页2</Link>
               <Link to={`${this.props.match.url}/Page3`}>子页3</Link>
               <Switch>
-                <Route
-                  exact
-                  path={`${this.props.match.url}/`}
-                  component={Page1}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page1`}
-                  component={Page1}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page2`}
-                  component={Page2}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page3`}
-                  component={Page3}
-                />
+                <Route exact path={`${this.props.match.url}/`} component={Page1} />
+                <Route exact path={`${this.props.match.url}/Page1`} component={Page1} />
+                <Route exact path={`${this.props.match.url}/Page2`} component={Page2} />
+                <Route exact path={`${this.props.match.url}/Page3`} component={Page3} />
               </Switch>
             </div>
           </div>
         </div>
-        <Modal
-          title="模态框"
-          visible={this.state.visible}
-          onOk={() => this.handleCancel()}
-          onCancel={() => this.handleCancel()}
-        >
+        <Modal title="模态框" visible={this.state.visible} onOk={() => this.handleCancel()} onCancel={() => this.handleCancel()}>
           <p>内容...</p>
         </Modal>
       </div>
@@ -325,13 +273,13 @@ const FormComponent = Form.create()(TestPageContainer);
 export default connect(
   state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count // 引入test model中的count数据
+    count: state.test.count, // 引入test model中的count数据
   }),
   model => ({
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
-      serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
-    }
-  })
+      serverFetch: model.test.serverFetch, // 引入test model中的fetch异步请求action
+    },
+  }),
 )(FormComponent);
