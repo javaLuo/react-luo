@@ -37,8 +37,11 @@ module.exports = {
       new TerserPlugin({
         parallel: true, // 多线程并行构建
         terserOptions: {
-          output: {
-            comments: false, // 不保留注释
+          // https://github.com/terser/terser#minify-options
+          compress: {
+            warnings: false, // 删除无用代码时是否给出警告
+            drop_console: true, // 删除所有的console.*
+            drop_debugger: true, // 删除所有的debugger
           },
         },
       }),
