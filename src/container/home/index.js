@@ -14,7 +14,9 @@ function HomePageContainer(props) {
       <div className="box">
         <img src={ImgLogo} />
         <div className="title">React-Luo</div>
-        <div className="info">react16、redux4、router5、webpack4、eslint、babel7、antd</div>
+        <div className="info">
+          react16、redux4、router5、webpack4、eslint、babel7、antd
+        </div>
       </div>
     </div>
   );
@@ -25,6 +27,6 @@ export default connect(
     return {};
   },
   dispatch => ({
-    actions: {},
-  }),
+    actions: {}
+  })
 )(HomePageContainer);
