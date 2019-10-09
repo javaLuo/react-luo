@@ -54,6 +54,12 @@ module.exports = {
   module: {
     rules: [
       {
+        // .tsx 解析
+        test: /\.tsx?$/,
+        use: ["awesome-typescript-loader"],
+        include: path.resolve(__dirname, "src"),
+      },
+      {
         // .js .jsx用babel解析
         test: /\.js?$/,
         include: path.resolve(__dirname, "src"),

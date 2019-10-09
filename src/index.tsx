@@ -15,6 +15,6 @@ ReactDOM.render(<Root />, document.getElementById("app-root"));
 
 serviceWorker.register();
 
-if (module.hot) {
-  module.hot.accept();
+if ((module as any).hot) {
+  (module as any).hot.accept();
 }

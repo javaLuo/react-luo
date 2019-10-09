@@ -10,10 +10,12 @@ import { Provider } from "react-redux";
 import store from "../store";
 import Routers from "../container/routers";
 
-export default function RootContainer() {
+const RootContainer: React.FC = () => {
   return (
     <Provider store={store}>
       <Routers />
     </Provider>
   );
-}
+};
+
+export default RootContainer;
