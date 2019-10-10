@@ -6,34 +6,39 @@
 import { message } from "antd";
 import Server from "../util/server"; // 自己封装的异步请求方法
 
+interface IParams {
+  id?: string | number;
+  [propName: string]: any;
+}
+
 export default {
   /** store数据 **/
   state: {
     count: 0, // 测试数字
-    fetchvalue: [] // 异步请求的测试数据
+    fetchvalue: [], // 异步请求的测试数据
   },
 
   /** reducers **/
   reducers: {
-    setCount(state, payload) {
+    setCount(state: object, payload: number) {
       return Object.assign({}, state, {
-        count: payload
+        count: payload,
       });
     },
-    setFetchValue(state, payload) {
+    setFetchValue(state: object, payload: Array<any>) {
       return Object.assign({}, state, {
-        fetchvalue: payload
+        fetchvalue: payload,
       });
-    }
+    },
   },
   /** actions **/
-  effects: dispatch => ({
+  effects: (dispatch: Function) => ({
     // 测试 - 数字加1
-    onTestAdd(params) {
+    onTestAdd(params: number) {
       this.setCount(params + 1); // 这里会指向上面reducers中的setCount
     },
     // 测试 - 异步请求
-    async serverFetch(params = {}) {
+    async serverFetch(params: IParams = {}) {
       try {
         const res = await Server.newServer("url.ajax", params, "post");
         if (res && res.data.status === 200) {
@@ -43,6 +48,6 @@ export default {
       } catch (e) {
         message.error("网络错误", 1);
       }
-    }
-  })
+    },
+  }),
 };

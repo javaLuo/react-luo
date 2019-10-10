@@ -6,7 +6,7 @@
 import axios, { Method } from "axios";
 
 export default class ApiService {
-  static newServer(url: string, bodyObj: object = {}, method: Method = "post") {
+  static newServer(url: string, bodyObj: object = {}, method: Method = "post"): Promise<any> {
     return axios({
       url,
       method,

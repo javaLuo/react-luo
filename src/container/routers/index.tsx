@@ -24,29 +24,30 @@ import "./index.less";
 const Home = Loadable({
   loader: () => import(/* webpackChunkName:'home' */ "../home"),
   loading: Loading, // 自定义的Loading动画组件
-  timeout: 10000 // 可以设置一个超时时间(s)来应对网络慢的情况（在Loading动画组件中可以配置error信息）
+  timeout: 10000, // 可以设置一个超时时间(s)来应对网络慢的情况（在Loading动画组件中可以配置error信息）
 });
 const Test = Loadable({
   loader: () => import(/* webpackChunkName:'test' */ "../test"),
-  loading: Loading
+  loading: Loading,
 });
 const TestClass = Loadable({
   loader: () => import(/* webpackChunkName:'testclass' */ "../testclass"),
-  loading: Loading
+  loading: Loading,
 });
 const Features = Loadable({
   loader: () => import(/* webpackChunkName:'features' */ "../features"),
-  loading: Loading
+  loading: Loading,
 });
 const NotFound = Loadable({
   loader: () => import(/* webpackChunkName:'notfound' */ "../notfound"),
-  loading: Loading
+  loading: Loading,
 });
 
 const history = createHistory(); // 实例化history对象
 
 /** 组件 **/
-function RootRouterContainer(props) {
+function RootRouterContainer(props: any) {
+  console.log("父级参数：", props);
   // 在组件加载完毕后触发
   useEffect(() => {
     // 可以手动在此预加载指定的模块：
@@ -57,7 +58,7 @@ function RootRouterContainer(props) {
   }, []);
 
   /** 简单权限控制 **/
-  function onEnter(Component, props) {
+  function onEnter(Component: any, props: any) {
     // 例子：如果没有登录，直接跳转至login页
     // if (sessionStorage.getItem('userInfo')) {
     //   return <Component {...props} />;
@@ -77,22 +78,10 @@ function RootRouterContainer(props) {
                 <div className="boss">
                   <Switch>
                     <Redirect exact from="/" to="/home" />
-                    <Route
-                      path="/home"
-                      render={props => onEnter(Home, props)}
-                    />
-                    <Route
-                      path="/features"
-                      render={props => onEnter(Features, props)}
-                    />
-                    <Route
-                      path="/test"
-                      render={props => onEnter(Test, props)}
-                    />
-                    <Route
-                      path="/testclass"
-                      render={props => onEnter(TestClass, props)}
-                    />
+                    <Route path="/home" render={props => onEnter(Home, props)} />
+                    <Route path="/features" render={props => onEnter(Features, props)} />
+                    <Route path="/test" render={props => onEnter(Test, props)} />
+                    <Route path="/testclass" render={props => onEnter(TestClass, props)} />
                     <Route component={NotFound} />
                   </Switch>
                   <Menu />
@@ -110,6 +99,6 @@ function RootRouterContainer(props) {
 export default connect(
   state => ({}),
   dispatch => ({
-    actions: {}
-  })
+    actions: {},
+  }),
 )(RootRouterContainer);

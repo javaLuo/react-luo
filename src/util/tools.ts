@@ -5,25 +5,21 @@ const tools = {
     保留N位小数
     最终返回的是字符串
     若转换失败，返回参数原值
-    @params
-      str - 数字或字符串
-      x   - 保留几位小数点
+    @param str 字符串或数字
+    @param x 保留几位小数
   */
-  pointX(str: string | number, x: number = 0) {
-    if (!str && str !== 0) {
-      return str;
-    }
+  pointX(str: string | number, x: number = 0): string {
     const temp = Number(str);
     if (temp === 0) {
       return temp.toFixed(x);
     }
-    return temp ? temp.toFixed(x) : str;
+    return temp ? temp.toFixed(x) : String(str);
   },
 
   /**
      去掉字符串两端空格
   */
-  trim(str: string) {
+  trim(str: string): string {
     const reg = /^\s*|\s*$/g;
     return str.replace(reg, "");
   },
@@ -33,7 +29,7 @@ const tools = {
     如：将123456转换为1****6，最多将字符串中间6个字符变成*
     如果字符串长度小于等于2，将不会有效果
   */
-  addMosaic(str: string | number) {
+  addMosaic(str: string | number): string {
     const s = String(str);
     const lenth = s.length;
     const howmuch = (() => {
@@ -59,7 +55,7 @@ const tools = {
     字符串加密
     简单的加密方法
   */
-  compile(code: string) {
+  compile(code: string): string {
     let c = String.fromCharCode(code.charCodeAt(0) + code.length);
     for (let i = 1; i < code.length; i++) {
       c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));
@@ -71,7 +67,7 @@ const tools = {
     字符串解谜
     对应上面的字符串加密方法
   */
-  uncompile(code: string) {
+  uncompile(code: string): string {
     let c = String.fromCharCode(code.charCodeAt(0) - code.length);
     for (let i = 1; i < code.length; i++) {
       c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1));
