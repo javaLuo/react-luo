@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成一个server-worker用于缓存
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标
-const CopyWebpackPlugin = require("copy-webpack-plugin"); // 复制文件用
 const TerserPlugin = require("terser-webpack-plugin"); // 优化js
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); // 压缩CSS
 const webpackbar = require("webpackbar"); // 进度条
@@ -17,7 +16,7 @@ const webpackbar = require("webpackbar"); // 进度条
  * 根据你自己的需求填写
  * "/" 就是根路径，假如最终项目上线的地址为：https://isluo.com/， 那就可以直接写"/"
  * **/
-const PUBLIC_PATH = "/";
+const PUBLIC_PATH = "/work/pwa/";
 
 module.exports = {
   mode: "production",
@@ -132,11 +131,6 @@ module.exports = {
       filename: "dist/[name].[chunkhash:8].css", // 生成的文件名
     }),
     /**
-     * 文件复制
-     * 这里是用于把manifest.json打包时复制到/build下 （PWA）
-     * **/
-    new CopyWebpackPlugin([{ from: "./public/manifest.json", to: "./manifest.json" }]),
-    /**
      * 生成一个server-work用于缓存资源（PWA）
      * */
     new SWPrecacheWebpackPlugin({
@@ -177,7 +171,7 @@ module.exports = {
      * **/
     new FaviconsWebpackPlugin({
       logo: "./public/favicon.png", // 原始图片路径
-      // prefix: "/assets", // 自定义目录，把生成的文件存在此目录下
+     // prefix: "/assets", // 自定义目录，把生成的文件存在此目录下
       favicons: {
         appName: "ReactPWA", // 你的APP全称
         appShortName: "React", // 你的APP简称，手机某些地方会显示，比如切换多个APP时显示的标题
@@ -187,7 +181,7 @@ module.exports = {
         theme_color: "#222222", // APP的主题色
         appleStatusBarStyle: "black-translucent", // 苹果手机状态栏样式
         display: "standalone", // 是否显示搜索框，PWA就别显示了
-        start_url: ".", // 起始页，‘.’会自动到主页，比'/'好，尤其是网站没有部署到根域名时
+        start_url: PUBLIC_PATH, // 起始页，‘.’会自动到主页，比'/'好，尤其是网站没有部署到根域名时
         logging: false, // 是否输出日志
         pixel_art: false, // 是否自动锐化一下图标，仅离线模式可用
         loadManifestWithCredentials: false, // 浏览器在获取manifest.json时默认不会代cookie。如果需要请设置true
