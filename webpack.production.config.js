@@ -160,40 +160,53 @@ module.exports = {
      * 自动生成HTML，并注入各参数
      * **/
     new HtmlWebpackPlugin({
-      filename: "index.html", //生成的html存放路径，相对于 output.path
-      template: "./public/index.ejs", //html模板路径
+      filename: "index.html", // 生成的html存放路径，相对于 output.path
+      template: "./public/index.ejs", // html模板路径
       templateParameters: {
         // 自动替换index.ejs中的参数
         dll: "",
-        manifest: "<link rel='manifest' href='manifest.json'>",
       },
       hash: false, // 防止缓存，在引入的文件后面加hash (PWA就是要缓存，这里设置为false)
       inject: true, // 是否将js放在body的末尾
     }),
     /**
-     * 自动生成各种类型的favicon
-     * 这么做是为了以后各种设备上的扩展功能，比如PWA桌面图标
+     * 自动生成各种类型的favicon图标
+     * 自动生成manifest.json文件
+     * 这么做是为了各种设备上的扩展功能，PWA桌面图标/应用启动图标等，主题等
+     * https://github.com/itgalaxy/favicons#usage
      * **/
     new FaviconsWebpackPlugin({
-      logo: "./public/favicon.png",
-      prefix: "icons/",
+      logo: "./public/favicon.png", // 原始图片路径
+      // prefix: "/assets", // 自定义目录，把生成的文件存在此目录下
       favicons: {
-        background: "transparent",
+        appName: "ReactPWA", // 你的APP全称
+        appShortName: "React", // 你的APP简称，手机某些地方会显示，比如切换多个APP时显示的标题
+        appDescription: "ReactPWA Demo", // 你的APP简介
+        lang: "zh-CN", // 你的APP所使用的默认语言
+        background: "#222222", // APP启动页的背景色
+        theme_color: "#222222", // APP的主题色
+        appleStatusBarStyle: "black-translucent", // 苹果手机状态栏样式
+        display: "standalone", // 是否显示搜索框，PWA就别显示了
+        start_url: ".", // 起始页，‘.’会自动到主页，比'/'好，尤其是网站没有部署到根域名时
+        logging: false, // 是否输出日志
+        pixel_art: false, // 是否自动锐化一下图标，仅离线模式可用
+        loadManifestWithCredentials: false, // 浏览器在获取manifest.json时默认不会代cookie。如果需要请设置true
         icons: {
-          appleIcon: true, // 目前只生成苹果的，其他平台都用苹果的图标
-          favicons: true,
-          android: false,
-          appleStartup: false,
-          coast: false,
-          firefox: false,
-          windows: false,
-          yandex: false,
+          // 生成哪些平台需要的图标
+          android: true, // 安卓
+          appleIcon: true, // 苹果
+          appleStartup: true, // 苹果启动页
+          coast: false, // opera
+          favicons: true, // web小图标
+          firefox: false, // 火狐
+          windows: false, // windows8 桌面应用
+          yandex: false, // Yandex浏览器
         },
       },
     }),
   ],
   resolve: {
-    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], //后缀名自动补全
+    extensions: [".js", ".jsx", ".less", ".css", ".wasm"], // 后缀名自动补全
     alias: {
       "@": path.resolve(__dirname, "src"),
     },
