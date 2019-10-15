@@ -16,7 +16,7 @@ const webpackbar = require("webpackbar"); // 进度条
  * 根据你自己的需求填写
  * "/" 就是根路径，假如最终项目上线的地址为：https://isluo.com/， 那就可以直接写"/"
  * **/
-const PUBLIC_PATH = "/work/pwa/";
+const PUBLIC_PATH = "/";
 
 module.exports = {
   mode: "production",
@@ -171,12 +171,11 @@ module.exports = {
      * **/
     new FaviconsWebpackPlugin({
       logo: "./public/favicon.png", // 原始图片路径
-     // prefix: "/assets", // 自定义目录，把生成的文件存在此目录下
+      // prefix: "", // 自定义目录，把生成的文件存在此目录下
       favicons: {
         appName: "ReactPWA", // 你的APP全称
         appShortName: "React", // 你的APP简称，手机某些地方会显示，比如切换多个APP时显示的标题
         appDescription: "ReactPWA Demo", // 你的APP简介
-        lang: "zh-CN", // 你的APP所使用的默认语言
         background: "#222222", // APP启动页的背景色
         theme_color: "#222222", // APP的主题色
         appleStatusBarStyle: "black-translucent", // 苹果手机状态栏样式
