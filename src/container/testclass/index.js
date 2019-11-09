@@ -23,7 +23,7 @@ class TestPageContainer extends React.Component {
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
     actions: P.object, // 上面model中定义的actions对象，自动成为this.props.actions变量
-    form: P.any // antd的form表单高阶组件自动注入的form对象
+    form: P.any, // antd的form表单高阶组件自动注入的form对象
   };
 
   /** react生命周期 - 构造函数 **/
@@ -33,18 +33,13 @@ class TestPageContainer extends React.Component {
       visible: false, // 模态框隐藏和显示
       mokeFetch: [], // 用于测试fetch请求
       mokeAjax: [], // 用于测试ajax请求
-      count: 0 // 数字
+      count: 0, // 数字
     };
   }
 
   /** react生命周期 - 组件初始化完毕DOM挂载完毕后 触发1次 **/
   componentDidMount() {
-    console.log(
-      "所有页面默认拥有的3个对象：",
-      this.props.location,
-      this.props.match,
-      this.props.history
-    );
+    console.log("所有页面默认拥有的3个对象：", this.props.location, this.props.match, this.props.history);
     const set = new Set([1, 2, 3]);
     const map = new Map();
     console.log("Set 和 Map 测试:", set, map);
@@ -81,13 +76,14 @@ class TestPageContainer extends React.Component {
   /**
    * react生命周期 - props改变时触发
    * @param nextProps 下一轮最新的props对象
-   * @param prevState 当前的state对象
+   * @param nowState 当前的最新state对象
    * @returns {object} 返回一个对象或null，如果返回对象将自动覆盖this.state中对应的值
    */
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.count !== prevState.count) {
+  static getDerivedStateFromProps(nextProps, nowState) {
+    console.log("sss:", nextProps.count, nowState.count);
+    if (nextProps.count !== nowState.count) {
       return {
-        count: nextProps.count
+        count: nextProps.count,
       };
     }
     return null;
@@ -97,20 +93,23 @@ class TestPageContainer extends React.Component {
    * 在下一轮render即将开始时触发，比componentWillUpdate后执行
    * 即合并了所有的this.setState操作，最后真正要开始render时触发
    * 不应该在这里调用this.setState，会进入死循环
-   * @param prevProps 当前的this.props对象
-   * @param prevState 当前的this.state对象
+   * @param prevProps 上一次的props，已经不是最新的值了
+   * @param prevState 上一次的state，已经不是最新的值了
    * @returns {any} 返回值将作为componentDidUpdate的第3个参数传入
    * **/
   getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log("you:", prevProps.count, this.props.count);
     return null;
   }
 
   /**
    * react生命周期 - 每次组件的props参数或state参数改变引起重新render完成后，触发1次
-   * @param prevProps render完成后当前的this.props对象
-   * @param prevState render完成后当前的this.state对象
+   * @param prevProps 上一次的props，已经不是最新的值了
+   * @param prevState 上一次的state，已经不是最新的值了
    */
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate(prevProps, prevState) {
+    console.log("改变：", prevProps.count, this.props.count);
+  }
 
   /**
    * react生命周期 - 每次当前组件下的子组件中有任何报错时，触发1次
@@ -135,14 +134,14 @@ class TestPageContainer extends React.Component {
   // 打开模态框按钮被点击时触发
   onBtnClick() {
     this.setState({
-      visible: true
+      visible: true,
     });
   }
 
   // 关闭模态框
   handleCancel() {
     this.setState({
-      visible: false
+      visible: false,
     });
   }
 
@@ -151,7 +150,7 @@ class TestPageContainer extends React.Component {
     this.props.actions.serverFetch().then(res => {
       if (res.status === 200) {
         this.setState({
-          mokeFetch: res.data
+          mokeFetch: res.data,
         });
       } else {
         message.error("获取数据失败");
@@ -173,17 +172,11 @@ class TestPageContainer extends React.Component {
               <span className="backImage" />
               <span>上方图片，一张是img,一张是background</span>
               <br />
-              <span>
-                请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
-              </span>
+              <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
               <br />
-              <span>
-                如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
-              </span>
+              <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
               <br />
-              <span>
-                如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
-              </span>
+              <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
             </p>
           </div>
           <div className="list">
@@ -234,10 +227,7 @@ class TestPageContainer extends React.Component {
           <div className="list">
             <h2>action测试</h2>
             <p>
-              <Button
-                type="primary"
-                onClick={() => this.props.actions.onTestAdd(this.props.count)}
-              >
+              <Button type="primary" onClick={() => this.props.actions.onTestAdd(this.props.count)}>
                 通过action改变数据num
               </Button>
               <br />
@@ -267,36 +257,15 @@ class TestPageContainer extends React.Component {
               <Link to={`${this.props.match.url}/Page2`}>子页2</Link>
               <Link to={`${this.props.match.url}/Page3`}>子页3</Link>
               <Switch>
-                <Route
-                  exact
-                  path={`${this.props.match.url}/`}
-                  component={Page1}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page1`}
-                  component={Page1}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page2`}
-                  component={Page2}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page3`}
-                  component={Page3}
-                />
+                <Route exact path={`${this.props.match.url}/`} component={Page1} />
+                <Route exact path={`${this.props.match.url}/Page1`} component={Page1} />
+                <Route exact path={`${this.props.match.url}/Page2`} component={Page2} />
+                <Route exact path={`${this.props.match.url}/Page3`} component={Page3} />
               </Switch>
             </div>
           </div>
         </div>
-        <Modal
-          title="模态框"
-          visible={this.state.visible}
-          onOk={() => this.handleCancel()}
-          onCancel={() => this.handleCancel()}
-        >
+        <Modal title="模态框" visible={this.state.visible} onOk={() => this.handleCancel()} onCancel={() => this.handleCancel()}>
           <p>内容...</p>
         </Modal>
       </div>
@@ -308,13 +277,13 @@ const FormComponent = Form.create()(TestPageContainer);
 export default connect(
   state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count // 引入test model中的count数据
+    count: state.test.count, // 引入test model中的count数据
   }),
   model => ({
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
-      serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
-    }
-  })
+      serverFetch: model.test.serverFetch, // 引入test model中的fetch异步请求action
+    },
+  }),
 )(FormComponent);
