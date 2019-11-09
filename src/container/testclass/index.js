@@ -80,7 +80,6 @@ class TestPageContainer extends React.Component {
    * @returns {object} 返回一个对象或null，如果返回对象将自动覆盖this.state中对应的值
    */
   static getDerivedStateFromProps(nextProps, nowState) {
-    console.log("sss:", nextProps.count, nowState.count);
     if (nextProps.count !== nowState.count) {
       return {
         count: nextProps.count,
@@ -98,7 +97,6 @@ class TestPageContainer extends React.Component {
    * @returns {any} 返回值将作为componentDidUpdate的第3个参数传入
    * **/
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log("you:", prevProps.count, this.props.count);
     return null;
   }
 
@@ -107,9 +105,7 @@ class TestPageContainer extends React.Component {
    * @param prevProps 上一次的props，已经不是最新的值了
    * @param prevState 上一次的state，已经不是最新的值了
    */
-  componentDidUpdate(prevProps, prevState) {
-    console.log("改变：", prevProps.count, this.props.count);
-  }
+  componentDidUpdate(prevProps, prevState) {}
 
   /**
    * react生命周期 - 每次当前组件下的子组件中有任何报错时，触发1次
