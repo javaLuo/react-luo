@@ -17,10 +17,6 @@ function FeaturesPageContainer(props) {
           <p>npm install</p>
         </div>
         <div className="list">
-          <h2>静态资源预编译</h2>
-          <p>npm run dll</p>
-        </div>
-        <div className="list">
           <h2>启动开发环境</h2>
           <p>npm run start</p>
           <div>代码打包编译，默认监听8888端口</div>
@@ -33,13 +29,14 @@ function FeaturesPageContainer(props) {
         </div>
         <div className="list">
           <h2>运行生产环境的代码</h2>
-          <p>npm run dist</p>
+          <p>npm run dist （windows系统）</p>
+          <p>npm run distmac （Mac/Linux系统）</p>
           <div>运行build文件夹下生成好的最终代码</div>
         </div>
         <div className="list">
           <h2>代码自动格式化</h2>
           <p>npm run prettier</p>
-          <div>自动美化js/css/less等文件</div>
+          <div>自动美化所有js/css/less等文件</div>
         </div>
         <div className="list">
           <h2>HMR局部热更新</h2>

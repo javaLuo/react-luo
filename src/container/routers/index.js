@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 // antd的多语言
-import { LocaleProvider } from "antd";
+import { ConfigProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 
 // import {createBrowserHistory as createHistory} from "history/"; // URL模式的history
@@ -68,7 +68,7 @@ function RootRouterContainer(props) {
   }
 
   return (
-    <LocaleProvider locale={zhCN}>
+    <ConfigProvider locale={zhCN}>
       <>
         <Router history={history}>
           <Route
@@ -103,7 +103,7 @@ function RootRouterContainer(props) {
         </Router>
         <Footer />
       </>
-    </LocaleProvider>
+    </ConfigProvider>
   );
 }
 

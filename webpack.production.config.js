@@ -155,11 +155,7 @@ module.exports = {
      * **/
     new HtmlWebpackPlugin({
       filename: "index.html", // 生成的html存放路径，相对于 output.path
-      template: "./public/index.ejs", // html模板路径
-      templateParameters: {
-        // 自动替换index.ejs中的参数
-        dll: "",
-      },
+      template: "./public/index.html", // html模板路径
       hash: false, // 防止缓存，在引入的文件后面加hash (PWA就是要缓存，这里设置为false)
       inject: true, // 是否将js放在body的末尾
     }),

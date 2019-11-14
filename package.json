@@ -4,7 +4,6 @@
   "description": "react脚手架,最新技术",
   "main": "index.js",
   "scripts": {
-    "dll": "webpack -p --config webpack.dll.config.js --progress --profile --colors",
     "start": "node server.js --max_old_space_size=4096",
     "build": "webpack -p --config webpack.production.config.js",
     "dist": "set NODE_ENV=production&& node server.js",
@@ -13,7 +12,7 @@
     "cover": "./node_modules/.bin/istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
-  "author": "luo",
+  "author": "L",
   "license": "ISC",
   "private": true,
   "repository": {
@@ -25,9 +24,9 @@
   },
   "dependencies": {
     "@rematch/core": "^1.2.0",
-    "antd": "^3.25.0",
+    "antd": "^3.25.1",
     "axios": "^0.19.0",
-    "core-js": "^3.3.6",
+    "core-js": "^3.4.1",
     "history": "^4.10.1",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
@@ -39,7 +38,7 @@
     "redux": "^4.0.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.0",
+    "@babel/core": "^7.7.2",
     "@babel/plugin-proposal-class-properties": "^7.7.0",
     "@babel/plugin-proposal-decorators": "^7.7.0",
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
@@ -49,7 +48,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
-    "@babel/runtime": "^7.7.1",
+    "@babel/runtime": "^7.7.2",
     "autoprefixer": "^9.7.1",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -73,7 +72,7 @@
     "mockjs": "^1.1.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "style-loader": "^1.0.0",
     "sw-precache-webpack-plugin": "^0.11.5",
     "terser-webpack-plugin": "^2.2.1",

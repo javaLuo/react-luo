@@ -134,7 +134,7 @@ function TestPageContainer({
         </div>
         <div className="list">
           <h2>Antd表单</h2>
-          <p style={{ maxWidth: "400px" }}>
+          <div style={{ maxWidth: "400px" }}>
             <Form onSubmit={handleSubmit}>
               <Form.Item>
                 {getFieldDecorator("username", {
@@ -160,7 +160,7 @@ function TestPageContainer({
                 </Button>
               </Form.Item>
             </Form>
-          </p>
+          </div>
         </div>
         <div className="list">
           <h2>location对象测试</h2>
@@ -195,7 +195,7 @@ function TestPageContainer({
           <h2>异步请求测试（Mock模拟数据）</h2>
           <div className="pbox">
             <Button type="primary" onClick={onFetchClick}>
-              fetch请求测试(使用的axios库)
+              使用的axios库
             </Button>
             <br />
             数据：
