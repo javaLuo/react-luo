@@ -11,7 +11,7 @@ react automaticaly<br/>
 标准的 React+Redux 分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
-- PWA、Hooks、代码分割、热替换、dllPlugin 静态资源预编译、HappyPack 多线程构建、ES6+语法
+- PWA、Hooks、代码分割、热替换、HappyPack 多线程构建、ES6+语法
 
 ## 注意的地方
 
@@ -73,7 +73,6 @@ yarn distmac	        # MAC下运行最终文件
 │   └── index.html                      # 主页html文件,开发环境和生产打包共用
 ├── server.js				# 用于开发环境的服务部署
 ├── webpack.dev.config.js		# 用于开发环境的webpack配置
-├── webpack.dll.config.js		# 静态资源预编译所需webpack配置
 └── webpack.production.config.js	# 用于生产环境正式打包的webpack配置
 ```
 
