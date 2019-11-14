@@ -24,10 +24,6 @@ yarn install		# 安装依赖模块
 ```
 
 ```
-yarn dll		# 静态资源预编译
-```
-
-```
 yarn start		# 运行开发环境，默认监听8888端口
 ```
 
@@ -59,7 +55,6 @@ yarn distmac	        # MAC下运行最终文件
 │   ├── index.html			# 编译后的主页html
 │   ├── manifest.json			# PWA配置文件，配置了桌面图标，以APP方式启动时的启动页面相关参数
 │   └── service-worker.js		# PWA核心worker, 用于离线访问，缓存不变的资源文件
-├── dll					# 静态资源预编译插件生成的dll文件
 ├── mock				# mock测试数据
 ├── public				# 静态文件，index.html等
 ├── src                                 # 项目代码目录
