@@ -3,6 +3,7 @@
 const path = require("path"); // 获取绝对路径用
 const webpack = require("webpack"); // webpack核心
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
+const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
 const HappyPack = require("happypack"); // 多线程编译
 const webpackbar = require("webpackbar");
 const PUBLIC_PATH = "/"; // 基础路径
@@ -92,6 +93,7 @@ module.exports = {
   plugins: [
     new webpackbar(),
     new webpack.HotModuleReplacementPlugin(), // 热更新插件
+    new AntdDayjsWebpackPlugin(), // dayjs 替代 momentjs
     new webpack.DefinePlugin({
       "process.env": JSON.stringify({
         PUBLIC_URL: PUBLIC_PATH,
