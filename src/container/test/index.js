@@ -22,7 +22,7 @@ function TestPageContainer({
   match, // 自动注入的match对象
   history, // 自动注入的history对象
   actions, // 上面model中定义的actions对象，自动成为this.props.actions变量
-  form, // antd的form表单高阶组件自动注入的form对象
+  form // antd的form表单高阶组件自动注入的form对象
 }) {
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
   const [mokeFetch, setMokeFetch] = useState([]); // 用于测试fetch请求
@@ -93,11 +93,17 @@ function TestPageContainer({
             <span className="backImage" />
             <span>上方图片，一张是img,一张是background</span>
             <br />
-            <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
+            <span>
+              请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
+            </span>
             <br />
-            <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
+            <span>
+              如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
+            </span>
             <br />
-            <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
+            <span>
+              如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
+            </span>
           </p>
         </div>
         <div className="list">
@@ -133,13 +139,21 @@ function TestPageContainer({
             <Form onSubmit={handleSubmit}>
               <Form.Item>
                 {getFieldDecorator("username", {
-                  rules: [{ required: true, message: "请输入用户名" }],
-                })(<Input prefix={<Icon type="user" />} placeholder="用户名" />)}
+                  rules: [{ required: true, message: "请输入用户名" }]
+                })(
+                  <Input prefix={<Icon type="user" />} placeholder="用户名" />
+                )}
               </Form.Item>
               <Form.Item>
                 {getFieldDecorator("password", {
-                  rules: [{ required: true, message: "请输入密码" }],
-                })(<Input type="password" prefix={<Icon type="lock" />} placeholder="密码" />)}
+                  rules: [{ required: true, message: "请输入密码" }]
+                })(
+                  <Input
+                    type="password"
+                    prefix={<Icon type="lock" />}
+                    placeholder="密码"
+                  />
+                )}
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -208,7 +222,12 @@ function TestPageContainer({
           </div>
         </div>
       </div>
-      <Modal title="模态框" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
+      <Modal
+        title="模态框"
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+      >
         <p>内容...</p>
       </Modal>
     </div>
@@ -220,13 +239,13 @@ const FormComponent = Form.create()(TestPageContainer);
 export default connect(
   state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count, // 引入test model中的count数据
+    count: state.test.count // 引入test model中的count数据
   }),
   dispatch => ({
     actions: {
       getUserinfo: dispatch.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: dispatch.test.onTestAdd, // 引入test model中的数字+1 action
-      serverFetch: dispatch.test.serverFetch, // 引入test model中的fetch异步请求action
-    },
-  }),
+      serverFetch: dispatch.test.serverFetch // 引入test model中的fetch异步请求action
+    }
+  })
 )(FormComponent);
