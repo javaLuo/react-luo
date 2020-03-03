@@ -13,9 +13,6 @@ react automaticaly<br/>
 
 - PWA、Hooks、代码分割、热替换、HappyPack 多线程构建、ES6+语法
 
-## 注意的地方
-
-- antd icon 打包体积过大：<a href="https://github.com/ant-design/ant-design/issues/12011" target="_blank">https://github.com/ant-design/ant-design/issues/12011</a>，开了 gzip 之后还行
 
 ## 构建 Start
 
