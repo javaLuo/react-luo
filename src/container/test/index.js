@@ -21,8 +21,7 @@ function TestPageContainer({
   location, // 自动注入的location对象
   match, // 自动注入的match对象
   history, // 自动注入的history对象
-  actions, // 上面model中定义的actions对象，自动成为this.props.actions变量
-  form // antd的form表单高阶组件自动注入的form对象
+  actions // 上面model中定义的actions对象，自动成为this.props.actions变量
 }) {
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
   const [mokeFetch, setMokeFetch] = useState([]); // 用于测试fetch请求
@@ -70,17 +69,10 @@ function TestPageContainer({
     });
   }
 
-  // 表单提交登录
+  // 表单提交且验证通过时触发
   function handleSubmit(e) {
-    e.preventDefault();
-    form.validateFields((err, values) => {
-      if (!err) {
-        message.success("执行了登录操作");
-      }
-    });
+    message.success("执行了登录操作");
   }
-
-  const { getFieldDecorator } = form;
 
   return (
     <div className="page-test">
@@ -136,24 +128,24 @@ function TestPageContainer({
         <div className="list">
           <h2>Antd表单</h2>
           <div style={{ maxWidth: "400px" }}>
-            <Form onSubmit={handleSubmit}>
-              <Form.Item>
-                {getFieldDecorator("username", {
-                  rules: [{ required: true, message: "请输入用户名" }]
-                })(
-                  <Input prefix={<Icon type="user" />} placeholder="用户名" />
-                )}
+            <Form onFinish={handleSubmit}>
+              <Form.Item
+                label="用户名"
+                name="username"
+                rules={[{ required: true, message: "请输入用户名" }]}
+              >
+                <Input prefix={<Icon type="user" />} placeholder="用户名" />
               </Form.Item>
-              <Form.Item>
-                {getFieldDecorator("password", {
-                  rules: [{ required: true, message: "请输入密码" }]
-                })(
-                  <Input
-                    type="password"
-                    prefix={<Icon type="lock" />}
-                    placeholder="密码"
-                  />
-                )}
+              <Form.Item
+                label="密码"
+                name="password"
+                rules={[{ required: true, message: "请输入密码" }]}
+              >
+                <Input
+                  type="password"
+                  prefix={<Icon type="lock" />}
+                  placeholder="密码"
+                />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -234,8 +226,6 @@ function TestPageContainer({
   );
 }
 
-const FormComponent = Form.create()(TestPageContainer);
-
 export default connect(
   state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
@@ -248,4 +238,4 @@ export default connect(
       serverFetch: dispatch.test.serverFetch // 引入test model中的fetch异步请求action
     }
   })
-)(FormComponent);
+)(TestPageContainer);

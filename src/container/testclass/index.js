@@ -23,8 +23,7 @@ class TestClassPageContainer extends React.Component {
     location: P.any, // 自动注入的location对象
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
-    actions: P.object, // 上面model中定义的actions对象，自动成为this.props.actions变量
-    form: P.any // antd的form表单高阶组件自动注入的form对象
+    actions: P.object // 上面model中定义的actions对象，自动成为this.props.actions变量
   };
 
   /** react生命周期 - 构造函数 **/
@@ -156,8 +155,6 @@ class TestClassPageContainer extends React.Component {
   }
 
   render() {
-    const { form } = this.props;
-
     return (
       <div className="page-test-class">
         <h1 className="title">功能测试</h1>
@@ -300,7 +297,6 @@ class TestClassPageContainer extends React.Component {
   }
 }
 
-const FormComponent = Form.create()(TestClassPageContainer);
 export default connect(
   state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
@@ -313,4 +309,4 @@ export default connect(
       serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
     }
   })
-)(FormComponent);
+)(TestClassPageContainer);
