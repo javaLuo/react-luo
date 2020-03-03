@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { Route, Switch, Link } from "react-router-dom";
 
 /** 所需的所有资源 **/
-import { Modal, Form, Button, message, Input, Icon } from "antd";
+import { Modal, Form, Button, message, Input } from "antd";
+import { UserOutlined, KeyOutlined } from "@ant-design/icons";
 import "./index.less";
 
 import ImgTest from "../../assets/test.jpg";
@@ -21,12 +22,16 @@ function TestPageContainer({
   location, // 自动注入的location对象
   match, // 自动注入的match对象
   history, // 自动注入的history对象
-  actions // 上面model中定义的actions对象，自动成为this.props.actions变量
+  actions, // 上面model中定义的actions对象，自动成为this.props.actions变量
 }) {
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
   const [mokeFetch, setMokeFetch] = useState([]); // 用于测试fetch请求
   // const [mokeAjax, setMokeAjax] = useState([]); // 用于测试ajax请求
   const [localCount, setLocalCount] = useState(0); // 数字
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+  };
 
   // 仅组件加载完毕时触发一次
   useEffect(() => {
@@ -85,17 +90,11 @@ function TestPageContainer({
             <span className="backImage" />
             <span>上方图片，一张是img,一张是background</span>
             <br />
-            <span>
-              请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
-            </span>
+            <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
             <br />
-            <span>
-              如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
-            </span>
+            <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
             <br />
-            <span>
-              如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
-            </span>
+            <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
           </p>
         </div>
         <div className="list">
@@ -128,24 +127,12 @@ function TestPageContainer({
         <div className="list">
           <h2>Antd表单</h2>
           <div style={{ maxWidth: "400px" }}>
-            <Form onFinish={handleSubmit}>
-              <Form.Item
-                label="用户名"
-                name="username"
-                rules={[{ required: true, message: "请输入用户名" }]}
-              >
-                <Input prefix={<Icon type="user" />} placeholder="用户名" />
+            <Form {...layout} onFinish={handleSubmit}>
+              <Form.Item label="用户名" name="username" rules={[{ required: true, message: "请输入用户名" }]}>
+                <Input prefix={<UserOutlined />} placeholder="用户名" />
               </Form.Item>
-              <Form.Item
-                label="密码"
-                name="password"
-                rules={[{ required: true, message: "请输入密码" }]}
-              >
-                <Input
-                  type="password"
-                  prefix={<Icon type="lock" />}
-                  placeholder="密码"
-                />
+              <Form.Item label="密码" name="password" rules={[{ required: true, message: "请输入密码" }]}>
+                <Input type="password" prefix={<KeyOutlined />} placeholder="密码" />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -214,12 +201,7 @@ function TestPageContainer({
           </div>
         </div>
       </div>
-      <Modal
-        title="模态框"
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
-      >
+      <Modal title="模态框" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
         <p>内容...</p>
       </Modal>
     </div>
@@ -229,13 +211,13 @@ function TestPageContainer({
 export default connect(
   state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count // 引入test model中的count数据
+    count: state.test.count, // 引入test model中的count数据
   }),
   dispatch => ({
     actions: {
       getUserinfo: dispatch.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: dispatch.test.onTestAdd, // 引入test model中的数字+1 action
-      serverFetch: dispatch.test.serverFetch // 引入test model中的fetch异步请求action
-    }
-  })
+      serverFetch: dispatch.test.serverFetch, // 引入test model中的fetch异步请求action
+    },
+  }),
 )(TestPageContainer);
