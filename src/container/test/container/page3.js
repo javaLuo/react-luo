@@ -10,8 +10,8 @@ function Page3(props) {
 }
 
 export default connect(
-  state => ({}),
-  dispatch => ({
-    actions: bindActionCreators({}, dispatch)
+  (state) => ({}),
+  (dispatch) => ({
+    actions: bindActionCreators({}, dispatch),
   })
 )(Page3);

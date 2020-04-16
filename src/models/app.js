@@ -5,15 +5,15 @@
 export default {
   /** store数据 **/
   state: {
-    userinfo: null // 用户信息
+    userinfo: null, // 用户信息
   },
   /** reducers **/
   reducers: {
     setUserInfo(state, payload) {
       return Object.assign({}, state, {
-        userinfo: payload
+        userinfo: payload,
       });
-    }
+    },
   },
   /** actions 可以是一个对象，也可以是一个函数，函数的第1个参数自动被注入dispatch **/
   effects: {
@@ -22,6 +22,6 @@ export default {
       const user = { id: params.id, username: "admin" };
       this.setUserInfo(user);
       return user;
-    }
-  }
+    },
+  },
 };

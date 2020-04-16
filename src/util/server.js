@@ -11,10 +11,10 @@ export default class ApiService {
       url,
       method: type,
       headers: {
-        "Content-Type": "application/json;charset=utf-8"
+        "Content-Type": "application/json;charset=utf-8",
       },
       withCredentials: true,
-      data: JSON.stringify(bodyObj)
+      data: JSON.stringify(bodyObj),
     });
   }
 }

@@ -47,7 +47,7 @@ function TestPageContainer({
     // 获取用户信息测试
     actions
       .getUserinfo({ id: 1 })
-      .then(res => {
+      .then((res) => {
         console.log("获取用户信息测试：", res);
       })
       .catch(() => {
@@ -65,7 +65,7 @@ function TestPageContainer({
 
   // Fetch测试按钮点击时触发
   function onFetchClick() {
-    actions.serverFetch().then(res => {
+    actions.serverFetch().then((res) => {
       if (res.status === 200) {
         setMokeFetch(res.data);
       } else {
@@ -90,11 +90,17 @@ function TestPageContainer({
             <span className="backImage" />
             <span>上方图片，一张是img,一张是background</span>
             <br />
-            <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
+            <span>
+              请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
+            </span>
             <br />
-            <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
+            <span>
+              如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
+            </span>
             <br />
-            <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
+            <span>
+              如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
+            </span>
           </p>
         </div>
         <div className="list">
@@ -128,11 +134,23 @@ function TestPageContainer({
           <h2>Antd表单</h2>
           <div style={{ maxWidth: "400px" }}>
             <Form {...layout} onFinish={handleSubmit}>
-              <Form.Item label="用户名" name="username" rules={[{ required: true, message: "请输入用户名" }]}>
+              <Form.Item
+                label="用户名"
+                name="username"
+                rules={[{ required: true, message: "请输入用户名" }]}
+              >
                 <Input prefix={<UserOutlined />} placeholder="用户名" />
               </Form.Item>
-              <Form.Item label="密码" name="password" rules={[{ required: true, message: "请输入密码" }]}>
-                <Input type="password" prefix={<KeyOutlined />} placeholder="密码" />
+              <Form.Item
+                label="密码"
+                name="password"
+                rules={[{ required: true, message: "请输入密码" }]}
+              >
+                <Input
+                  type="password"
+                  prefix={<KeyOutlined />}
+                  placeholder="密码"
+                />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -154,7 +172,7 @@ function TestPageContainer({
             state参数：
             {location.state
               ? Object.entries(location.state)
-                  .map(v => `${v[0]}=${v[1]}`)
+                  .map((v) => `${v[0]}=${v[1]}`)
                   .join("，")
               : ""}
           </p>
@@ -201,7 +219,12 @@ function TestPageContainer({
           </div>
         </div>
       </div>
-      <Modal title="模态框" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
+      <Modal
+        title="模态框"
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+      >
         <p>内容...</p>
       </Modal>
     </div>
@@ -209,15 +232,15 @@ function TestPageContainer({
 }
 
 export default connect(
-  state => ({
+  (state) => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
     count: state.test.count, // 引入test model中的count数据
   }),
-  dispatch => ({
+  (dispatch) => ({
     actions: {
       getUserinfo: dispatch.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: dispatch.test.onTestAdd, // 引入test model中的数字+1 action
       serverFetch: dispatch.test.serverFetch, // 引入test model中的fetch异步请求action
     },
-  }),
+  })
 )(TestPageContainer);

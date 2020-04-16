@@ -59,8 +59,8 @@ function FeaturesPageContainer(props) {
 }
 
 export default connect(
-  state => ({}),
-  dispatch => ({
-    actions: {}
+  (state) => ({}),
+  (dispatch) => ({
+    actions: {},
   })
 )(FeaturesPageContainer);

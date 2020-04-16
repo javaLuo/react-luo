@@ -8,9 +8,9 @@ const ajaxTest = {
   "data|1-10": [
     {
       "id|+1": 1,
-      email: "@EMAIL"
-    }
-  ]
+      email: "@EMAIL",
+    },
+  ],
 };
 
 exports.mockApi = (url, params) => {

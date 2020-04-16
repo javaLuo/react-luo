@@ -23,10 +23,10 @@ function HomePageContainer(props) {
 }
 
 export default connect(
-  state => {
+  (state) => {
     return {};
   },
-  dispatch => ({
-    actions: {}
+  (dispatch) => ({
+    actions: {},
   })
 )(HomePageContainer);

@@ -23,7 +23,7 @@ class TestClassPageContainer extends React.Component {
     location: P.any, // 自动注入的location对象
     match: P.any, // 自动注入的match对象
     history: P.any, // 自动注入的history对象
-    actions: P.object // 上面model中定义的actions对象，自动成为this.props.actions变量
+    actions: P.object, // 上面model中定义的actions对象，自动成为this.props.actions变量
   };
 
   /** react生命周期 - 构造函数 **/
@@ -33,7 +33,7 @@ class TestClassPageContainer extends React.Component {
       visible: false, // 模态框隐藏和显示
       mokeFetch: [], // 用于测试fetch请求
       mokeAjax: [], // 用于测试ajax请求
-      count: 0 // 数字
+      count: 0, // 数字
     };
   }
 
@@ -56,7 +56,7 @@ class TestClassPageContainer extends React.Component {
     // 获取用户信息测试
     this.props.actions
       .getUserinfo({ id: 1 })
-      .then(res => {
+      .then((res) => {
         console.log("获取用户信息测试：", res);
       })
       .catch(() => {
@@ -87,7 +87,7 @@ class TestClassPageContainer extends React.Component {
   static getDerivedStateFromProps(nextProps, nowState) {
     if (nextProps.count !== nowState.count) {
       return {
-        count: nextProps.count
+        count: nextProps.count,
       };
     }
     return null;
@@ -130,23 +130,23 @@ class TestClassPageContainer extends React.Component {
   // 打开模态框按钮被点击时触发
   onBtnClick() {
     this.setState({
-      visible: true
+      visible: true,
     });
   }
 
   // 关闭模态框
   handleCancel() {
     this.setState({
-      visible: false
+      visible: false,
     });
   }
 
   // Fetch测试按钮点击时触发
   onFetchClick() {
-    this.props.actions.serverFetch().then(res => {
+    this.props.actions.serverFetch().then((res) => {
       if (res.status === 200) {
         this.setState({
-          mokeFetch: res.data
+          mokeFetch: res.data,
         });
       } else {
         message.error("获取数据失败");
@@ -218,7 +218,7 @@ class TestClassPageContainer extends React.Component {
               state参数：
               {this.props.location.state
                 ? Object.entries(this.props.location.state)
-                    .map(v => `${v[0]}=${v[1]}`)
+                    .map((v) => `${v[0]}=${v[1]}`)
                     .join("，")
                 : ""}
             </p>
@@ -298,15 +298,15 @@ class TestClassPageContainer extends React.Component {
 }
 
 export default connect(
-  state => ({
+  (state) => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count // 引入test model中的count数据
+    count: state.test.count, // 引入test model中的count数据
   }),
-  model => ({
+  (model) => ({
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
-      serverFetch: model.test.serverFetch // 引入test model中的fetch异步请求action
-    }
+      serverFetch: model.test.serverFetch, // 引入test model中的fetch异步请求action
+    },
   })
 )(TestClassPageContainer);

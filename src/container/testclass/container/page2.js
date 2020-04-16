@@ -9,7 +9,7 @@ import P from "prop-types";
 class Page2 extends React.Component {
   static propTypes = {
     location: P.any,
-    history: P.any
+    history: P.any,
   };
 
   constructor(props) {
@@ -23,8 +23,8 @@ class Page2 extends React.Component {
 }
 
 export default connect(
-  state => ({}),
-  dispatch => ({
-    actions: bindActionCreators({}, dispatch)
+  (state) => ({}),
+  (dispatch) => ({
+    actions: bindActionCreators({}, dispatch),
   })
 )(Page2);

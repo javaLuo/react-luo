@@ -5,12 +5,11 @@ import "./index.less";
 export default function Footer(props) {
   return (
     <div className="footer">
-      © 2018-2019{" "}
+      © 2018-2020{" "}
       <a
         href="https://blog.isluo.com"
         target="_blank"
-        rel="noopener noreferrer"
-      >
+        rel="noopener noreferrer">
         isluo.com
       </a>
       , Inc.

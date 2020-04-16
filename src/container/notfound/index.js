@@ -16,8 +16,8 @@ function NotFoundPageContainer() {
 }
 
 export default connect(
-  state => ({}),
-  dispatch => ({
-    actions: {}
+  (state) => ({}),
+  (dispatch) => ({
+    actions: {},
   })
 )(NotFoundPageContainer);

@@ -12,7 +12,7 @@ export default function Menu() {
         to={{
           pathname: "/test",
           search: "?a=123&b=abc",
-          state: { c: "456", d: "ABC" }
+          state: { c: "456", d: "ABC" },
         }}
       >
         测试(hooks)
@@ -22,7 +22,7 @@ export default function Menu() {
         to={{
           pathname: "/testclass",
           search: "?a=123&b=abc",
-          state: { c: "456", d: "ABC" }
+          state: { c: "456", d: "ABC" },
         }}
       >
         测试(class)

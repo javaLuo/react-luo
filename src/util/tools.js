@@ -78,7 +78,7 @@ const tools = {
     }
     console.log("解谜：", code, c);
     return c;
-  }
+  },
 };
 
 export default tools;

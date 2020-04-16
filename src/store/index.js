@@ -7,6 +7,6 @@ import test from "../models/test";
 export default init({
   models: {
     app, // 这里的命名很重要，即这个模块的名字
-    test
-  }
+    test,
+  },
 });
