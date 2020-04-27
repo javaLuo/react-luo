@@ -47,7 +47,15 @@ module.exports = {
       {
         // .less 解析
         test: /\.less$/,
-        use: ["style-loader", "css-loader", "postcss-loader", { loader: "less-loader", options: { javascriptEnabled: true } }],
+        use: [
+          "style-loader",
+          "css-loader",
+          "postcss-loader",
+          {
+            loader: "less-loader",
+            options: { lessOptions: { javascriptEnabled: true } },
+          },
+        ],
       },
       {
         // 文件解析

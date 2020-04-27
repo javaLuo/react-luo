@@ -9,7 +9,8 @@ export default function Footer(props) {
       <a
         href="https://blog.isluo.com"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+      >
         isluo.com
       </a>
       , Inc.

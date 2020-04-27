@@ -29,7 +29,7 @@ module.exports = {
     chunkFilename: "dist/[name].[chunkhash:8].chunk.js",
   },
   stats: {
-    warningsFilter: warning => /Conflicting order/gm.test(warning), // 不输出一些警告，多为因CSS引入顺序不同导致的警告
+    warningsFilter: (warning) => /Conflicting order/gm.test(warning), // 不输出一些警告，多为因CSS引入顺序不同导致的警告
     children: false, // 不输出子模块的打包信息
   },
   optimization: {
@@ -67,7 +67,15 @@ module.exports = {
       {
         // .less 解析
         test: /\.less$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", { loader: "less-loader", options: { javascriptEnabled: true } }],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          {
+            loader: "less-loader",
+            options: { lessOptions: { javascriptEnabled: true } },
+          },
+        ],
       },
       {
         // 文件解析
@@ -150,7 +158,11 @@ module.exports = {
       minify: true, // 压缩
       navigateFallback: PUBLIC_PATH, // 遇到不存在的URL时，跳转到主页
       navigateFallbackWhitelist: [/^(?!\/__).*/], // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
-      staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/, /\.cache$/], // 不缓存sourcemaps,它们太大了
+      staticFileGlobsIgnorePatterns: [
+        /\.map$/,
+        /asset-manifest\.json$/,
+        /\.cache$/,
+      ], // 不缓存sourcemaps,它们太大了
     }),
     /**
      * 自动生成HTML，并注入各参数
