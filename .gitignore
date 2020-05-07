@@ -38,6 +38,7 @@ jspm_packages
 build
 .happypack
 yarn.lock
+.vscode/*
 dll
 
 # Optional npm cache directory
