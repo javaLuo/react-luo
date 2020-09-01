@@ -6,7 +6,7 @@
 
 ## what is this?
 
-react automaticaly<br/>
+react automatically<br/>
 这是一个 React 脚手架，没有使用 create-react-app<br/>
 标准的 React+Redux 分层结构<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
