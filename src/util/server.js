@@ -4,6 +4,7 @@
  * **/
 
 import axios from "axios";
+import qs from "qs";
 
 export default class ApiService {
   static newServer(url, bodyObj = {}, type = "post") {
@@ -11,10 +12,10 @@ export default class ApiService {
       url,
       method: type,
       headers: {
-        "Content-Type": "application/json;charset=utf-8",
+        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
       },
       withCredentials: true,
-      data: JSON.stringify(bodyObj),
+      data: qs.stringify(bodyObj),
     });
   }
 }

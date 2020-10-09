@@ -56,10 +56,10 @@ if (env === "production") {
 }
 
 /** 监听POST请求，返回MOCK模拟数据 **/
-app.post("*", (req, res, next) => {
-  const result = mock.mockApi(req.originalUrl, req.body);
-  res.send(result);
-});
+// app.post("*", (req, res, next) => {
+//   const result = mock.mockApi(req.originalUrl, req.body);
+//   res.send(result);
+// });
 
 /** 启动服务 **/
 app.listen(PORT, () => {

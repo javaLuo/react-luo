@@ -35,7 +35,11 @@ export default {
     // 测试 - 异步请求
     async serverFetch(params = {}) {
       try {
-        const res = await Server.newServer("url.ajax", params, "post");
+        const res = await Server.newServer(
+          "url.ajax",
+          { a: 123, b: "456" },
+          "post"
+        );
         if (res && res.data.status === 200) {
           dispatch({ type: "test/setFetchValue", payload: res.data.data }); // dispatch是全局根dispatch,也能这么用
         }
