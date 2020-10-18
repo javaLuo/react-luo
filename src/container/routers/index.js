@@ -11,6 +11,7 @@ import zhCN from "antd/lib/locale-provider/zh_CN";
 
 // import {createBrowserHistory as createHistory} from "history/"; // URL模式的history
 import { createHashHistory as createHistory } from "history"; // 锚点模式的history
+
 import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
 
 /** 普通组件 **/

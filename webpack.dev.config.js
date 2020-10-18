@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: __dirname + "/", // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径
     publicPath: PUBLIC_PATH, // 文件解析路径，index.html中引用的路径会被设置为相对于此路径
-    filename: "bundle.js", // 编译后的文件名字
+    filename: "bundle-[hash].js", // 编译后的文件名字
   },
   devtool: "eval-source-map", // 报错的时候在控制台输出哪一行报错
   optimization: {
