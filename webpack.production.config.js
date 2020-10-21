@@ -2,14 +2,14 @@
 
 const path = require("path");
 const webpack = require("webpack"); // webpack核心
-const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 为了单独打包css
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 将CSS提取出来，而不是和js混在一起
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // 对CSS进行压缩
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
 // const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成一个server-worker用于缓存 webpack5 wating up
 // const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标 webpack5 wating up
-const TerserPlugin = require("terser-webpack-plugin"); // 优化js
-// const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin"); // 压缩CSS
+const TerserPlugin = require("terser-webpack-plugin"); // 对js进行压缩
 const webpackbar = require("webpackbar"); // 进度条
 /**
  * 基础路径
@@ -46,6 +46,7 @@ module.exports = {
           },
         },
       }),
+      new CssMinimizerPlugin(),
     ],
     splitChunks: {
       chunks: "all",
@@ -62,7 +63,10 @@ module.exports = {
       {
         // .css 解析
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        use: [
+            MiniCssExtractPlugin.loader,
+           "css-loader", "postcss-loader"
+          ],
       },
       {
         // .less 解析
@@ -135,7 +139,7 @@ module.exports = {
       }),
     }),
     /**
-     * 提取CSS等样式生成单独的CSS文件
+     * 提取CSS等样式生成单独的CSS文件,不然最终文件只有js； css全部包含在js中
      * **/
     new MiniCssExtractPlugin({
       filename: "dist/[name].[chunkhash:8].css", // 生成的文件名

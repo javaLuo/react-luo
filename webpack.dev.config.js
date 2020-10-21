@@ -7,6 +7,7 @@ const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
 const HappyPack = require("happypack"); // 多线程编译
 const webpackbar = require("webpackbar");
 const PUBLIC_PATH = "/"; // 基础路径
+
 module.exports = {
   mode: "development",
   entry: [
