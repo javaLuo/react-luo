@@ -4,7 +4,7 @@
 [![codebeat badge](https://codebeat.co/badges/eb91ca34-7c1b-424f-be1c-a5d79fd3d269)](https://codebeat.co/projects/github-com-javaluo-react-luo-master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) ![GitHub last commit](https://img.shields.io/github/last-commit/javaLuo/react-luo.svg?style=popout)
 
-## 注： antd和favicons-webpack-plugin目前还不支持webpack5,现在打包会失败
+## 注： favicons-webpack-plugin, sw-precache-webpack-plugin 目前还不支持webpack5, 所以暂时取消了PWA相关设置
 
 ## what is this?
 

@@ -11,7 +11,7 @@ export default function Footer(props) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        isluo.com
+        blog.isluo.com
       </a>
       , Inc.
     </div>

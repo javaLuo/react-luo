@@ -15,7 +15,7 @@ function HomePageContainer(props) {
         <img src={ImgLogo} />
         <div className="title">React-Luo</div>
         <div className="info">
-          react16、redux4、router5、webpack4、eslint、babel7、antd3
+          react17、redux4、router5、webpack5、eslint、babel7、antd4
         </div>
       </div>
     </div>
