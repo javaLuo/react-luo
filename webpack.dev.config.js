@@ -4,6 +4,7 @@ const path = require("path"); // 获取绝对路径用
 const webpack = require("webpack"); // webpack核心
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 动态生成html插件
 const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin"); // 用于直接复制public中的文件到打包的最终文件夹中
 const HappyPack = require("happypack"); // 多线程编译
 const webpackbar = require("webpackbar");
 const PUBLIC_PATH = "/"; // 基础路径
@@ -104,9 +105,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(), // 热更新插件
     new AntdDayjsWebpackPlugin(), // dayjs 替代 momentjs
     new webpack.DefinePlugin({
-      "process.env": JSON.stringify({
-        PUBLIC_URL: PUBLIC_PATH,
-      }),
+      "process.env": "dev",
     }),
     new HappyPack({
       loaders: ["babel-loader"],
@@ -117,6 +116,19 @@ module.exports = {
       favicon: "./public/favicon.png", // 自动把根目录下的favicon.ico图片加入html
       template: "./public/index.html", //html模板路径
       inject: true, // 是否将js放在body的末尾
+    }),
+    // 拷贝public中的文件到最终打包文件夹里
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "./public/**/*",
+          to: "./",
+          globOptions: {
+            ignore: ["**/favicon.png", "**/index.html"],
+          },
+          noErrorOnMissing: true,
+        },
+      ],
     }),
   ],
   resolve: {

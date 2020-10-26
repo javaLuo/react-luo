@@ -3,11 +3,12 @@
 const path = require("path");
 const webpack = require("webpack"); // webpack核心
 const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // 将CSS提取出来，而不是和js混在一起
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // 对CSS进行压缩
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin"); // 对CSS进行压缩
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // 生成html
 const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 每次打包前清除旧的build文件夹
-// const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin"); // 生成一个server-worker用于缓存 webpack5 wating up
+const WorkboxPlugin = require("workbox-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin"); // 用于直接复制public中的文件到打包的最终文件夹中
 // const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标 webpack5 wating up
 const TerserPlugin = require("terser-webpack-plugin"); // 对js进行压缩
 const webpackbar = require("webpackbar"); // 进度条
@@ -29,7 +30,6 @@ module.exports = {
     chunkFilename: "dist/[name].[chunkhash:8].chunk.js",
   },
   stats: {
-   
     children: false, // 不输出子模块的打包信息
   },
   optimization: {
@@ -63,10 +63,7 @@ module.exports = {
       {
         // .css 解析
         test: /\.css$/,
-        use: [
-            MiniCssExtractPlugin.loader,
-           "css-loader", "postcss-loader"
-          ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
         // .less 解析
@@ -125,57 +122,49 @@ module.exports = {
   plugins: [
     /**
      * 打包前删除上一次打包留下的旧代码（根据output.path）
+     * https://github.com/johnagan/clean-webpack-plugin
      * **/
     new CleanWebpackPlugin(),
-    new webpackbar(),
+    new webpackbar(), // 打包时美化进度条
     new AntdDayjsWebpackPlugin(), // dayjs 替代 momentjs
     /**
-     * 在window环境中注入全局变量
-     * 这里这么做是因为src/registerServiceWorker.js中有用到，为了配置PWA
+     * 在window环境中注入全局变量,虽然暂时没用上，不过在真实开发中应该会用到
      * **/
     new webpack.DefinePlugin({
-      "process.env": JSON.stringify({
-        PUBLIC_URL: PUBLIC_PATH.replace(/\/$/, ""),
-      }),
+      "process.env": "prod",
     }),
     /**
      * 提取CSS等样式生成单独的CSS文件,不然最终文件只有js； css全部包含在js中
+     * https://github.com/webpack-contrib/mini-css-extract-plugin
      * **/
     new MiniCssExtractPlugin({
       filename: "dist/[name].[chunkhash:8].css", // 生成的文件名
     }),
     /**
-     * 生成一个server-work用于缓存资源（PWA） webpack5 wating up
-     * */
-    // new SWPrecacheWebpackPlugin({
-    //   dontCacheBustUrlsMatching: /\.\w{8}\./,
-    //   filename: "service-worker.js",
-    //   logger(message) {
-    //     if (message.indexOf("Total precache size is") === 0) {
-    //       return;
-    //     }
-    //     if (message.indexOf("Skipping static resource") === 0) {
-    //       return;
-    //     }
-    //     console.log(message);
-    //   },
-    //   minify: true, // 压缩
-    //   navigateFallback: PUBLIC_PATH, // 遇到不存在的URL时，跳转到主页
-    //   navigateFallbackWhitelist: [/^(?!\/__).*/], // 忽略从/__开始的网址，参考 https://github.com/facebookincubator/create-react-app/issues/2237#issuecomment-302693219
-    //   staticFileGlobsIgnorePatterns: [
-    //     /\.map$/,
-    //     /asset-manifest\.json$/,
-    //     /\.cache$/,
-    //   ], // 不缓存sourcemaps,它们太大了
-    // }),
-    /**
      * 自动生成HTML，并注入各参数
+     * https://github.com/jantimon/html-webpack-plugin
      * **/
     new HtmlWebpackPlugin({
       filename: "index.html", // 生成的html存放路径，相对于 output.path
       template: "./public/index.html", // html模板路径
       hash: false, // 防止缓存，在引入的文件后面加hash (PWA就是要缓存，这里设置为false)
       inject: true, // 是否将js放在body的末尾
+    }),
+    /**
+     * 拷贝public中的文件到最终打包文件夹里
+     * https://github.com/webpack-contrib/copy-webpack-plugin
+     * */
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "./public/**/*",
+          to: "./",
+          globOptions: {
+            ignore: ["**/favicon.png", "**/index.html"],
+          },
+          noErrorOnMissing: true,
+        },
+      ],
     }),
     /**
      * 自动生成各种类型的favicon图标 webpack5 wating up
@@ -211,6 +200,12 @@ module.exports = {
     //     },
     //   },
     // }),
+
+    /**
+     * PWA - 自动生成server-worker.js
+     * https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW?hl=en
+     *  */
+    new WorkboxPlugin.GenerateSW(),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css", ".wasm"], // 后缀名自动补全
