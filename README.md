@@ -4,7 +4,7 @@
 [![codebeat badge](https://codebeat.co/badges/eb91ca34-7c1b-424f-be1c-a5d79fd3d269)](https://codebeat.co/projects/github-com-javaluo-react-luo-master)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) ![GitHub last commit](https://img.shields.io/github/last-commit/javaLuo/react-luo.svg?style=popout)
 
-## 注： favicons-webpack-plugin, sw-precache-webpack-plugin 目前还不支持webpack5, 所以暂时取消了PWA相关设置
+## 注： favicons-webpack-plugin 目前还不支持 webpack5, 所以暂时取消了 manifest 相关设置
 
 ## what is this?
 
@@ -14,7 +14,6 @@ react automatically<br/>
 经过了多个项目的实践，不停的更新和优化出来的。目前自己做项目也在用。
 
 - PWA、Hooks、代码分割、热替换、HappyPack 多线程构建、ES6+语法
-
 
 ## 构建 Start
 
