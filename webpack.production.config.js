@@ -29,7 +29,7 @@ module.exports = {
     chunkFilename: "dist/[name].[chunkhash:8].chunk.js",
   },
   stats: {
-    warningsFilter: (warning) => /Conflicting order/gm.test(warning), // 不输出一些警告，多为因CSS引入顺序不同导致的警告
+   
     children: false, // 不输出子模块的打包信息
   },
   optimization: {
