@@ -17,23 +17,14 @@ react automatically<br/>
 
 ```
 yarn install		# 安装依赖模块
-```
 
-```
-yarn start		# 运行开发环境，默认监听8888端口
-```
-
-```
+yarn start		# 运行开发环境: http://localhost:8888
 yarn build		# 正式打包，用于生产环境
-```
 
-```
+yarn dist		# 运行正式打包后的最终文件（build目录下的文件）: http://localhost:8889
+yarn distmac	        # MAC下运行最终文件：http://localhost:8889
+
 yarn prettier		# 自动格式化src、mock目录下的所有.js/.css/.scss/.less文件
-```
-
-```
-yarn dist		# 运行正式打包后的最终文件（build目录下的文件），默认监听8888端口
-yarn distmac	        # MAC下运行最终文件
 ```
 
 ## 更新日志 Update log

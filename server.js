@@ -12,13 +12,14 @@ const mock = require("./mock/mock-data"); // mock模拟数据，模拟后台业�
 
 const app = express(); // 实例化express服务
 const DIST_DIR = webpackConfig.output.path; // webpack配置中设置的文件输出路径，所有文件存放在内存中
-const PORT = 8888; // 服务启动端口号
+let PORT = 8888; // 服务启动端口号
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 if (env === "production") {
   // 如果是生产环境，则运行build文件夹中的代码
+  PORT = 8889;
   app.use(express.static("build"));
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "build", "index.html"));
@@ -28,13 +29,7 @@ if (env === "production") {
   app.use(express.static("dll"));
   app.use(
     webpackDevMiddleware(compiler, {
-      // 挂载webpack小型服务器
       publicPath: webpackConfig.output.publicPath, // 对应webpack配置中的publicPath
-      // quiet: true, // 是否不输出启动时的相关信息
-      // stats: {
-      //   colors: true, // 不同信息不同颜色
-      //   timings: true // 输出各步骤消耗的时间
-      // }
     }),
   );
   // 挂载HMR热更新中间件

@@ -41,8 +41,9 @@ module.exports = {
           // https://github.com/terser/terser#minify-options
           compress: {
             warnings: false, // 删除无用代码时是否给出警告
-            drop_console: true, // 删除所有的console.*
             drop_debugger: true, // 删除所有的debugger
+            // drop_console: true, // 删除所有的console.*
+            pure_funcs: ["console.log"], // 删除所有的console.log
           },
         },
       }),
@@ -149,6 +150,14 @@ module.exports = {
       template: "./public/index.html", // html模板路径
       hash: false, // 防止缓存，在引入的文件后面加hash (PWA就是要缓存，这里设置为false)
       inject: true, // 是否将js放在body的末尾
+      // 正式环境，把注册service-worker的代码加入到index.html中
+      registerServiceWorker: `<script>
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js");
+          });
+        }
+      </script>`,
     }),
     /**
      * 拷贝public中的文件到最终打包文件夹里
