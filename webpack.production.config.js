@@ -214,7 +214,9 @@ module.exports = {
      * PWA - 自动生成server-worker.js
      * https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-webpack-plugin.GenerateSW?hl=en
      *  */
-    new WorkboxPlugin.GenerateSW(),
+    new WorkboxPlugin.GenerateSW({
+      skipWaiting: true, // service-worker如果有更新的话，跳过等待直接更新
+    }),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css", ".wasm"], // 后缀名自动补全
