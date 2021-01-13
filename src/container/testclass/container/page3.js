@@ -3,10 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import P from "prop-types";
 
-// ==================
-// 组件
-// ==================
-
 class Page3 extends React.Component {
   static propTypes = {
     location: P.any,

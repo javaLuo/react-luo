@@ -7,45 +7,42 @@ import { message } from "antd";
 import Server from "../util/server"; // 自己封装的异步请求方法
 
 export default {
-  /** store数据 **/
   state: {
     count: 0, // 测试数字
     fetchvalue: [], // 异步请求的测试数据
   },
 
-  /** reducers **/
   reducers: {
     setCount(state, payload) {
-      return Object.assign({}, state, {
-        count: payload,
-      });
+      return { ...state, count: payload };
     },
     setFetchValue(state, payload) {
-      return Object.assign({}, state, {
-        fetchvalue: payload,
-      });
+      return { ...state, fetchvalue: payload };
     },
   },
+
   /** actions **/
   effects: (dispatch) => ({
     // 测试 - 数字加1
     onTestAdd(params) {
       this.setCount(params + 1); // 这里会指向上面reducers中的setCount
     },
+
     // 测试 - 异步请求
     async serverFetch(params = {}) {
       try {
-        const res = await Server.newServer(
+        const res = await Server(
           "url.ajax",
+          null,
           { a: 123, b: "456" },
-          "post"
+          "POST"
         );
         if (res && res.data.status === 200) {
-          dispatch({ type: "test/setFetchValue", payload: res.data.data }); // dispatch是全局根dispatch,也能这么用
+          dispatch({ type: "test/setFetchValue", payload: res.data.data }); // test/setFetchValue对应上面reducers中的setFetchValue
         }
         return res.data;
       } catch (e) {
-        message.error("网络错误", 1);
+        message.error("请求错误，请稍后重试");
       }
     },
   }),

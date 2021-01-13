@@ -1,21 +1,26 @@
 /**
  * 自己封装的异步请求函数
- * APP中的所有请求都将汇聚于此
+ * 所有http请求都将经过这里
  * **/
-
 import axios from "axios";
-import qs from "qs";
 
-export default class ApiService {
-  static newServer(url, bodyObj = {}, type = "post") {
-    return axios({
-      url,
-      method: type,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
-      },
-      withCredentials: true,
-      data: qs.stringify(bodyObj),
-    });
-  }
-}
+/**
+ * 发起http请求
+ * @param {String} url 请求的api地址
+ * @param {Object} params 这些参数将直接加在api地址后面，如?a=123&b=456
+ * @param {Object} body 这些参数将用于POST请求，加到请求的request body中去
+ * @param {String} method 请求的方法，如POST/GET
+ * @return {Promise} 返回一个Promise对象
+ */
+export default (url, params = {}, body = {}, method = "POST") => {
+  return axios({
+    url,
+    method,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+    withCredentials: false, // 请求是否带cookie（跨域的请求一般是不能带cookie的）
+    params, // GET请求的参数赋给params字段
+    data: body, // POST请求的参数赋给data字段
+  });
+};

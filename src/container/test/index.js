@@ -25,8 +25,7 @@ function TestPageContainer({
   actions, // 上面model中定义的actions对象，自动成为this.props.actions变量
 }) {
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
-  const [mokeFetch, setMokeFetch] = useState([]); // 用于测试fetch请求
-  // const [mokeAjax, setMokeAjax] = useState([]); // 用于测试ajax请求
+  const [mokeFetch, setMokeFetch] = useState([]); // 用于测试异步请求
   const [localCount, setLocalCount] = useState(0); // 数字
   const layout = {
     labelCol: { span: 8 },

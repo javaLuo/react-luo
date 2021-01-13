@@ -3,11 +3,9 @@
 const tools = {
   /**
     保留N位小数
-    最终返回的是字符串
-    若转换失败，返回参数原值
-    @params
-      str - 数字或字符串
-      x   - 保留几位小数点
+    @param {Number|String} str 待处理数字
+    @param {Number} x 保留几位小数点
+    @return {Number|String} 处理成功返回字符串，处理失败返回原值
   */
   pointX(str, x = 0) {
     if (!str && str !== 0) {
@@ -22,6 +20,8 @@ const tools = {
 
   /**
      去掉字符串两端空格
+     @param {String} str 待处理字符串
+     @return {String} 处理后的字符串
   */
   trim(str) {
     const reg = /^\s*|\s*$/g;
@@ -32,6 +32,8 @@ const tools = {
     给字符串打马赛克
     如：将123456转换为1****6，最多将字符串中间6个字符变成*
     如果字符串长度小于等于2，将不会有效果
+    @param {String} str 待处理字符串
+    @return {String} 处理后的字符串
   */
   addMosaic(str) {
     const s = String(str);
@@ -55,28 +57,30 @@ const tools = {
     });
     return ret.join("");
   },
+
   /**
-    字符串加密
-    简单的加密方法
+    字符串加密 简单的加密方法
+    @param {String} code 待处理字符串
+    @param {String} 加密后的字符串
   */
   compile(code) {
     let c = String.fromCharCode(code.charCodeAt(0) + code.length);
     for (let i = 1; i < code.length; i++) {
       c += String.fromCharCode(code.charCodeAt(i) + code.charCodeAt(i - 1));
     }
-    console.log("加谜：", code, c);
     return c;
   },
+
   /**
-    字符串解谜
-    对应上面的字符串加密方法
+    字符串解谜 对应上面的字符串加密方法
+    @param {String} code 加密的字符串
+    @param {String} 解密后的字符串
   */
   uncompile(code) {
     let c = String.fromCharCode(code.charCodeAt(0) - code.length);
     for (let i = 1; i < code.length; i++) {
       c += String.fromCharCode(code.charCodeAt(i) - c.charCodeAt(i - 1));
     }
-    console.log("解谜：", code, c);
     return c;
   },
 };
