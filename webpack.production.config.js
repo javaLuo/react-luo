@@ -12,7 +12,7 @@ const CopyPlugin = require("copy-webpack-plugin"); // 用于直接复制public�
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标 webpack5 wating up
 const TerserPlugin = require("terser-webpack-plugin"); // 对js进行压缩
 const webpackbar = require("webpackbar"); // 进度条
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin; // 分析打包后各个包的大小
 /**
  * 基础路径
  * 比如我上传到自己的服务器填写的是："/work/pwa/"，最终访问为"https://isluo.com/work/pwa/"
@@ -219,7 +219,7 @@ module.exports = {
       skipWaiting: true, // service-worker如果有更新的话，跳过等待直接更新
     }),
 
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
   ],
   resolve: {
     extensions: [".js", ".jsx", ".less", ".css", ".wasm"], // 后缀名自动补全
