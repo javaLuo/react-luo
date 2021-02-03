@@ -2,10 +2,10 @@
 import React from "react";
 import "./index.less";
 
-export default function Footer(props) {
+export default function Footer() {
   return (
     <div className="footer">
-      © 2018-2020{" "}
+      © 2018-{new Date().getFullYear()}{" "}
       <a
         href="https://blog.isluo.com"
         target="_blank"

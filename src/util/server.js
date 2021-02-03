@@ -4,6 +4,14 @@
  * **/
 import axios from "axios";
 
+// 不需要下面这些mock配置，仅本地发布DEMO用
+// import Mock from "mockjs";
+// const mock = require("../../mock/mock-data");
+// Mock.mock(/\/api.*/, options => {
+//   const res = mock.mockApi(options);
+//   return res;
+// });
+
 /**
  * 发起http请求
  * @param {String} url 请求的api地址

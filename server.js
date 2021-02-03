@@ -17,6 +17,16 @@ let PORT = 8888; // 服务启动端口号
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+/** 监听POST请求，返回MOCK模拟数据 **/
+app.post(/\/api.*/, (req, res, next) => {
+  const result = mock.mockApi({ url: req.originalUrl, body: req.body });
+  res.send(result);
+});
+app.get(/\/api.*/, (req, res, next) => {
+  const result = mock.mockApi({ url: req.originalUrl, body: req.body });
+  res.send(result);
+});
+
 if (env === "production") {
   // 如果是生产环境，则运行build文件夹中的代码
   PORT = 8889;
@@ -32,8 +42,8 @@ if (env === "production") {
       publicPath: webpackConfig.output.publicPath, // 对应webpack配置中的publicPath
     }),
   );
-  // 挂载HMR热更新中间件
-  app.use(webpackHotMiddleware(compiler));
+
+  app.use(webpackHotMiddleware(compiler)); // 挂载HMR热更新中间件
   // 所有请求都返回index.html
   app.get("*", (req, res, next) => {
     const filename = path.join(DIST_DIR, "index.html");
@@ -49,12 +59,6 @@ if (env === "production") {
     });
   });
 }
-
-/** 监听POST请求，返回MOCK模拟数据 **/
-app.post("*", (req, res, next) => {
-  const result = mock.mockApi(req.originalUrl, req.body);
-  res.send(result);
-});
 
 /** 启动服务 **/
 app.listen(PORT, () => {
