@@ -22,7 +22,7 @@ export default {
   },
 
   /** actions **/
-  effects: dispatch => ({
+  effects: (dispatch) => ({
     // 测试 - 数字加1
     onTestAdd(params) {
       this.setCount(params + 1); // 这里会指向上面reducers中的setCount
@@ -31,7 +31,12 @@ export default {
     // 测试 - 异步请求
     async serverFetch(params = {}) {
       try {
-        const res = await Server("/api/url.ajax", null, { a: 123, b: "456" }, "POST");
+        const res = await Server(
+          "/api/url.ajax",
+          null,
+          { a: 123, b: "456" },
+          "POST"
+        );
         if (res && res.data.status === 200) {
           dispatch({ type: "test/setFetchValue", payload: res.data.data }); // test/setFetchValue对应上面reducers中的setFetchValue
         }
