@@ -65,7 +65,7 @@ yarn prettier		# 自动格式化src、mock目录下的所有.js/.css/.scss/.less
 
 ## 预览地址 Demo
 
-https://isluo.com/work/pwa/ (线上没有 mock 环境)
+https://isluo.com/work/pwa/
 
 ## 参阅资料
 
