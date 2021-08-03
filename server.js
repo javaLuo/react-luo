@@ -1,7 +1,6 @@
 /** 用于开发环境的服务启动 **/
 const path = require("path"); // 获取绝对路径有用
 const express = require("express"); // express服务器端框架
-const bodyParser = require("body-parser");
 const env = process.env.NODE_ENV; // 模式（dev开发环境，production生产环境）
 const webpack = require("webpack"); // webpack核心
 const webpackDevMiddleware = require("webpack-dev-middleware"); // webpack服务器
@@ -14,8 +13,8 @@ const app = express(); // 实例化express服务
 const DIST_DIR = webpackConfig.output.path; // webpack配置中设置的文件输出路径，所有文件存放在内存中
 let PORT = 8888; // 服务启动端口号
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 /** 监听POST请求，返回MOCK模拟数据 **/
 app.post(/\/api.*/, (req, res, next) => {
