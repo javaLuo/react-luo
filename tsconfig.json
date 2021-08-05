@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "esnext",
+      "outDir": "./dist/",
+      "noImplicitAny": true,
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "importHelpers": true,
+      "jsx": "react-jsx",
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "baseUrl": "./",
+      "strict": true,
+      "paths": {
+        "@/*": ["src/*"],
+      },
+      "allowSyntheticDefaultImports": true,
+      "typeRoots": ["node_modules/@types"]
+    },
+    "include": [
+      "./mock/**/*",
+      "./src/**/*",
+      "./public/**/*"
+    ],
+    "exclude": [
+      "node_modules",
+    ]
+  }

@@ -4,15 +4,9 @@
   "description": "react脚手架,最新技术",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js --max_old_space_size=4096",
-    "build": "webpack --config webpack.production.config.js",
-    "dist": "set NODE_ENV=production&& node server.js",
-    "distmac": "export NODE_ENV=production&& node server.js",
-    "prettier": "prettier --write \"{src,mock}/**/*.{js,css,less}\"",
-    "cover": "./node_modules/.bin/istanbul cover _mocha",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    "start": "webpack serve --config webpack.dev.config.js --progress"
   },
-  "author": "admin",
+  "author": "dreamerryao",
   "license": "ISC",
   "private": true,
   "repository": {
@@ -22,72 +16,40 @@
   "installConfig": {
     "pnp": false
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
   "dependencies": {
-    "@rematch/core": "^2.0.1",
-    "antd": "^4.16.7",
-    "axios": "^0.21.1",
-    "core-js": "^3.15.2",
-    "history": "^4.10.1",
-    "lodash": "^4.17.21",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-loadable": "^5.5.0",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.1.0"
+    "react": "17.x",
+    "react-dom": "17.x"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.6",
+    "@babel/core": "^7.15.0",
     "@babel/plugin-proposal-class-properties": "^7.14.5",
-    "@babel/plugin-proposal-decorators": "^7.14.5",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.14.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.14.7",
-    "@babel/plugin-proposal-optional-chaining": "^7.14.5",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/plugin-proposal-export-default-from": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
-    "@babel/runtime": "^7.14.6",
-    "antd-dayjs-webpack-plugin": "^1.0.6",
-    "autoprefixer": "^10.3.1",
-    "babel-eslint": "^10.1.0",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
     "babel-loader": "^8.2.2",
-    "babel-plugin-import": "^1.13.3",
-    "clean-webpack-plugin": "^3.0.0",
-    "copy-webpack-plugin": "^9.0.1",
-    "css-loader": "^6.0.0",
-    "css-minimizer-webpack-plugin": "^3.0.2",
-    "dayjs": "^1.10.6",
-    "eslint": "^7.30.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "express": "^4.17.1",
-    "favicons": "^6.2.2",
-    "favicons-webpack-plugin": "^5.0.2",
-    "file-loader": "^6.2.0",
-    "happypack": "^5.0.1",
     "html-webpack-plugin": "^5.3.2",
-    "less": "^4.1.1",
-    "less-loader": "^10.0.1",
-    "mini-css-extract-plugin": "^2.1.0",
-    "mockjs": "^1.1.0",
-    "postcss": "^8.3.5",
-    "postcss-loader": "^6.1.1",
-    "prettier": "^2.3.2",
-    "style-loader": "^3.1.0",
-    "sw-precache-webpack-plugin": "^1.0.0",
-    "terser-webpack-plugin": "^5.1.4",
-    "url-loader": "^4.1.1",
+    "lint-staged": "^10.0.7",
+    "prettier": "^2.2.0",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.1.2",
     "webpack": "^5.44.0",
-    "webpack-bundle-analyzer": "^4.4.2",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-middleware": "^5.0.0",
-    "webpack-hot-middleware": "^2.25.0",
-    "webpackbar": "^4.0.0",
-    "workbox-webpack-plugin": "^6.1.5",
-    "xml-loader": "^1.2.1"
+    "webpack-dev-server": "^3.11.2"
   },
   "browserslist": [
     "iOS >= 8",
