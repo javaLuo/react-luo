@@ -30,7 +30,7 @@ if (env === "production") {
   // 如果是生产环境，则运行build文件夹中的代码
   PORT = 8889;
   app.use(express.static("build"));
-  app.get("*", function (req, res) {
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "build", "index.html"));
   });
 } else {
