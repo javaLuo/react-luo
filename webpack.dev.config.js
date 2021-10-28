@@ -19,6 +19,7 @@ module.exports = {
     path: __dirname + "/", // 将打包好的文件放在此路径下，dev模式中，只会在内存中存在，不会真正的打包到此路径
     publicPath: PUBLIC_PATH, // 文件解析路径，index.html中引用的路径会被设置为相对于此路径
     filename: "bundle-[contenthash].js", // 编译后的文件名字
+    assetModuleFilename: "assets/[name].[hash:4][ext]",
   },
   devtool: "eval-source-map", // 报错的时候在控制台输出哪一行报错
   optimization: {
@@ -63,28 +64,13 @@ module.exports = {
         // 文件解析
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "assets/[name].[hash:4].[ext]",
-            },
-          },
-        ],
+        type: "asset/resource",
       },
       {
         // 图片解析
-        test: /\.(png|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)(\?|$)/i,
         include: path.resolve(__dirname, "src"),
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-              name: "assets/[name].[hash:4].[ext]",
-            },
-          },
-        ],
+        type: "asset",
       },
       {
         // wasm文件解析

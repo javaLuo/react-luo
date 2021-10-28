@@ -84,28 +84,13 @@ module.exports = {
         // 文件解析
         test: /\.(eot|woff|otf|svg|ttf|woff2|appcache|mp3|mp4|pdf)(\?|$)/,
         include: path.resolve(__dirname, "src"),
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              name: "assets/[name].[hash:4].[ext]",
-            },
-          },
-        ],
+        type: "asset/resource",
       },
       {
         // 图片解析
-        test: /\.(png|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)(\?|$)/i,
         include: path.resolve(__dirname, "src"),
-        use: [
-          {
-            loader: "url-loader",
-            options: {
-              limit: 8192,
-              name: "assets/[name].[hash:4].[ext]",
-            },
-          },
-        ],
+        type: "asset",
       },
       {
         // wasm文件解析
