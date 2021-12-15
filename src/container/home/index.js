@@ -18,7 +18,7 @@ export default function HomePageContainer(props) {
         <img src={ImgLogo} />
         <div className="title">React-Luo</div>
         <div className="info">
-          react17、redux4、router5、webpack5、eslint、babel7、antd4
+          react17、redux4、router6、webpack5、eslint、babel7、antd4
         </div>
       </div>
     </div>
