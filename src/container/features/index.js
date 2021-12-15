@@ -2,12 +2,11 @@
 
 /** 所需的各种插件 **/
 import React from "react";
-import { connect } from "react-redux";
 
 /** 所需的所有资源 **/
 import "./index.less";
 
-function FeaturesPageContainer(props) {
+export default function FeaturesPageContainer(props) {
   return (
     <div className="page-features">
       <h1 className="title">构建与特性</h1>
@@ -40,9 +39,7 @@ function FeaturesPageContainer(props) {
         </div>
         <div className="list">
           <h2>HMR局部热更新</h2>
-          <div>
-            使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新
-          </div>
+          <div>使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新</div>
         </div>
         <div className="list">
           <h2>代码分割</h2>
@@ -57,10 +54,3 @@ function FeaturesPageContainer(props) {
     </div>
   );
 }
-
-export default connect(
-  (state) => ({}),
-  (dispatch) => ({
-    actions: {},
-  })
-)(FeaturesPageContainer);

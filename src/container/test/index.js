@@ -2,8 +2,8 @@
 
 /** 所需的各种插件 **/
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { Route, Switch, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, Link, Outlet } from "react-router-dom";
 
 /** 所需的所有资源 **/
 import { Modal, Form, Button, message, Input } from "antd";
@@ -12,29 +12,45 @@ import "./index.less";
 
 import ImgTest from "../../assets/test.jpg";
 import Mp3 from "../../assets/starSky.mp3";
-import Page1 from "./container/page1"; // 子页面1
-import Page2 from "./container/page2"; // 子页面2
-import Page3 from "./container/page3"; // 子页面3
 
 /** 组件 **/
-function TestPageContainer({
-  count, // 来自store - test model中的全局变量count
-  location, // 自动注入的location对象
-  match, // 自动注入的match对象
-  history, // 自动注入的history对象
-  actions, // 上面model中定义的actions对象，自动成为this.props.actions变量
-}) {
+export default function TestPageContainer() {
+  const dispatch = useDispatch();
+
+  const count = useSelector(state => state.test.count); // 引入test model中的count数据
+
+  const location = useLocation();
+  console.log("location:=", location);
+  // 引入test model中的add
+  const onTestAdd = () => {
+    dispatch({
+      type: "test/onTestAdd",
+    });
+  };
+
+  // 引入test model中的fetch异步请求action
+  const serverFetch = async () => {
+    const res = await dispatch({
+      type: "test/serverFetch",
+    });
+    if (res.status === 200) {
+      setMokeFetch(res.data);
+    } else {
+      message.error("获取数据失败");
+    }
+  };
+
   const [visible, setVisible] = useState(false); // 模态框隐藏和显示
   const [mokeFetch, setMokeFetch] = useState([]); // 用于测试异步请求
-  const [localCount, setLocalCount] = useState(0); // 数字
+
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
   };
 
   // 仅组件加载完毕时触发一次
-  useEffect(() => {
-    console.log("所有页面默认拥有的3个对象：", location, match, history);
+  useEffect(async () => {
+    // console.log("所有页面默认拥有的3个对象：", location, match, history);
     const set = new Set([1, 2, 3]);
     const map = new Map();
     console.log("Set 和 Map 测试:", set, map);
@@ -44,34 +60,9 @@ function TestPageContainer({
     console.log("obj的扩展运算符测试：", b);
 
     // 获取用户信息测试
-    actions
-      .getUserinfo({ id: 1 })
-      .then((res) => {
-        console.log("获取用户信息测试：", res);
-      })
-      .catch(() => {
-        console.log("Promise catch");
-      })
-      .finally(() => {
-        console.log("Promise finally");
-      });
+    const userInfo = await dispatch({ type: "app/getUserinfo", payload: { id: 1 } });
+    console.log("获取到userInfo:", userInfo);
   }, []);
-
-  // 当props.count改变时触发
-  useEffect(() => {
-    setLocalCount(count);
-  }, [count]);
-
-  // Fetch测试按钮点击时触发
-  function onFetchClick() {
-    actions.serverFetch().then((res) => {
-      if (res.status === 200) {
-        setMokeFetch(res.data);
-      } else {
-        message.error("获取数据失败");
-      }
-    });
-  }
 
   // 表单提交且验证通过时触发
   function handleSubmit(e) {
@@ -89,17 +80,11 @@ function TestPageContainer({
             <span className="backImage" />
             <span>上方图片，一张是img,一张是background</span>
             <br />
-            <span>
-              请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
-            </span>
+            <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
             <br />
-            <span>
-              如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
-            </span>
+            <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
             <br />
-            <span>
-              如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
-            </span>
+            <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
           </p>
         </div>
         <div className="list">
@@ -133,23 +118,11 @@ function TestPageContainer({
           <h2>Antd表单</h2>
           <div style={{ maxWidth: "400px" }}>
             <Form {...layout} onFinish={handleSubmit}>
-              <Form.Item
-                label="用户名"
-                name="username"
-                rules={[{ required: true, message: "请输入用户名" }]}
-              >
+              <Form.Item label="用户名" name="username" rules={[{ required: true, message: "请输入用户名" }]}>
                 <Input prefix={<UserOutlined />} placeholder="用户名" />
               </Form.Item>
-              <Form.Item
-                label="密码"
-                name="password"
-                rules={[{ required: true, message: "请输入密码" }]}
-              >
-                <Input
-                  type="password"
-                  prefix={<KeyOutlined />}
-                  placeholder="密码"
-                />
+              <Form.Item label="密码" name="password" rules={[{ required: true, message: "请输入密码" }]}>
+                <Input type="password" prefix={<KeyOutlined />} placeholder="密码" />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -169,29 +142,25 @@ function TestPageContainer({
             {location.search}
             <br />
             state参数：
-            {location.state
-              ? Object.entries(location.state)
-                  .map((v) => `${v[0]}=${v[1]}`)
-                  .join("，")
-              : ""}
+            {JSON.stringify(location.state)}
           </p>
           <p>所有页面都自动被注入location、match、history对象</p>
         </div>
         <div className="list">
           <h2>action测试</h2>
           <p>
-            <Button type="primary" onClick={() => actions.onTestAdd(count)}>
+            <Button type="primary" onClick={() => onTestAdd(count)}>
               通过action改变数据num
             </Button>
             <br />
             store中数据num：
-            {localCount}
+            {count}
           </p>
         </div>
         <div className="list">
           <h2>异步请求测试（Mock模拟数据）</h2>
           <div className="pbox">
-            <Button type="primary" onClick={onFetchClick}>
+            <Button type="primary" onClick={serverFetch}>
               使用的axios库
             </Button>
             <br />
@@ -205,41 +174,17 @@ function TestPageContainer({
         </div>
         <div className="list">
           <h2>嵌套路由测试</h2>
+          <Link to="page1">第一页 </Link>
+          <Link to="page2">第二页 </Link>
+          <Link to="page3">第三页</Link>
           <div className="sonTest">
-            <Link to={`${match.url}/Page1`}>子页1</Link>
-            <Link to={`${match.url}/Page2`}>子页2</Link>
-            <Link to={`${match.url}/Page3`}>子页3</Link>
-            <Switch>
-              <Route exact path={`${match.url}/`} component={Page1} />
-              <Route exact path={`${match.url}/Page1`} component={Page1} />
-              <Route exact path={`${match.url}/Page2`} component={Page2} />
-              <Route exact path={`${match.url}/Page3`} component={Page3} />
-            </Switch>
+            <Outlet />
           </div>
         </div>
       </div>
-      <Modal
-        title="模态框"
-        visible={visible}
-        onOk={() => setVisible(false)}
-        onCancel={() => setVisible(false)}
-      >
+      <Modal title="模态框" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
         <p>内容...</p>
       </Modal>
     </div>
   );
 }
-
-export default connect(
-  (state) => ({
-    userinfo: state.app.userinfo, // 引入app model中的userinfo数据
-    count: state.test.count, // 引入test model中的count数据
-  }),
-  (dispatch) => ({
-    actions: {
-      getUserinfo: dispatch.app.getUserinfo, // 引入app model中的获取用户信息action
-      onTestAdd: dispatch.test.onTestAdd, // 引入test model中的数字+1 action
-      serverFetch: dispatch.test.serverFetch, // 引入test model中的fetch异步请求action
-    },
-  })
-)(TestPageContainer);

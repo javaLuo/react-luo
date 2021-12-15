@@ -3,7 +3,7 @@
 /** 所需的各种插件 **/
 import React from "react";
 import { connect } from "react-redux";
-import { Route, Switch, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import P from "prop-types";
 
 /** 所需的所有资源 **/
@@ -39,12 +39,7 @@ class TestClassPageContainer extends React.Component {
 
   /** react生命周期 - 组件初始化完毕DOM挂载完毕后 触发1次 **/
   componentDidMount() {
-    console.log(
-      "所有页面默认拥有的3个对象：",
-      this.props.location,
-      this.props.match,
-      this.props.history
-    );
+    console.log("所有页面默认拥有的3个对象：", this.props.location, this.props.match, this.props.history);
     const set = new Set([1, 2, 3]);
     const map = new Map();
     console.log("Set 和 Map 测试:", set, map);
@@ -56,7 +51,7 @@ class TestClassPageContainer extends React.Component {
     // 获取用户信息测试
     this.props.actions
       .getUserinfo({ id: 1 })
-      .then((res) => {
+      .then(res => {
         console.log("获取用户信息测试：", res);
       })
       .catch(() => {
@@ -143,7 +138,7 @@ class TestClassPageContainer extends React.Component {
 
   // Fetch测试按钮点击时触发
   onFetchClick() {
-    this.props.actions.serverFetch().then((res) => {
+    this.props.actions.serverFetch().then(res => {
       if (res.status === 200) {
         this.setState({
           mokeFetch: res.data,
@@ -166,17 +161,11 @@ class TestClassPageContainer extends React.Component {
               <span className="backImage" />
               <span>上方图片，一张是img,一张是background</span>
               <br />
-              <span>
-                请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
-              </span>
+              <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
               <br />
-              <span>
-                如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
-              </span>
+              <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
               <br />
-              <span>
-                如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
-              </span>
+              <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
             </p>
           </div>
           <div className="list">
@@ -218,7 +207,7 @@ class TestClassPageContainer extends React.Component {
               state参数：
               {this.props.location.state
                 ? Object.entries(this.props.location.state)
-                    .map((v) => `${v[0]}=${v[1]}`)
+                    .map(v => `${v[0]}=${v[1]}`)
                     .join("，")
                 : ""}
             </p>
@@ -227,10 +216,7 @@ class TestClassPageContainer extends React.Component {
           <div className="list">
             <h2>action测试</h2>
             <p>
-              <Button
-                type="primary"
-                onClick={() => this.props.actions.onTestAdd(this.props.count)}
-              >
+              <Button type="primary" onClick={() => this.props.actions.onTestAdd(this.props.count)}>
                 通过action改变数据num
               </Button>
               <br />
@@ -259,37 +245,16 @@ class TestClassPageContainer extends React.Component {
               <Link to={`${this.props.match.url}/Page1`}>子页1</Link>
               <Link to={`${this.props.match.url}/Page2`}>子页2</Link>
               <Link to={`${this.props.match.url}/Page3`}>子页3</Link>
-              <Switch>
-                <Route
-                  exact
-                  path={`${this.props.match.url}/`}
-                  component={Page1}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page1`}
-                  component={Page1}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page2`}
-                  component={Page2}
-                />
-                <Route
-                  exact
-                  path={`${this.props.match.url}/Page3`}
-                  component={Page3}
-                />
-              </Switch>
+              <Routes>
+                <Route exact path={`${this.props.match.url}/`} component={Page1} />
+                <Route exact path={`${this.props.match.url}/Page1`} component={Page1} />
+                <Route exact path={`${this.props.match.url}/Page2`} component={Page2} />
+                <Route exact path={`${this.props.match.url}/Page3`} component={Page3} />
+              </Routes>
             </div>
           </div>
         </div>
-        <Modal
-          title="模态框"
-          visible={this.state.visible}
-          onOk={() => this.handleCancel()}
-          onCancel={() => this.handleCancel()}
-        >
+        <Modal title="模态框" visible={this.state.visible} onOk={() => this.handleCancel()} onCancel={() => this.handleCancel()}>
           <p>内容...</p>
         </Modal>
       </div>
@@ -298,15 +263,15 @@ class TestClassPageContainer extends React.Component {
 }
 
 export default connect(
-  (state) => ({
+  state => ({
     userinfo: state.app.userinfo, // 引入app model中的userinfo数据
     count: state.test.count, // 引入test model中的count数据
   }),
-  (model) => ({
+  model => ({
     actions: {
       getUserinfo: model.app.getUserinfo, // 引入app model中的获取用户信息action
       onTestAdd: model.test.onTestAdd, // 引入test model中的数字+1 action
       serverFetch: model.test.serverFetch, // 引入test model中的fetch异步请求action
     },
-  })
+  }),
 )(TestClassPageContainer);
