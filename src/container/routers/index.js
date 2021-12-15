@@ -4,7 +4,12 @@
 import React, { useEffect } from "react";
 
 // import { Router, Route, Switch, Redirect } from "react-router-dom";
-import { HashRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 // antd的多语言
 import { ConfigProvider } from "antd";
@@ -33,15 +38,18 @@ const Test = Loadable({
   loading: Loading,
 });
 const Page1 = Loadable({
-  loader: () => import(/* webpackChunkName:'testclass' */ "../test/container/page1"),
+  loader: () =>
+    import(/* webpackChunkName:'testclass' */ "../test/container/page1"),
   loading: Loading,
 });
 const Page2 = Loadable({
-  loader: () => import(/* webpackChunkName:'testclass' */ "../test/container/page2"),
+  loader: () =>
+    import(/* webpackChunkName:'testclass' */ "../test/container/page2"),
   loading: Loading,
 });
 const Page3 = Loadable({
-  loader: () => import(/* webpackChunkName:'testclass' */ "../test/container/page3"),
+  loader: () =>
+    import(/* webpackChunkName:'testclass' */ "../test/container/page3"),
   loading: Loading,
 });
 const Features = Loadable({

@@ -17,7 +17,7 @@ import Mp3 from "../../assets/starSky.mp3";
 export default function TestPageContainer() {
   const dispatch = useDispatch();
 
-  const count = useSelector(state => state.test.count); // 引入test model中的count数据
+  const count = useSelector((state) => state.test.count); // 引入test model中的count数据
 
   const location = useLocation();
   console.log("location:=", location);
@@ -60,7 +60,10 @@ export default function TestPageContainer() {
     console.log("obj的扩展运算符测试：", b);
 
     // 获取用户信息测试
-    const userInfo = await dispatch({ type: "app/getUserinfo", payload: { id: 1 } });
+    const userInfo = await dispatch({
+      type: "app/getUserinfo",
+      payload: { id: 1 },
+    });
     console.log("获取到userInfo:", userInfo);
   }, []);
 
@@ -80,11 +83,17 @@ export default function TestPageContainer() {
             <span className="backImage" />
             <span>上方图片，一张是img,一张是background</span>
             <br />
-            <span>请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，</span>
+            <span>
+              请特别注意，现在webpack.production.config.js中的publicPath配置为"/"，
+            </span>
             <br />
-            <span>如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题</span>
+            <span>
+              如果你的项目最终打包后放到服务器上的访问路径为https://xxx.com，这没有问题
+            </span>
             <br />
-            <span>如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"</span>
+            <span>
+              如果你的项目访问路径为https://xxx.com/aaa，请把webpack.production.config.js中的publicPath配置为"/aaa/"
+            </span>
           </p>
         </div>
         <div className="list">
@@ -118,11 +127,23 @@ export default function TestPageContainer() {
           <h2>Antd表单</h2>
           <div style={{ maxWidth: "400px" }}>
             <Form {...layout} onFinish={handleSubmit}>
-              <Form.Item label="用户名" name="username" rules={[{ required: true, message: "请输入用户名" }]}>
+              <Form.Item
+                label="用户名"
+                name="username"
+                rules={[{ required: true, message: "请输入用户名" }]}
+              >
                 <Input prefix={<UserOutlined />} placeholder="用户名" />
               </Form.Item>
-              <Form.Item label="密码" name="password" rules={[{ required: true, message: "请输入密码" }]}>
-                <Input type="password" prefix={<KeyOutlined />} placeholder="密码" />
+              <Form.Item
+                label="密码"
+                name="password"
+                rules={[{ required: true, message: "请输入密码" }]}
+              >
+                <Input
+                  type="password"
+                  prefix={<KeyOutlined />}
+                  placeholder="密码"
+                />
               </Form.Item>
               <Form.Item>
                 <Button type="primary" htmlType="submit">
@@ -182,7 +203,12 @@ export default function TestPageContainer() {
           </div>
         </div>
       </div>
-      <Modal title="模态框" visible={visible} onOk={() => setVisible(false)} onCancel={() => setVisible(false)}>
+      <Modal
+        title="模态框"
+        visible={visible}
+        onOk={() => setVisible(false)}
+        onCancel={() => setVisible(false)}
+      >
         <p>内容...</p>
       </Modal>
     </div>
