@@ -12,6 +12,7 @@ const CopyPlugin = require("copy-webpack-plugin"); // 用于直接复制public�
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin"); // 自动生成各尺寸的favicon图标 webpack5 wating up
 const TerserPlugin = require("terser-webpack-plugin"); // 对js进行压缩
 const webpackbar = require("webpackbar"); // 进度条
+const ESLintPlugin = require("eslint-webpack-plugin"); // eslint插件，代替原来的eslint-loader
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin; // 分析打包后各个包的大小
 /**
  * 基础路径
@@ -113,6 +114,9 @@ module.exports = {
      * **/
     new CleanWebpackPlugin(),
     new webpackbar(), // 打包时美化进度条
+    new ESLintPlugin({
+      context: path.resolve(__dirname, "src"),
+    }),
     new AntdDayjsWebpackPlugin(), // dayjs 替代 momentjs
     /**
      * 在window环境中注入全局变量,虽然暂时没用上，不过在真实开发中应该会用到

@@ -7,6 +7,7 @@ const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin"); // 用于直接复制public中的文件到打包的最终文件夹中
 const HappyPack = require("happypack"); // 多线程编译
 const webpackbar = require("webpackbar");
+const ESLintPlugin = require("eslint-webpack-plugin"); // eslint插件，代替原来的eslint-loader
 const PUBLIC_PATH = "/"; // 基础路径
 
 module.exports = {
@@ -29,13 +30,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        // 编译前通过eslint检查代码 (注释掉即可取消eslint检测)
-        test: /\.js?$/,
-        enforce: "pre",
-        use: ["eslint-loader"],
-        include: path.resolve(__dirname, "src"),
-      },
       {
         // .js .jsx用babel解析
         test: /\.js?$/,
@@ -88,6 +82,9 @@ module.exports = {
   },
   plugins: [
     new webpackbar(),
+    new ESLintPlugin({
+      context: path.resolve(__dirname, "src"),
+    }),
     new webpack.HotModuleReplacementPlugin(), // 热更新插件
     new AntdDayjsWebpackPlugin(), // dayjs 替代 momentjs
     new webpack.DefinePlugin({
