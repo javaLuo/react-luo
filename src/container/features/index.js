@@ -39,7 +39,9 @@ export default function FeaturesPageContainer(props) {
         </div>
         <div className="list">
           <h2>HMR局部热更新</h2>
-          <div>使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新</div>
+          <div>
+            使用webpack-dev-middleware 和 webpack-hot-middleware设置了热更新
+          </div>
         </div>
         <div className="list">
           <h2>代码分割</h2>

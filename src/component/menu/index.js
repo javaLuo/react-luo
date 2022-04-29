@@ -26,11 +26,16 @@ export default function Menu() {
           pathname: "/test",
           search: "?a=123&b=abc",
         }}
-        state={{ c: 456, d: "ABC" }}>
+        state={{ c: 456, d: "ABC" }}
+      >
         测试：api跳转
       </span>
       |
-      <a href="https://github.com/javaLuo/react-luo" target="_blank" rel="noopener noreferrer">
+      <a
+        href="https://github.com/javaLuo/react-luo"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         GitHub
       </a>
     </div>
