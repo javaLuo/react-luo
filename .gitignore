@@ -40,6 +40,7 @@ build
 yarn.lock
 .vscode/*
 dll
+pnpm-lock.yaml
 
 # Optional npm cache directory
 .npm

@@ -20,7 +20,7 @@ export default function Menu() {
       </Link>
       |
       <span
-        class="link"
+        className="link"
         onClick={() => goToTest()}
         to={{
           pathname: "/test",

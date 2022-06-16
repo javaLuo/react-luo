@@ -49,8 +49,9 @@ export default function TestPageContainer() {
   };
 
   // 仅组件加载完毕时触发一次
-  useEffect(async () => {
+  useEffect(() => {
     // console.log("所有页面默认拥有的3个对象：", location, match, history);
+
     const set = new Set([1, 2, 3]);
     const map = new Map();
     console.log("Set 和 Map 测试:", set, map);
@@ -60,11 +61,14 @@ export default function TestPageContainer() {
     console.log("obj的扩展运算符测试：", b);
 
     // 获取用户信息测试
-    const userInfo = await dispatch({
-      type: "app/getUserinfo",
-      payload: { id: 1 },
-    });
-    console.log("获取到userInfo:", userInfo);
+    async function getUserinfo() {
+      const userInfo = await dispatch({
+        type: "app/getUserinfo",
+        payload: { id: 1 },
+      });
+      console.log("获取到userInfo:", userInfo);
+    }
+    getUserinfo();
   }, []);
 
   // 表单提交且验证通过时触发
