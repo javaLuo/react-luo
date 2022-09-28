@@ -16,7 +16,7 @@ import { ConfigProvider } from "antd";
 import zhCN from "antd/lib/locale-provider/zh_CN";
 
 // import { createBrowserHistory as createHistory } from "history/"; // URL模式的history
-import { createHashHistory as createHistory } from "history"; // 锚点模式的history
+// import { createHashHistory as createHistory } from "history"; // 锚点模式的history
 
 import Loadable from "react-loadable"; // 用于代码分割时动态加载模块
 
@@ -61,7 +61,7 @@ const NotFound = Loadable({
   loading: Loading,
 });
 
-const history = createHistory(); // 实例化history对象
+// const history = createHistory(); // 实例化history对象
 
 /** 组件 **/
 export default function RootRouterContainer(props) {
@@ -88,7 +88,7 @@ export default function RootRouterContainer(props) {
   return (
     <ConfigProvider locale={zhCN}>
       <>
-        <Router history={history}>
+        <Router>
           <div className="boss">
             <Routes>
               <Route path="/" element={<Navigate replace to="/home" />} />

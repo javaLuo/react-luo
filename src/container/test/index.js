@@ -14,7 +14,8 @@ import ImgTest from "../../assets/test.jpg";
 import Mp3 from "../../assets/starSky.mp3";
 
 /** 组件 **/
-export default function TestPageContainer() {
+export default function TestPageContainer(props) {
+
   const dispatch = useDispatch();
 
   const count = useSelector((state) => state.test.count); // 引入test model中的count数据
@@ -145,6 +146,7 @@ export default function TestPageContainer() {
               >
                 <Input
                   type="password"
+                  autoComplete="false"
                   prefix={<KeyOutlined />}
                   placeholder="密码"
                 />
@@ -209,7 +211,7 @@ export default function TestPageContainer() {
       </div>
       <Modal
         title="模态框"
-        visible={visible}
+        open={visible}
         onOk={() => setVisible(false)}
         onCancel={() => setVisible(false)}
       >
